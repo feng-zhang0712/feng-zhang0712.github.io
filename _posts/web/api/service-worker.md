@@ -1,1 +1,0 @@
-- [Service Worker](https://sourcegraph.com/github.com/wangdoc/webapi-tutorial/-/blob/docs/service-worker.md)
