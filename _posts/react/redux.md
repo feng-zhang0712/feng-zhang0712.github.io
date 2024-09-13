@@ -1,17 +1,63 @@
-Redux 是一个用于 JavaScript 应用的状态管理库，尤其在 React 应用中非常流行。它帮助你管理应用的状态，使状态变得可预测和可管理。Redux 是通过单一状态树、不可变状态和纯函数（reducers）来实现的。以下是对 Redux 的详细介绍，包括其主要概念、原理、核心组件和使用方法。
+---
+layout: post
+title: Redux
+description: Redux 及 React-Redux 在 React 中的基本使用
+categories: react
+tags:
+  - react
+  - redux
+  - react-redux
+---
 
-### 1. 核心概念
+## 一、什么是 Redux？
 
-#### 单一状态树（Single Source of Truth）
-Redux 使用一个单一的状态树，即一个 JavaScript 对象来表示整个应用的状态。这意味着应用所有的状态数据都存储在一个集中式的对象中。
+### 1.1 概念
 
-#### 状态是只读的（State is Read-Only）
-在 Redux 中，唯一改变状态的方法是触发一个动作（action）。不能直接修改状态对象，而是通过分发（dispatch）一个描述如何改变状态的动作来实现。
+Redux 是一个用于 JavaScript 应用的状态管理库，尤其在 React 应用中非常流行。使用它能够管理应用的状态，使状态变得**可预测**和**可管理**。Redux 支持客户端、服务器端以及原生端的开发工作。
 
-#### 使用纯函数来执行修改（Changes are Made with Pure Functions）
-Redux 使用纯函数（reducers）来指定状态如何根据动作（action）进行更新。纯函数是指一个函数的输出只取决于输入，不会产生副作用。
+### 1.2 原则
 
-### 2. 核心组件
+Redux 有[三大基本原则](https://redux.js.org/understanding/thinking-in-redux/three-principles)。
+
+- **单一数据源**（Single Source of Truth）：整个应用的全局 state 被储存在一棵对象树（object tree）中，并且这个对象树存在于唯一的 store 中。
+- **状态只读**（State is Read-Only）：在 Redux 中，唯一改变状态的方法是触发一个动作（action）。不能直接修改状态对象，而是通过分发（dispatch）一个描述如何改变状态的动作（对象）来实现。
+- **使用纯函数来执行修改**（Changes are Made with Pure Functions）：Redux 使用纯函数（reducers）来指定状态如何根据动作（action）进行更新。纯函数是指一个函数的输出只取决于输入，不会产生副作用。
+
+### 1.3 核心概念
+
+在真正使用 Redux 之前，需要熟悉 Redux 中的几个[核心概念](https://redux.js.org/understanding/thinking-in-redux/glossary)。
+
+#### （1）State
+
+
+
+#### （2）Action
+
+
+#### （3）Reducer
+
+
+#### （4）Dispatching Function
+
+
+
+#### （5）Action Creator
+
+#### （1）Async Action
+
+
+
+#### （6）Middleware
+
+
+#### （7）Store
+
+
+#### （8）Store Creator
+
+
+#### （9）Store Enhancer
+
 
 #### 1. Actions
 动作（actions）是一个普通的 JavaScript 对象，用于描述发生了什么。每个动作必须包含一个 `type` 属性来标识动作的类型，其他属性可以用来传递动作的相关数据。
