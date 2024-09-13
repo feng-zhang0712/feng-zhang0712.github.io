@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://feng-zhang0712.github.io/sitemap.xml
+Sitemap: https://feng-zhang0712.github.io//sitemap.xml

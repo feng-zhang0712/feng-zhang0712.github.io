@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> <html><body> <p>React 的事件代理机制（Event Delegation）是其性能优化的一种手段。通过事件代理，React 将所有的事件监听器统一绑定到根元素，而不是每个具体的 DOM 元素上。这种方法减少了实际绑定到 DOM 元素上的事件处理器数量，从而提升了性能，特别是在有大量动态生成的元素时。</p> <h3 id="事件代理的工作原理">事件代理的工作原理</h3> <ol> <li> <strong>统一绑定事件处理器</strong>：React 会在组件挂载时，将所有事件处理器统一绑定到应用的根元素（例如 <code class="language-plaintext highlighter-rouge">document</code> 或 <code class="language-plaintext highlighter-rouge">root</code> DOM 节点）。</li> <li> <strong>事件捕获和冒泡</strong>：当用户在具体的 DOM 元素上触发事件时，事件会按照捕获和冒泡的机制传播。React 利用这个机制，在事件冒泡到根元素时捕获事件。</li> <li> <strong>事件分发</strong>：在根元素上捕获到事件后，React 解析事件的目标元素，并根据目标元素和事件类型，找到对应的 React 组件实例和事件处理器，然后调用该处理器。</li> </ol> <h3 id="优点">优点</h3> <ul> <li> <strong>性能优化</strong>：减少了实际绑定在 DOM 元素上的事件处理器数量，降低了内存消耗和性能开销。</li> <li> <strong>简化事件管理</strong>：通过统一的事件处理机制，简化了事件添加和移除的管理。</li> </ul> <h3 id="示例">示例</h3> <p>以下是一个简单的示例，展示了事件代理的基本概念：</p> <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">ButtonList</span> <span class="kd">extends</span> <span class="nc">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">handleClick</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// 获取被点击的按钮元素</span>
+    <span class="kd">const</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Button </span><span class="p">${</span><span class="nx">button</span><span class="p">.</span><span class="nx">textContent</span><span class="p">}</span><span class="s2"> clicked!`</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="nf">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return </span><span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleClick</span><span class="si">}</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Button 1<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Button 2<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Button 3<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">ButtonList</span><span class="p">;</span>
+</code></pre></div></div> <p>在这个示例中，三个按钮的点击事件都通过 <code class="language-plaintext highlighter-rouge">div</code> 容器上的 <code class="language-plaintext highlighter-rouge">onClick</code> 处理器进行处理。点击任意按钮时，事件会冒泡到 <code class="language-plaintext highlighter-rouge">div</code> 容器，被捕获并处理。</p> <h3 id="深入理解">深入理解</h3> <ul> <li> <strong>合成事件</strong>：React 使用合成事件（Synthetic Events）对象来封装浏览器的原生事件对象。合成事件对象提供了与原生事件对象相同的接口，但具备跨浏览器的兼容性。</li> <li> <strong>事件池</strong>：React 维护一个事件池，用于存储和复用合成事件对象。事件处理器执行后，合成事件对象会被复用以提高性能。因此，在事件处理器中，不能异步访问合成事件对象；如果需要异步访问，可以调用 <code class="language-plaintext highlighter-rouge">event.persist()</code> 方法防止对象被复用。</li> </ul> <h3 id="注意事项">注意事项</h3> <ul> <li> <strong>异步访问事件对象</strong>：在异步函数中访问合成事件对象时，需要调用 <code class="language-plaintext highlighter-rouge">event.persist()</code> 方法。例如：</li> </ul> <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">handleClick</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nf">persist</span><span class="p">();</span>
+  <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">);</span> <span class="c1">// 异步访问事件对象</span>
+  <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div> <ul> <li> <strong>非冒泡事件</strong>：某些事件不会冒泡，例如 <code class="language-plaintext highlighter-rouge">onBlur</code> 和 <code class="language-plaintext highlighter-rouge">onFocus</code>。React 通过特殊处理，将这些事件也通过事件代理机制进行处理。</li> </ul> <h3 id="总结">总结</h3> <p>React 的事件代理机制通过在根元素上统一绑定事件处理器，有效地减少了实际绑定在 DOM 元素上的事件处理器数量，提升了性能，并简化了事件管理。这是 React 提升性能和简化事件管理的一种重要手段。</p> </body></html>
