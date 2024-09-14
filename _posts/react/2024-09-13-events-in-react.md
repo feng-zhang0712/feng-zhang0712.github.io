@@ -1,3 +1,12 @@
+---
+layout: post
+title: React 中的事件
+categories: frontend
+tags:
+  - react
+  - events
+---
+
 React 的事件代理机制（Event Delegation）是其性能优化的一种手段。通过事件代理，React 将所有的事件监听器统一绑定到根元素，而不是每个具体的 DOM 元素上。这种方法减少了实际绑定到 DOM 元素上的事件处理器数量，从而提升了性能，特别是在有大量动态生成的元素时。
 
 ### 事件代理的工作原理

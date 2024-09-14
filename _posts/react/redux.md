@@ -9,11 +9,11 @@ tags:
   - react-redux
 ---
 
-## 一、什么是 Redux？
+## 一、认识 Redux
 
 ### 1.1 概念
 
-Redux 是一个用于 JavaScript 应用的状态管理库，尤其在 React 应用中非常流行。使用它能够管理应用的状态，使状态变得**可预测**和**可管理**。Redux 支持客户端、服务器端以及原生端的开发工作。
+Redux 是一个用于 JavaScript 应用的状态管理库，它能够管理应用的状态，使状态变得**可预测**和**可管理**。Redux 在客户端、服务器端以及原生端都可运行。
 
 ### 1.2 原则
 
@@ -23,83 +23,155 @@ Redux 有[三大基本原则](https://redux.js.org/understanding/thinking-in-red
 - **状态只读**（State is Read-Only）：在 Redux 中，唯一改变状态的方法是触发一个动作（action）。不能直接修改状态对象，而是通过分发（dispatch）一个描述如何改变状态的动作（对象）来实现。
 - **使用纯函数来执行修改**（Changes are Made with Pure Functions）：Redux 使用纯函数（reducers）来指定状态如何根据动作（action）进行更新。纯函数是指一个函数的输出只取决于输入，不会产生副作用。
 
-### 1.3 核心概念
+### 1.3 术语
 
-在真正使用 Redux 之前，需要熟悉 Redux 中的几个[核心概念](https://redux.js.org/understanding/thinking-in-redux/glossary)。
+在真正使用 Redux 之前，需要熟悉 Redux 中的几个[核心术语](https://redux.js.org/understanding/thinking-in-redux/glossary)。
 
 #### （1）State
 
+```javascript
+type State = any
+```
 
+State（状态，也称为状态树，state tree）是一个宽泛的术语，在 Redux 中，它指的是一个独一无二的状态值，由 store 管理，并且通过 `getState()` 方法来获取。它代表着整个 Redux 应用的状态，并且通常是一个深层内嵌的对象。
+
+一般来说，最顶层的 state 通常是一个对象或者是像 Map 这样的键值对（key-value）的集合，但从技术上来讲，它可以是任意类型。不管怎样，应该尽量保证 State 的可序列化。
+
+注意，不要把什么东西都放到 state 里边，这样可能会导致其很难转换为 JSON。
 
 #### （2）Action
 
+```javascript
+type Action = Object
+```
+
+动作（action）是一个普通对象，用于描述发生了什么（或者说，用来描述 state 的变化倾向）。它是将数据放入 store 的唯一方式。任何数据，不管是来自 UI 事件、网络回调还是其他来源（比如 WebSockets），最终都需要通过 action 被派发出去。
+
+Action 对象必须包含一个 `type` 属性，表示要执行的动作的类型。Type 类型可以是常量，并通过其他模块导入。通常来说，最好是将 `type` 定义为 `String` 类型而不是 `Symbol`，因为 `String` 类型可被序列化。
+
+除了 `type` 属性，Action 对象的结构完全由你自己决定。当然，Redux 推荐使用[Flux Standard Action](https://github.com/redux-utilities/flux-standard-action)来组织 Action 对象结构。
 
 #### （3）Reducer
 
+```javascript
+type Reducer<S, A> = (state: S, action: A) => S
+```
+
+Reducer 是纯函数，接收当前的状态和动作作为参数，并返回一个新的状态。Reducer 是应用更新状态的唯一途径。
+
+Reducer 并不是 Redux 的独创，它是函数式编程中的一个基本概念。即使是大部分非函数式编程语言（比如 JavaScript），也有一个内置的 reducing API。比如，JavaScript 中的 [Array.prototype.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)。
+
+在 Redux 中，累积值是 state 状态对象，被累积的值是 action 操作。Reducer 通过计算接收的 state 和 action，返回一个新的 state。
+
+可以说，Reducer 是 Redux 最重要的概念。在使用 Reducer 的时候，有几个注意点。
+
+- Reducer 必须是**纯函数**，这意味着，对于相同的输入，它应该返回相同的输出。
+- Reducer 不应有任何副作用，这是实现诸如热加载（hot reloading）以及时间旅行（time travel）的关键。
+- 不要在 Reducer 中调用任何接口请求。
 
 #### （4）Dispatching Function
 
+```javascript
+type BaseDispatch = (a: Action) => Action
+type Dispatch = (a: Action | AsyncAction) => any
+```
 
+dispatching 函数（也称为 dispatch 函数）接收一个 action 或者 异步 action（async action）对象，它会向（也有可能不会）store 对象 dispatch 一个或多个 actions。
+
+注意，一般的 dispatching 方法和 store 对象提供的不使用 middleware 的基本 `dispatch` 方法是两个不同的概念。
+
+基本的 dispatch 方法**总是**同步地向 store 的 reducer 发送 一个 action 对象，以及 store 返回的前一个状态，以计算一个新状态。它期望的 action 是可以被 reducer 使用的普通对象。
+
+Middleware 封装了基本的 dispatch 函数。它允许 dispatch 函数处理同（异）步 action。在将 action 传递给下一个 middleware 之前， Middleware 可能会对 action 做转换、延迟、忽略或其他方式的处理。
 
 #### （5）Action Creator
 
-#### （1）Async Action
-
-
-
-#### （6）Middleware
-
-
-#### （7）Store
-
-
-#### （8）Store Creator
-
-
-#### （9）Store Enhancer
-
-
-#### 1. Actions
-动作（actions）是一个普通的 JavaScript 对象，用于描述发生了什么。每个动作必须包含一个 `type` 属性来标识动作的类型，其他属性可以用来传递动作的相关数据。
-
 ```javascript
-const addTodo = (text) => ({
-  type: 'ADD_TODO',
-  payload: text
-});
+type ActionCreator<A, P extends any[] = any[]> = (...args: P) => Action | AsyncAction
 ```
 
-#### 2. Reducers
-Reducers 是纯函数，接收当前的状态和动作作为参数，并返回一个新的状态。Reducers 是应用更新状态的唯一途径。
+Action Creator 是一个用来创建 action 的方法。action 和 action creator 是两个不同的概念：action 是信息的载体，而 action creator 是用来创建 action 的工厂。
+
+执行 Action Creator 函数会产生一个 action 对象，但不会 dispatch 这个对象。如果要执行 action 带来的变更，需要调用 store 的 `dispatch` 方法。
+
+#### （6）Async Action
 
 ```javascript
-const initialState = {
-  todos: []
-};
-
-const todoReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return {
-        ...state,
-        todos: [...state.todos, action.payload]
-      };
-    default:
-      return state;
-  }
-};
+type AsyncAction = any
 ```
 
-#### 3. Store
-Store 是应用状态的存储库，负责管理状态。你可以使用 `createStore` 函数创建一个 store。
+异步 action 是一个传递给 dispatching 函数的值，但还不能被 reducer 函数所使用。在被传递到基本 `dispatch` 方法之前，它会被中间件转换为一个（或一系列）action。根据你所使用的中间件的不同，异步 action 可能会有不同的类型。他们通常是 Promise 或者 thunk 执行的异步原始数据类型，一旦操作完成，就会触发 action 的 dispatch 方法。
+
+#### （7）Middleware
 
 ```javascript
-import { createStore } from 'redux';
-
-const store = createStore(todoReducer);
+type MiddlewareAPI = { dispatch: Dispatch, getState: () => State }
+type Middleware = (api: MiddlewareAPI) => (next: Dispatch) => Dispatch
 ```
 
-### 3. 使用方法
+中间件（Middleware）是一个高阶函数，用来组合 dispatch 方法，并返回一个新的 dispatch 方法。它主要同来将异步 action 转换为 action。
+
+中间件常用于 action 打印、执行副作用（比如路由）或者将异步 API 调用变为同步 action。
+
+#### （8）Store
+
+```javascript
+type Store = {
+  dispatch: Dispatch
+  getState: () => State
+  subscribe: (listener: () => void) => () => void
+  replaceReducer: (reducer: Reducer) => void
+}
+```
+
+Store 是一个对象，用于存储整个应用的状态（树）。Redux 应用中只应存在一个 store 对象，因为构建发生在 reducer 层面。一个 store 对象有下面四个方法组成。
+
+- **`dispatch(action)`**：`dispatch` 是之前提到的基本调度函数。
+- **`getState()`**：用来获取 store 中存储的**当前** state 状态.
+- **`subscribe(listener)`**：用来注册监听，当 state 状态发生变化时，会触发监听回调函数。
+- `replaceReducer(nextReducer)`：用来实现热加载或代码分割。大部分情况下并不会用到这个方法。
+
+#### （9）Store Creator
+
+```javascript
+type StoreCreator = (reducer: Reducer, preloadedState: ?State) => Store
+```
+
+Store creator 是一个创建 Redux store 的函数。注意，基本的 store creator 跟这里讲的 store creator 是两个不同的概念。前者指的是从 Redux 中导出的 `createStore(reducer, preloadedState)` 方法，而后者由 [store enhancer](#10store-enhancer) 创建。
+
+#### （10）Store Enhancer
+
+```javascript
+type StoreEnhancer = (next: StoreCreator) => StoreCreator
+```
+
+Store enhancer 是一个高阶函数，用来组合 store creator，并返回一个新的增强版的 store creator。多数情况下你可能不会用到 store enhancer，但你有可能会用到 developer tools 中提供的 store enhancer。也正是因为 store enhancer，应用才能够在不需要关注发生了什么的情况下，实现时间旅行（time travel）。有趣的是，[redux 中间件的实现](https://redux.js.org/api/applymiddleware)就是一个 store enhancer。
+
+### 1.4 工作流程
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ### 3. 使用方法
 
 #### 1. 创建 Store
 首先，你需要创建一个 store。Store 是通过 `createStore` 函数创建的，并且需要传入一个 reducer 作为参数。
@@ -191,7 +263,7 @@ import todoReducer from './reducers';
 const store = createStore(todoReducer);
 
 export default store;
-```
+``` -->
 
 #### 3. 在 React 应用中使用
 
