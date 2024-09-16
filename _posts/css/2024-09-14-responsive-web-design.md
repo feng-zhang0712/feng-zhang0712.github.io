@@ -9,17 +9,15 @@ tags:
   - responsive web design
 ---
 
-本文是对 [Ben Frain](https://benfrain.com/) 的《响应式 Web 设计：HTML5和CSS3实战 - 第二版》的读书摘要。
-
 ## 一、简介
 
-响应式 Web 设计，指网页内容会随着访问它的视口及设备的不同而呈现不同的样式。W3C 对媒体查询下的定义是：媒体查询包含媒体类型和零个或多个检测媒体特性的表达式（比如，`width`、`height` 和 `color` 都是可用于媒体查询的特性）。使用媒体查询，可以不必修改内容本身，而让网页适配不同的设备。
+响应式 Web 设计，指网页内容会随着访问它的视口及设备的不同而呈现不同的样式。
 
 在响应式设计的早期，人们会针对不同的流行的设备宽度设置**断点**，所谓“断点”，就是某个宽度临界点，跨过这个点布局就会发生显著变化。显然，这并不是一个好的做法，因为这样实际上把设计跟特定的屏幕大小绑定了。既然是响应式设计，那应该与显示它的设备无关才对，而不是只在某些屏幕中才最合适。断点应该由内容和设计本身决定，也就是，根据项目的实际需求设计决定。
 
 ## 二、媒体查询
 
-**媒体查询**（Media Queries）主要用于设计响应式 Web 设计，使网页能够适应不同的设备和屏幕尺寸。即根据设备的特性（如屏幕宽度、高度、分辨率等）应用不同的样式。
+**媒体查询**（Media Queries）主要用于设计响应式 Web 设计，使网页能够适应不同的设备和屏幕尺寸。即根据设备的特性（如屏幕宽度、高度、分辨率等）应用不同的样式。W3C 对媒体查询的定义是：媒体查询包含媒体类型和零个或多个检测媒体特性的表达式（比如，`width`、`height` 和 `color` 都是可用于媒体查询的特性）。使用媒体查询，可以不必修改内容本身，而让网页适配不同的设备。
 
 常用媒体特性如下。
 
@@ -27,13 +25,13 @@ tags:
 - `height`：视口的高度。
 - `device-width`：设备屏幕的宽度。
 - `device-height`：设备屏幕的高度。
-- `resolution`：设备屏幕的分辨率，通常以 dpi（每英寸点数）或 dppx（每像素点数）表示。
+- `resolution`：设备屏幕的分辨率，通常以 `dpi`（每英寸点数）或 `dppx`（每像素点数）表示。
 - `orientation`：设备的方向，可以是 `portrait` 或 `landscape`。
 - `aspect-ratio`：视口的宽高比。不如，16∶9 的宽屏显示器可以写成 `aspect-ratio: 16/9`。
 - `color`：设备的颜色位深。
 - `color-index`：设备颜色查找表中的条目数，值必须是数值，且不能为负。
 - `monochrome`：单色帧缓冲中表示每个像素的位数，值必须是数值（整数），比如 `monochrome: 2`，且不能为负。
-- `scan`：针对电视的逐行扫描（progressive）和隔行扫描（interlace）。例如 720p HD TV（720p 中的 p 表示progressive，即逐行）可以使用 `scan: progressive` 来判断； 而 1080i HD TV（1080i 中的 i 表示 interlace，即隔行）可以使用 `scan: interlace` 来判断。
+- `scan`：针对电视的逐行扫描（progressive）和隔行扫描（interlace）。例如 720p HD TV（720p 中的 `p` 表示 progressive，即逐行）可以使用 `scan: progressive` 来判断； 而 1080i HD TV（1080i 中的 `i` 表示 interlace，即隔行）可以使用 `scan: interlace` 来判断。
 - `grid`：设备基于栅格还是位图。
 
 上面列表中的特性，除 `grid` 外，都可以加上 `min-` 或 `max-` 前缀以指定范围。
@@ -104,13 +102,884 @@ tags:
 
 上面的代码表示，在移动设备上，页面的宽度为设备宽度，页面初始的缩放比例为 1，允许用户进行缩放操作，且最小和最大缩放比例分别为 0.5 和 3。
 
-## 三、弹性布局与响应式图片
+## 三、弹性布局、网格布局与响应式图片
 
-### 3.1 Flex 布局
+布局的传统解决方案，基于盒状模型，依赖 `display` + `position` + `float` 等属性。而现代的布局方案，更多的是使用 Flex 和 Grid 布局。下面依次对他们进行介绍。
 
-### 3.2 Grid 布局
+### 3.1 盒模型
 
-### 3.3 响应式图片
+CSS 盒模型指一个元素在页面上所占据的空间。由四部分组成：`content`、`padding`、`border` 和 `margin`。盒模型主要分为两种：标准盒模型和替代盒模型。
+
+（1）标准盒模型（content-box）
+
+此模型元素的 `width` 和 `height`，只包含内容的宽高，不包含 `padding` 和 `border`。 此时 `padding`、`border` 和 `margin` 都在这个盒子的外部。
+
+（2）替代盒模型（border-box）
+
+也叫 IE 盒子模型，此模型元素的 `width` 和 `height`，包含 `content`、`padding` 和 `border`。此时 `padding` 和 `border` 都在盒子内部。
+
+（3）可以通过 `box-sizing` 属性，设置一个元素显示为哪种盒模型。
+
+```css
+box-sizing: content-box（默认）| border-box;
+```
+
+### 3.2 布局相关属性
+
+先介绍几个跟布局相关的属性，他们是：`display`、`position` 和 `z-index`。
+
+（1）`display` 属性设置元素是否被视为块级或行级盒子以及用于子元素的布局。其语法格式如下（以下只列出了 display 属性的几个常用取值）。
+
+```css
+display: flex | grid | none | block | inline | inline-block | table;
+```
+
+注意区分 `display: none`、`visibility: hidden` 及 `opacity: 0` 之间的区别。
+
+- `display: none`：用于将元素完全从页面中移除，包括占用的空间。
+- `visibility: hidden`：用于隐藏元素，但元素占用的空间会保留，且该元素仍会影响页面布局。
+- `opacity: 0`：元素依然参与正常布局，且依然“可见”，只是该元素变为透明样式，但用户依然可以与其交互  ·。
+
+（2）`position` 属性用于指定一个元素在页面的定位方式。其语法格式如下。
+
+```css
+position: static（默认）| relative | absolute | fixed | sticky；
+```
+
+- `static`：默认值，表示元素按照正常的文档流进行布局。使用 `static` 定位的元素不会被定位偏移（此时，`top`、`right`、`bottom` 和 `left` 属性无效）。
+- `relative`：定位的元素相对于其正常位置进行偏移。使用 `relative` 定位的元素仍然占据原来的空间，但可以通过 `top`、`right`、`bottom` 和 `left` 属性进行偏移。适用于需要微调元素位置的场景。
+- `absolute`：定位的元素脱离正常文档流，不再占据空间。使用 `absolute` 定位的元素相对于最近的非 `static` 的祖先元素进行定位。如果没有这样的祖先元素，则相对于网页的根元素 `<html>` 进行定位。适用于需要精确定位的场景。
+- `fixed`：定位的元素脱离正常文档流，不再占据空间。使用 `fixed` 定位的元素相对于 视口（浏览器窗口）进行定位，即使页面滚动，其位置也不会改变。适用于需要固定位置的元素，如导航栏、工具栏等。
+- `sticky`：定位的元素根据用户的滚动位置进行切换，介于 `relative` 和 `fixed` 之间。使用 `sticky` 定位的元素在跨越特定阈值（即 `top`、`right`、`bottom` 和 `left` 设置的值）之前表现为 `relative` 定位，跨越阈值后表现为 `fixed` 定位。适用于需要在滚动时固定位置的元素，如表头、侧边栏等。
+
+  ```css
+  #toolbar {
+    top: 20px;
+    position: sticky;
+  }
+  ```
+
+  上面代码中，页面向下滚动时，`#toolbar` 的父元素开始脱离视口，一旦视口的顶部与 `#toolbar` 的距离小于 20px（门槛值），`#toolbar` 就自动变为 `fixed` 定位，保持与视口顶部 20px 的距离。页面继续向下滚动，父元素彻底离开视口（即整个父元素完全不可见），`#toolbar` 恢复成 `relative` 定位。
+
+（3）`z-index` 属性用于控制重叠元素的层叠顺序。
+
+`z-index` 只有在 `position` 属性值为 `relative`、`absolute`、`fixed` 或 `sticky` 时才有效。`z-index` 的值可以是正整数、负整数或零，值越大，元素的层级越高。
+
+### 3.3 Flex 布局
+
+Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性。任何一个容器都可以指定为 Flex 布局。
+
+```css
+.box{
+  display: flex;
+}
+
+/* 也可以为行内元素开启 Flex 布局 */
+.box{
+  display: inline-flex;
+}
+```
+
+注意，设为 Flex 布局以后，子元素的 `float`、`clear` 和 `vertical-align` 属性将失效。
+
+#### 3.3.1 基本概念
+
+采用 Flex 布局的元素，称为 Flex **容器**（container）。它的所有子元素自动成为容器成员，称为 Flex **项目**（item）。
+
+容器默认存在两根轴：水平的**主轴**（main axis）和垂直的**交叉轴**（cross axis）。主轴的开始位置（与边框的交叉点）叫做 **main start**，结束位置叫做 **main end**；交叉轴的开始位置叫做 **cross start**，结束位置叫做 **cross end**。
+
+**项目默认沿主轴排列**。单个项目占据的主轴空间叫做 **main size**，占据的交叉轴空间叫做 **cross size**。
+
+#### 3.3.2 容器的属性
+
+作用在容器上的属性有 6 个：`flex-direction`、`flex-wrap`、`flex-flow`、`justify-content`、`align-items` 和 `align-content`。下面，依次对他们进行讲解。
+
+（1）`flex-direction`：用于决定主轴的方向（即项目的排列方向）。
+
+```css
+.box {
+  flex-direction: row | row-reverse | column | column-reverse;
+}
+```
+
+![flex-direction 属性](https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071005.png)
+
+- `row`（默认值）：主轴为水平方向，起点在左端。
+- `row-reverse`：主轴为水平方向，起点在右端。
+- `column`：主轴为垂直方向，起点在上沿。
+- `column-reverse`：主轴为垂直方向，起点在下沿。
+
+（2）`flex-wrap`：默认情况下，项目都排在一条线（又称"轴线"）上。`flex-wrap` 属性定义，如果一条轴线排不下，如何换行。
+
+```css
+.box{
+  flex-wrap: nowrap | wrap | wrap-reverse;
+}
+```
+
+- `nowrap`（默认）：不换行。
+- `wrap`：换行，第一行在上方。
+- `wrap-reverse`：换行，第一行在下方。
+
+（3）`flex-flow`：`flex-direction` 属性和 `flex-wrap` 属性的简写形式，默认值为 `row nowrap`。
+
+```css
+.box {
+  flex-flow: <flex-direction> || <flex-wrap>;
+}
+```
+
+（4）`justify-content`：定义项目在主轴上的对齐方式。
+
+```css
+.box {
+  justify-content: flex-start | flex-end | center | space-between | space-around;
+}
+```
+
+![justify-content 属性](https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071010.png)
+
+它可能取5个值，具体对齐方式与轴的方向有关。下面假设主轴为从左到右。
+
+- `flex-start`（默认值）：左对齐。
+- `flex-end`：右对齐。
+- `center`： 居中。
+- `space-between`：两端对齐，项目之间的间隔都相等。
+- `space-around`：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
+
+（5）`align-items`：定义项目在交叉轴上的对齐方式。
+
+```css
+.box {
+  align-items: flex-start | flex-end | center | baseline | stretch;
+}
+```
+
+![align-items 属性](https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071011.png)
+
+它可能取5个值。具体的对齐方式与交叉轴的方向有关，下面假设交叉轴从上到下。
+
+- `flex-start`：交叉轴的起点对齐。
+- `flex-end`：交叉轴的终点对齐。
+- `center`：交叉轴的中点对齐。
+- `baseline`: 项目的第一行文字的基线对齐。
+- `stretch`（默认值）：如果项目未设置高度或设为 `auto`，将占满整个容器的高度。
+
+（6）align-content：定义多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
+
+```css
+.box {
+  align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+}
+```
+
+![align-content 属性](https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071012.png)
+
+- `flex-start`：与交叉轴的起点对齐。
+- `flex-end`：与交叉轴的终点对齐。
+- `center`：与交叉轴的中点对齐。
+- `space-between`：与交叉轴两端对齐，轴线之间的间隔平均分布。
+- `space-around`：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+- `stretch`（默认值）：轴线占满整个交叉轴。
+
+#### 3.3.3 项目的属性
+
+作用在项目上的属性有 6 个：`order`、`flex-grow`、`flex-shrink`、`flex-basis`、`flex` 和 `align-self`。下面，依次对他们进行讲解。
+
+（1）`order`：定义项目的排列顺序。数值越小，排列越靠前，默认为 0。
+
+```css
+.item {
+  order: <integer>;
+}
+```
+
+（2）`flex-grow`：定义项目的放大比例，默认为 0，即如果存在剩余空间，也不放大。
+
+```css
+.item {
+  flex-grow: <number>; /* default 0 */
+}
+```
+
+如果所有项目的 `flex-grow` 属性都为 1，则它们将等分剩余空间（如果有的话）。如果一个项目的 `flex-grow` 属性为 2，其他项目都为 1，则前者占据的剩余空间将比其他项多一倍。
+
+（3）`flex-shrink`：定义项目的缩小比例，默认为 1，即如果空间不足，该项目将缩小。
+
+```css
+.item {
+  flex-shrink: <number>; /* default 1 */
+}
+```
+
+如果所有项目的 `flex-shrink` 属性都为 1，当空间不足时，都将等比例缩小。如果一个项目的 `flex-shrink` 属性为 0，其他项目都为 1，则空间不足时，前者不缩小。负值对该属性无效。
+
+（4）`flex-basis`：定义在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为 `auto`，即项目的本来大小。
+
+```css
+.item {
+  flex-basis: <length> | auto; /* default auto */
+}
+```
+
+它可以设为跟 `width` 或 `height` 属性一样的值（比如 350px），则项目将占据固定空间。
+
+（5）`flex`：`flex-grow`, `flex-shrink` 和 `flex-basis` 的简写，默认值为 `0 1 auto`。后两个属性可选。
+
+该属性有两个快捷值：`auto` (`1 1 auto`) 和 `none` (`0 0 auto`)。建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。
+
+（6）`align-self`：`align-self` 属性允许单个项目有与其他项目有不一样的对齐方式，可覆盖 `align-items` 属性。默认值为 `auto`，表示继承父元素的 `align-items` 属性，如果没有父元素，则等同于 `stretch`。
+
+```css
+.item {
+  align-self: auto | flex-start | flex-end | center | baseline | stretch;
+}
+```
+
+![align-self 属性](https://www.ruanyifeng.com/blogimg/asset/2015/bg2015071016.png)
+
+该属性可能取 6 个值，除了 `auto`，其他都与 `align-items` 属性完全一致。
+
+### 3.4 Grid 布局
+
+网格布局（Grid）将网页划分成一个个网格，可以任意组合不同的网格，做出各种各样的布局。
+
+Flex 布局是轴线布局，只能指定"项目"针对轴线的位置，可以看作是**一维布局**。Grid 布局则是将容器划分成"**行**"和"**列**"，产生单元格，然后指定"项目所在"的单元格，可以看作是**二维布局**。
+
+#### 3.4.1 基本概念
+
+（1）采用网格布局的区域，称为**容器**（container）。容器内部采用网格定位的子元素，称为**项目**（item）。
+
+注意：项目只能是容器的**顶层子元素**，不包含项目的子元素。Grid 布局只对项目生效。
+
+（2）容器里面的水平区域称为"**行**"（row），垂直区域称为"**列**"（column）。
+
+![Grid 布局的行和列](https://cdn.beekka.com/blogimg/asset/201903/1_bg2019032502.png)
+
+（3）行和列的交叉区域，称为"**单元格**"（cell）。正常情况下，`n` 行和 `m` 列会产生 `n x m` 个单元格。比如，3 行 3 列会产生 9 个单元格。
+
+（4）划分网格的线，称为"**网格线**"（grid line）。水平网格线划分出行，垂直网格线划分出列。
+
+正常情况下，`n` 行有 `n + 1` 根水平网格线，`m` 列有 `m + 1` 根垂直网格线，比如三行就有四根水平网格线。
+
+![Grid 布局的网格线](https://cdn.beekka.com/blogimg/asset/201903/1_bg2019032503.png)
+
+上图是一个 4 x 4 的网格，共有 5 根水平网格线和 5 根垂直网格线。
+
+#### 3.4.2 容器属性
+
+（1）`display: grid`：指定一个容器采用网格布局。
+
+```css
+div {
+  display: grid;
+}
+```
+
+![display: grid 的效果](https://cdn.beekka.com/blogimg/asset/201903/bg2019032504.png)
+
+上图是 `display: grid` 的[效果](https://jsbin.com/guvivum/edit?html,css,output)。
+
+默认情况下，容器元素都是块级元素，但也可以设成行内元素。
+
+```css
+div {
+  display: inline-grid;
+}
+```
+
+![display: inline-grid 的效果](https://cdn.beekka.com/blogimg/asset/201903/bg2019032505.png)
+
+上图是 `display: inline-grid` 的[效果](https://jsbin.com/qatitav/edit?html,css,output)。
+
+注意，设为网格布局以后，容器子元素（项目）的 `float`、`display: inline-block`、`display: table-cell`、`vertical-align` 和 `column-*` 等设置都将失效。
+
+（2）`grid-template-columns` 属性、`grid-template-rows` 属性
+
+`grid-template-columns` 属性定义每列的列宽，`grid-template-rows` 属性定义每行的行高。
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+}
+```
+
+[上面代码](https://jsbin.com/qiginur/edit?css,output)指定了一个三行三列的网格，列宽和行高都是 100px。
+
+![grid-template-rows 属性，grid-template-columns 属性](https://cdn.beekka.com/blogimg/asset/201903/bg2019032506.png)
+
+除了使用**绝对单位**，也可以使用**百分比**。
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+  grid-template-rows: 33.33% 33.33% 33.33%;
+}
+```
+
+- `repeat()`：函数用于重复一组值。上面的代码用 `repeat()` 改写如下。
+
+  ```css
+  .container {
+    display: grid;
+    grid-template-columns: repeat(3, 33.33%);
+    grid-template-rows: repeat(3, 33.33%);
+  }
+  ```
+
+  `repeat()` 接受两个参数，第一个参数是重复的次数（上例是 3），第二个参数是所要重复的值。`repeat()` 也可以重复某种模式。
+
+  ```css
+  grid-template-columns: repeat(2, 100px 20px 80px);
+  ```
+
+  上面代码定义了 6 列，第一列和第四列的宽度为 100px，第二列和第五列为 20px，第三列和第六列为 80px。
+
+  ![repeat() 重复某种模式](https://cdn.beekka.com/blogimg/asset/201903/bg2019032507.png)
+
+- `auto-fill` 关键字：表示自动填充。有时，单元格的大小是固定的，但是容器的大小不确定。如果希望每行（或每列）容纳尽可能多的单元格，这时可以使用 `auto-fill`。
+
+  ```css
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100px);
+  }
+  ```
+
+  [上面代码](https://jsbin.com/himoku/edit?css,output)表示每列宽度 100px，然后自动填充，直到容器不能放置更多的列。
+
+  ![auto-fill](https://cdn.beekka.com/blogimg/asset/201903/bg2019032508.png)
+
+  除了 `auto-fill`，还有一个关键字 `auto-fit`，两者的行为基本是相同的。只有当容器足够宽，可以在一行容纳所有单元格，并且单元格宽度不固定的时候，才会有行为差异：`auto-fill` 会用空格子填满剩余宽度，`auto-fit` 则会尽量扩大单元格的宽度。
+
+- `fr`（fraction 的缩写，意为"片段"）关键字：用于表示比例关系。如果两列的宽度分别为 1fr 和 2fr，就表示后者是前者的两倍。
+
+  ```css
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  ```
+
+  [上面代码](https://jsbin.com/hadexek/edit?html,css,output)表示两个相同宽度的列。
+
+  ![fr 表示的相同宽度的列](https://cdn.beekka.com/blogimg/asset/201903/1_bg2019032509.png)
+
+  `fr` 可以与绝对长度的单位结合使用。
+
+  ```css
+  .container {
+    display: grid;
+    grid-template-columns: 150px 1fr 2fr;
+  }
+  ```
+
+  上面代码表示，第一列的宽度为 150px，第二列的宽度是第三列的一半。
+
+  ![fr 与绝对长度的单位结合使用](https://cdn.beekka.com/blogimg/asset/201903/bg2019032510.png)
+
+- `minmax()`：此函数用于产生一个长度范围，表示长度就在这个范围之中。它接受两个参数，分别为最小值和最大值。
+
+  ```css
+  grid-template-columns: 1fr 1fr minmax(100px, 1fr);
+  ```
+
+  上面代码中，`minmax(100px, 1fr)` 表示列宽不小于 100px，不大于 1fr。
+
+- `auto` 关键字：表示由浏览器自己决定长度。
+
+  ```css
+  grid-template-columns: 100px auto 100px;
+  ```
+
+  上面代码中，第二列的宽度，基本上等于该列单元格的最大宽度，除非单元格内容设置了 `min-width`，且这个值大于最大宽度。
+
+- 网格线的名称：`grid-template-columns` 属性和 `grid-template-rows` 属性里面，还可以使用方括号，指定每根网格线的名字，方便以后的引用。
+
+  ```css
+  .container {
+    display: grid;
+    grid-template-columns: [c1] 100px [c2] 100px [c3] auto [c4];
+    grid-template-rows: [r1] 100px [r2] 100px [r3] auto [r4];
+  }
+  ```
+
+  上面代码指定网格布局为 3 行 x 3 列，因此有 4 根垂直网格线和 4 根水平网格线。方括号里面依次是这八根线的名字。
+
+  网格布局允许同一根线有多个名字，比如 `[fifth-line row-5]`。
+
+- 布局实例
+
+  `grid-template-columns` 属性对于网页布局非常有用。两栏式布局只需要一行代码。
+
+  ```css
+  .wrapper {
+    display: grid;
+    grid-template-columns: 70% 30%;
+  }
+  ```
+
+  上面代码将左边栏设为 70%，右边栏设为 30%。传统的十二网格布局，写起来也很容易。
+
+  ```css
+  grid-template-columns: repeat(12, 1fr);
+  ```
+
+（3）`grid-row-gap` 属性、`grid-column-gap` 属性、`grid-gap` 属性
+
+`grid-row-gap` 属性设置行与行的间隔（行间距），`grid-column-gap` 属性设置列与列的间隔（列间距）。
+
+```css
+.container {
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
+}
+```
+
+[上面代码中](https://jsbin.com/mezufab/edit?css,output)，`grid-row-gap` 用于设置行间距，grid-column-gap 用于设置列间距。
+
+![grid-row-gap 属性、grid-column-gap 属性](https://cdn.beekka.com/blogimg/asset/201903/bg2019032511.png)
+
+`grid-gap` 属性是 `grid-column-gap` 和 `grid-row-gap` 的合并简写形式，语法如下。
+
+```css
+grid-gap: <grid-row-gap> <grid-column-gap>;
+```
+
+因此，上面一段 CSS 代码等同于下面的代码。
+
+```css
+.container {
+  grid-gap: 20px 20px;
+}
+```
+
+如果 `grid-gap` 省略了第二个值，浏览器认为第二个值等于第一个值。
+
+注意，根据最新标准，上面三个属性名的 `grid-` 前缀已经删除，`grid-column-gap` 和 `grid-row-gap` 写成 column-gap 和 `row-gap`，`grid-gap` 写成 `gap`。
+
+（4）`grid-template-areas` 属性
+
+网格布局允许指定"**区域**"（area），一个区域由单个或多个单元格组成。`grid-template-areas` 属性用于定义区域。
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  grid-template-areas: 'a b c'
+                       'd e f'
+                       'g h i';
+}
+```
+
+上面代码先划分出 9 个单元格，然后将其定名为 `a` 到 `i` 的九个区域，分别对应这九个单元格。
+
+多个单元格合并成一个区域的写法如下。
+
+```css
+grid-template-areas: 'a a a'
+                     'b b b'
+                     'c c c';
+```
+
+上面代码将9个单元格分成 `a`、`b`、`c` 三个区域。
+
+下面是一个布局实例。
+
+```css
+grid-template-areas: "header header header"
+                     "main main sidebar"
+                     "footer footer footer";
+```
+
+上面代码中，顶部是页眉区域 `header`，底部是页脚区域 `footer`，中间部分则为 `main` 和 `sidebar`。
+
+如果某些区域不需要利用，则使用"点"（`.`）表示。
+
+```css
+grid-template-areas: 'a . c'
+                     'd . f'
+                     'g . i';
+```
+
+上面代码中，中间一列为点，表示没有用到该单元格，或者该单元格不属于任何区域。
+
+注意，区域的命名会影响到网格线。每个区域的起始网格线，会自动命名为区域名 `-start`，终止网格线自动命名为区域名 `-end`。比如，区域名为 `header`，则起始位置的水平网格线和垂直网格线叫做 `header-start`，终止位置的水平网格线和垂直网格线叫做 `header-end`。
+
+（5）`grid-auto-flow` 属性
+
+划分网格以后，容器的子元素会按照顺序，自动放置在每一个网格。默认的放置顺序是"先行后列"，即先填满第一行，再开始放入第二行，即下图数字的顺序。
+
+![子元素排列顺序](https://cdn.beekka.com/blogimg/asset/201903/bg2019032506.png)
+
+这个顺序由 `grid-auto-flow` 属性决定，默认值是 `row`，即"**先行后列**"。也可以将它设成 `column`，变成"**先列后行**"。
+
+```css
+grid-auto-flow: column;
+```
+
+[上面代码](https://jsbin.com/xutokec/edit?css,output)设置了 `column` 以后，放置顺序就变成了下图。
+
+![按照 column 方式排列](https://cdn.beekka.com/blogimg/asset/201903/bg2019032512.png)
+
+`grid-auto-flow` 属性除了设置成 `row` 和 `column`，还可以设成 `row dense` 和 `column dense`。这两个值主要用于，某些项目指定位置以后，剩下的项目怎么自动放置。
+
+[下面的例子](https://jsbin.com/wapejok/edit?css,output)让 1 号项目和 2 号项目各占据两个单元格，然后在默认的 grid-auto-flow: row 情况下，会产生下面这样的布局。
+
+![grid-auto-flow: row 时，元素的排列方式](https://cdn.beekka.com/blogimg/asset/201903/bg2019032513.png)
+
+上图中，1 号项目后面的位置是空的，这是因为 3 号项目默认跟着 2 号项目，所以会排在 2 号项目后面。
+
+现在修改设置，设为 `row dense`，表示"先行后列"，并且尽可能紧密填满，尽量不出现空格。
+
+```css
+grid-auto-flow: row dense;
+```
+
+[上面代码](https://jsbin.com/helewuy/edit?css,output)的效果如下。
+
+![grid-auto-flow: row dense 时，元素的排列方式](https://cdn.beekka.com/blogimg/asset/201903/bg2019032514.png)
+
+上图会先填满第一行，再填满第二行，所以 3 号项目会紧跟在 1 号项目的后面。8 号项目和 9 号项目就会排到第四行。
+
+如果将设置改为 `column dense`，表示"先列后行"，并且尽量填满空格。
+
+```css
+grid-auto-flow: column dense;
+```
+
+[上面代码](https://jsbin.com/pupoduc/1/edit?html,css,output)的效果如下。
+
+![grid-auto-flow: column dense 时，元素的排列方式](https://cdn.beekka.com/blogimg/asset/201903/bg2019032515.png)
+
+上图会先填满第一列，再填满第 2 列，所以 3 号项目在第一列，4 号项目在第二列。8 号项目和 9 号项目被挤到了第四列。
+
+（6）`justify-items` 属性、`align-items` 属性、`place-items` 属性
+
+`justify-items` 属性设置单元格内容的**水平位置**（左中右），`align-items` 属性设置单元格内容的**垂直位置**（上中下）。
+
+```css
+.container {
+  justify-items: start | end | center | stretch;
+  align-items: start | end | center | stretch;
+}
+```
+
+这两个属性的写法完全相同，都可以取下面这些值。
+
+- `start`：对齐单元格的起始边缘。
+- `end`：对齐单元格的结束边缘。
+- `center`：单元格内部居中。
+- `stretch`：拉伸，占满单元格的整个宽度（默认值）。
+
+```css
+.container {
+  justify-items: start;
+}
+```
+
+[上面代码](https://jsbin.com/gijeqej/edit?css,output)表示，单元格的内容左对齐，效果如下图。
+
+![justify-items: start 的效果](https://cdn.beekka.com/blogimg/asset/201903/bg2019032516.png)
+
+```css
+.container {
+  align-items: start;
+}
+```
+
+[上面代码](https://jsbin.com/tecawur/edit?css,output)表示，单元格的内容头部对齐，效果如下图。
+
+![align-items: start 的效果](https://cdn.beekka.com/blogimg/asset/201903/bg2019032517.png)
+
+`place-items` 属性是 `align-items` 属性和 `justify-items` 属性的合并简写形式。
+
+```css
+place-items: <align-items> <justify-items>;
+```
+
+如果省略第二个值，则浏览器认为与第一个值相等。
+
+（7）`justify-content` 属性、`align-content` 属性、`place-content` 属性
+
+`justify-content` 属性是整个内容区域在容器里面的**水平位置**（左中右），`align-content` 属性是整个内容区域的**垂直位置**（上中下）。
+
+```css
+.container {
+  justify-content: start | end | center | stretch | space-around | space-between | space-evenly;
+  align-content: start | end | center | stretch | space-around | space-between | space-evenly;  
+}
+```
+
+这两个属性的写法完全相同，都可以取下面这些值。（下面的图都以 `justify-content` 属性为例，`align-content` 属性的图完全一样，只是将水平方向改成垂直方向。）
+
+- `start` - 对齐容器的起始边框。
+
+  ![justify-content: start 的效果](https://cdn.beekka.com/blogimg/asset/201903/bg2019032519.png)
+
+- `end` - 对齐容器的结束边框。
+
+  ![justify-content: end 的效果](https://cdn.beekka.com/blogimg/asset/201903/bg2019032518.png)
+
+- `center` - 容器内部居中。
+
+  ![justify-content: center 的效果](https://cdn.beekka.com/blogimg/asset/201903/bg2019032520.png)
+
+- `stretch` - 项目大小没有指定时，拉伸占据整个网格容器。
+
+  ![justify-content: stretch 的效果](https://cdn.beekka.com/blogimg/asset/201903/bg2019032521.png)
+
+- `space-around` - 每个项目两侧的间隔相等。所以，项目之间的间隔比项目与容器边框的间隔大一倍。
+
+  ![justify-content: space-around 的效果](https://cdn.beekka.com/blogimg/asset/201903/bg2019032522.png)
+
+- `space-between` - 项目与项目的间隔相等，项目与容器边框之间没有间隔。
+
+  ![justify-content: space-between 的效果](https://cdn.beekka.com/blogimg/asset/201903/bg2019032523.png)
+
+- `space-evenly` - 项目与项目的间隔相等，项目与容器边框之间也是同样长度的间隔。
+
+  ![justify-content: space-evenly 的效果](https://cdn.beekka.com/blogimg/asset/201903/bg2019032524.png)
+
+`place-content` 属性是 `align-content` 属性和 `justify-content` 属性的合并简写形式。
+
+```css
+place-content: <align-content> <justify-content>
+```
+
+如果省略第二个值，浏览器就会假定第二个值等于第一个值。
+
+（8）`grid-auto-columns` 属性、`grid-auto-rows` 属性
+
+有时候，一些项目的指定位置，在现有网格的外部。比如网格只有3列，但是某一个项目指定在第5行。这时，浏览器会自动生成多余的网格，以便放置项目。
+
+`grid-auto-columns` 属性和 `grid-auto-rows` 属性用来设置，浏览器自动创建的多余网格的列宽和行高。它们的写法与 `grid-template-columns` 和 `grid-template-rows` 完全相同。如果不指定这两个属性，浏览器完全根据单元格内容的大小，决定新增网格的列宽和行高。
+
+[下面的例子](https://jsbin.com/sayuric/edit?css,output)里面，划分好的网格是 3 行 x 3 列，但是，8 号项目指定在第 4 行，9 号项目指定在第 5 行。
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  grid-auto-rows: 50px; 
+}
+```
+
+上面代码指定新增的行高统一为 50px（原始的行高为 100px）。
+
+![grid-auto-columns 属性、grid-auto-rows 属性](https://cdn.beekka.com/blogimg/asset/201903/bg2019032525.png)
+
+（9）`grid-template` 属性、`grid` 属性
+
+`grid-template` 属性是 `grid-template-columns`、`grid-template-rows` 和 `grid-template-areas` 这三个属性的合并简写形式。
+
+grid 属性是 `grid-template-rows`、`grid-template-columns`、`grid-template-areas`、`grid-auto-rows`、`grid-auto-columns`、`grid-auto-flow` 这六个属性的合并简写形式。
+
+从易读易写的角度考虑，还是建议不要合并属性，所以这里就不详细介绍这两个属性了。
+
+#### 3.4.3 项目属性
+
+（1）`grid-column-start` 属性、`grid-column-end` 属性、`grid-row-start` 属性、`grid-row-end` 属性、`grid-column` 属性、`grid-row` 属性
+
+项目的位置是可以指定的，具体方法就是指定项目的四个边框，分别定位在哪根网格线。
+
+- `grid-column-start`：左边框所在的垂直网格线
+- `grid-column-end`：右边框所在的垂直网格线
+- `grid-row-start`：上边框所在的水平网格线
+- `grid-row-end`：下边框所在的水平网格线
+
+```css
+.item-1 {
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+```
+
+[上面代码](https://jsbin.com/yukobuf/edit?css,output)指定，1 号项目的左边框是第二根垂直网格线，右边框是第四根垂直网格线。
+
+![grid-column-start: 2且grid-column-end: 4时的效果](https://cdn.beekka.com/blogimg/asset/201903/bg2019032526.png)
+
+上图中，只指定了 1 号项目的左右边框，没有指定上下边框，所以会采用默认位置，即上边框是第一根水平网格线，下边框是第二根水平网格线。
+
+除了 1 号项目以外，其他项目都没有指定位置，由浏览器自动布局，这时它们的位置由容器的 `grid-auto-flow` 属性决定，这个属性的默认值是 `row`，因此会"先行后列"进行排列。读者可以把这个属性的值分别改成 `column`、`row dense` 和 `column dense`，看看其他项目的位置发生了怎样的变化。
+
+[下面的例子](https://jsbin.com/nagobey/edit?html,css,output)是指定四个边框位置的效果。
+
+```css
+.item-1 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 4;
+}
+```
+
+![grid-column-start: 1 且 grid-column-end: 3 且 grid-row-start: 2 且 grid-row-end: 4时的效果](https://cdn.beekka.com/blogimg/asset/201903/bg2019032527.png)
+
+这四个属性的值，除了指定为第几个网格线，还可以指定为网格线的名字。
+
+```css
+.item-1 {
+  grid-column-start: header-start;
+  grid-column-end: header-end;
+}
+```
+
+上面代码中，左边框和右边框的位置，都指定为网格线的名字。
+
+这四个属性的值还可以使用 `span` 关键字，表示"**跨越**"，即左右边框（上下边框）之间跨越多少个网格。
+
+```css
+.item-1 {
+  grid-column-start: span 2;
+}
+```
+
+[上面代码](https://jsbin.com/hehumay/edit?html,css,output)表示，1 号项目的左边框距离右边框跨越 2 个网格。
+
+![`grid-column-start: span 2` 时的效果](https://cdn.beekka.com/blogimg/asset/201903/bg2019032528.png)
+
+这与[下面的代码](https://jsbin.com/mujihib/edit?html,css,output)效果完全一样。
+
+```css
+.item-1 {
+  grid-column-end: span 2;
+}
+```
+
+`grid-column` 属性是 `grid-column-start` 和 `grid-column-end` 的合并简写形式，`grid-row` 属性是 `grid-row-start` 属性和 `grid-row-end` 的合并简写形式。
+
+```css
+.item {
+  grid-column: <start-line> / <end-line>;
+  grid-row: <start-line> / <end-line>;
+}
+```
+
+下面是一个例子。
+
+```css
+.item-1 {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+}
+
+/* 等同于 */
+.item-1 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+```
+
+上面代码中，项目 item-1 占据第一行，从第一根列线到第三根列线。
+
+这两个属性之中，也可以使用 span 关键字，表示跨越多少个网格。
+
+```css
+.item-1 {
+  background: #b03532;
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+}
+
+/* 等同于 */
+.item-1 {
+  background: #b03532;
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 2;
+}
+```
+
+[上面代码](https://jsbin.com/volugow/edit?html,css,output)中，项目 `item-1` 占据的区域，包括第一行 + 第二行、第一列 + 第二列。
+
+![grid-column: 1 / 3 且 grid-row: 1 / 3 时 item-1 占据的区域](https://cdn.beekka.com/blogimg/asset/201903/bg2019032529.png)
+
+斜杠以及后面的部分可以省略，默认跨越一个网格。
+
+```css
+.item-1 {
+  grid-column: 1;
+  grid-row: 1;
+}
+```
+
+上面代码中，项目 `item-1` 占据左上角第一个网格。
+
+（2）`grid-area` 属性
+
+`grid-area` 属性指定项目放在哪一个区域。
+
+```css
+.item-1 {
+  grid-area: e;
+}
+```
+
+上面代码中，1 号项目位于 `e` 区域，效果如下图。
+
+![grid-area: e 时的效果](https://cdn.beekka.com/blogimg/asset/201903/bg2019032530.png)
+
+`grid-area` 属性还可用作 `grid-row-start`、`grid-column-start`、`grid-row-end`、`grid-column-end` 的合并简写形式，直接指定项目的位置。
+
+```css
+.item {
+  grid-area: <row-start> / <column-start> / <row-end> / <column-end>;
+}
+```
+
+下面是一个[例子](https://jsbin.com/duyafez/edit?css,output)。
+
+```css
+.item-1 {
+  grid-area: 1 / 1 / 3 / 3;
+}
+```
+
+（3）`justify-self` 属性、`align-self` 属性、`place-self` 属性
+
+- `justify-self` 属性设置单元格内容的水平位置（左中右），跟 `justify-items` 属性的用法完全一致，但只作用于单个项目。
+- `align-self` 属性设置单元格内容的垂直位置（上中下），跟 `align-items` 属性的用法完全一致，也是只作用于单个项目。
+
+```css
+.item {
+  justify-self: start | end | center | stretch;
+  align-self: start | end | center | stretch;
+}
+```
+
+这两个属性都可以取下面四个值。
+
+- `start`：对齐单元格的起始边缘。
+- `end`：对齐单元格的结束边缘。
+- `center`：单元格内部居中。
+- `stretch`：拉伸，占满单元格的整个宽度（默认值）。
+
+下面是 `justify-self: start` 的例子。
+
+```css
+.item-1  {
+  justify-self: start;
+}
+```
+
+![justify-self: start 时的效果](https://cdn.beekka.com/blogimg/asset/201903/bg2019032532.png)
+
+`place-self` 属性是 `align-self` 属性和 `justify-self` 属性的合并简写形式。
+
+```css
+place-self: <align-self> <justify-self>;
+```
+
+如果省略第二个值，`place-self` 属性会认为这两个值相等。
+
+### 3.5 响应式图片
 
 ## 四、H5 与响应式 Web 设计
 
@@ -292,7 +1161,7 @@ main {
 
 ### 5.2 断字
 
-（1）容器中的问题，默认一行显示，如果蚊子太长，超出了容器的长度，就会显示在容器外面。可以是同下面的样式，对文字进行**换行**处理。
+（1）容器中的文字默认一行显示，如果文字太长，超出了容器的长度，就会显示在容器外面。可以使用下面的方式，对文字进行**换行**处理。
 
 ```css
 word-wrap: break-word;
@@ -461,3 +1330,9 @@ img[alt^="film"] {
 ## 八、CSS3 过渡、变形和动画
 
 ## 九、表单
+
+## 十、参考
+
+- [Ben Frain](https://benfrain.com/)，《响应式 Web 设计：HTML5和CSS实战》
+- 阮一峰，[Flex 布局教程](https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+- 阮一峰，[CSS Grid 网格布局教程](https://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html)
