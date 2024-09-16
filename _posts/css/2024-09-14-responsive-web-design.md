@@ -7,6 +7,9 @@ tags:
   - css
   - media queries
   - responsive web design
+  - responsive images
+  - flex box layout
+  - grid layout
 ---
 
 ## 一、简介
@@ -121,7 +124,7 @@ CSS 盒模型指一个元素在页面上所占据的空间。由四部分组成�
 （3）可以通过 `box-sizing` 属性，设置一个元素显示为哪种盒模型。
 
 ```css
-box-sizing: content-box（默认）| border-box;
+box-sizing: content-box (默认) | border-box;
 ```
 
 ### 3.2 布局相关属性
@@ -143,7 +146,7 @@ display: flex | grid | none | block | inline | inline-block | table;
 （2）`position` 属性用于指定一个元素在页面的定位方式。其语法格式如下。
 
 ```css
-position: static（默认）| relative | absolute | fixed | sticky；
+position: static (默认) | relative | absolute | fixed | sticky;
 ```
 
 - `static`：默认值，表示元素按照正常的文档流进行布局。使用 `static` 定位的元素不会被定位偏移（此时，`top`、`right`、`bottom` 和 `left` 属性无效）。
@@ -539,7 +542,7 @@ div {
 }
 ```
 
-[上面代码中](https://jsbin.com/mezufab/edit?css,output)，`grid-row-gap` 用于设置行间距，grid-column-gap 用于设置列间距。
+[上面代码](https://jsbin.com/mezufab/edit?css,output)中，`grid-row-gap` 用于设置行间距，grid-column-gap 用于设置列间距。
 
 ![grid-row-gap 属性、grid-column-gap 属性](https://cdn.beekka.com/blogimg/asset/201903/bg2019032511.png)
 
@@ -981,6 +984,112 @@ place-self: <align-self> <justify-self>;
 
 ### 3.5 响应式图片
 
+### 3.5.1 `srcset` 属性
+
+`srcset` 属性用来指定多张图像，适应**不同像素密度**的屏幕。它的值是一个逗号分隔的字符串，每个部分都是一张图像的 URL，后面接一个空格，然后是像素密度的描述符。请看下面的例子。
+
+```css
+<img srcset="foo-320w.jpg,
+             foo-480w.jpg 1.5x,
+             foo-640w.jpg 2x"
+     src="foo-640w.jpg">
+```
+
+上面代码中，`srcset` 属性给出了三个图像 URL，适应三种不同的像素密度。
+
+浏览器会根据当前设备的像素密度，选择需要加载的图像。如果 `srcset` 属性都不满足条件，那么就加载 `src` 属性指定的默认图像。
+
+### 3.5.2 `srcset` 属性、`sizes` 属性
+
+`sizes` 属性与 `srcset` 属性配合使用，可以实现根据不同的设备宽度应用不同尺寸的图像。其实现步骤如下。
+
+1. `srcset` 属性列出所有可用的图像。
+
+  ```css
+  <img srcset="foo-160.jpg 160w,
+              foo-320.jpg 320w,
+              foo-640.jpg 640w,
+              foo-1280.jpg 1280w"
+      src="foo-1280.jpg">
+  ```
+
+  上面代码中，`srcset` 属性列出四张可用的图像，每张图像的 URL 后面是一个空格，再加上宽度描述符。**宽度描述符就是图像原始的宽度，加上字符 `w`**。上例的四种图片的原始宽度分别为 160px、320px、640px 和 1280px。
+2. `sizes` 属性列出不同设备的图像显示宽度。
+
+  `sizes` 属性的值是一个逗号分隔的字符串，除了最后一部分，前面每个部分都是一个放在括号里面的媒体查询表达式，后面是一个空格，再加上图像的显示宽度。
+
+  ```css
+  <img sizes="(max-width: 440px) 100vw,
+              (max-width: 900px) 33vw,
+              254px"
+      srcset="foo-160.jpg 160w,
+              foo-320.jpg 320w,
+              foo-640.jpg 640w,
+              foo-1280.jpg 1280w"
+      src="foo-1280.jpg">
+  ```
+
+  上面代码中，`sizes` 属性给出了三种屏幕条件，以及对应的图像显示宽度。宽度不超过 440px 的设备，图像显示宽度为 100%；宽度 441px 到 900px 的设备，图像显示宽度为 33%；宽度 900px 以上的设备，图像显示宽度为 254px。
+3. 浏览器根据当前设备的宽度，从 `sizes` 属性获得图像的显示宽度，然后从 `srcset` 属性找出最接近该宽度的图像，进行加载。
+
+  假定当前设备的屏幕宽度是 480px，浏览器从 `sizes` 属性查询得到，图片的显示宽度是 33vw（即 33%），等于 160px。`srcset` 属性里面，正好有宽度等于 160px 的图片，于是加载 `foo-160.jpg`。
+
+  注意，`sizes` 属性必须与 `srcset` 属性搭配使用。单独使用 `sizes` 属性是无效的。
+
+### 3.5.3 `<picture>` 标签、`<source>` 标签
+
+使用 `<picture>` 标签和 `<source>` 标签，可以实现对不同尺寸及不同像素密度屏幕的适配。<picture> 标签是一个容器标签，内部使用 <source> 和 <img>，指定不同情况下加载的图像。
+
+```css
+<picture>
+  <source media="(max-width: 500px)" srcset="cat-vertical.jpg">
+  <source media="(min-width: 501px)" srcset="cat-horizontal.jpg">
+  <img src="cat.jpg" alt="cat">
+</picture>
+```
+
+上面代码中，`<picture>` 标签内部有两个 `<source>` 标签和一个 `<img>` 标签。
+
+`<source>` 标签的 `media` 属性给出媒体查询表达式，`srcset` 属性就是 `<img>` 标签的 `srcset` 属性，给出加载的图像文件。`sizes` 属性其实这里也可以用，但由于有了 `media` 属性，就没有必要了。浏览器**按照** `<source>` **标签出现的顺序**，依次判断当前设备是否满足 `media` 属性的媒体查询表达式，如果满足就加载 `srcset` 属性指定的图片文件，并且不再执行后面的 `<source>` 标签和 `<img>` 标签。
+
+`<img>` 标签是默认情况下加载的图像，用来满足上面所有 `<source>` 都不匹配的情况。
+
+上面例子中，设备宽度如果不超过 500px，就加载竖屏的图像，否则加载横屏的图像。
+
+下面给出一个例子，同时考虑屏幕尺寸和像素密度的适配。
+
+```css
+<picture>
+  <source srcset="homepage-person@desktop.png,
+                  homepage-person@desktop-2x.png 2x"       
+          media="(min-width: 990px)">
+  <source srcset="homepage-person@tablet.png,
+                  homepage-person@tablet-2x.png 2x" 
+          media="(min-width: 750px)">
+  <img srcset="homepage-person@mobile.png,
+               homepage-person@mobile-2x.png 2x" 
+       alt="Shopify Merchant, Corrine Anestopoulos">
+</picture>
+```
+
+上面代码中，`<source>` 标签的 `media` 属性给出屏幕尺寸的适配条件，每个条件都用 `srcset` 属性，再给出两种像素密度的图像 URL。
+
+### 3.5.4 `<source>` 标签的 `type` 属性
+
+除了响应式图像，`<picture>` 标签还可以用来选择不同格式的图像。比如，如果当前浏览器支持 Webp 格式，就加载这种格式的图像，否则加载 PNG 图像。
+
+```css
+<picture>
+  <source type="image/svg+xml" srcset="logo.xml">
+  <source type="image/webp" srcset="logo.webp"> 
+  <img src="logo.png" alt="ACME Corp">
+</picture>
+```
+
+上面代码中，`<source>` 标签的 `type` 属性给出图像的 MIME 类型，`srcset` 是对应的图像 URL。
+
+浏览器按照 `<source>` 标签出现的顺序，依次检查是否支持 `type` 属性指定的图像格式，如果支持就加载图像，并且不再检查后面的 `<source>` 标签了。上面例子中，图像加载优先顺序依次为 svg 格式、webp 格式和 png 格式。
+
 ## 四、H5 与响应式 Web 设计
 
 ### 4.1 H5 页面结构新特性
@@ -1336,3 +1445,4 @@ img[alt^="film"] {
 - [Ben Frain](https://benfrain.com/)，《响应式 Web 设计：HTML5和CSS实战》
 - 阮一峰，[Flex 布局教程](https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
 - 阮一峰，[CSS Grid 网格布局教程](https://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html)
+- 阮一峰，[响应式图像教程](https://www.ruanyifeng.com/blog/2019/06/responsive-images.html)
