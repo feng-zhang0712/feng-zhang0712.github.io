@@ -1,5 +1,3 @@
-理解 `async` 和 `await` 的实现原理对于深入掌握 JavaScript 的异步编程模型至关重要。`async` 和 `await` 是基于 ES2017 引入的语法糖，为处理异步操作提供了更简洁和直观的方式。它们的底层是基于 `Promise` 的实现，并结合了生成器（Generator）的概念。
-
 ### 一、基本概念
 
 #### 1. `async` 函数
@@ -39,18 +37,14 @@
 
 `async` 和 `await` 的语法糖在实际执行时会被编译器转换为基于 `Promise` 和生成器的实现。以下是编译器如何将 `async`/`await` 转换为 `Promise` 和生成器的示例：
 
-#### 编译前的代码：
-
 ```javascript
+// 编译前的代码
 async function example() {
   const value = await someAsyncFunction();
   console.log(value);
 }
-```
 
-#### 编译后的代码：
-
-```javascript
+// 编译后的代码
 function example() {
   return new Promise((resolve, reject) => {
     const gen = (function*() {
@@ -92,14 +86,3 @@ function example() {
 #### 3. 转换过程
 
 编译器将 `async` 函数转换为生成器函数，并通过 `Promise` 控制生成器的执行流程。每次遇到 `await` 表达式时，生成器会暂停执行，将控制权交给 `Promise`，等待异步操作完成后恢复执行。
-
-### 六、总结
-
-`async` 和 `await` 的实现原理基于 `Promise` 和生成器函数的结合，通过语法糖简化了异步代码的书写。理解其底层机制有助于我们更深入地掌握 JavaScript 异步编程模型，编写出更高效和可维护的代码。
-
-#### 关键点回顾：
-
-- **`async` 函数**：一个返回 `Promise` 对象的异步函数，内部可以包含 `await` 表达式。
-- **`await` 表达式**：用于等待 `Promise` 对象的解析，并暂停 `async` 函数的执行。
-- **底层机制**：基于 `Promise` 和生成器函数，通过编译器转换实现异步操作的顺序执行。
-- **编译与转换**：编译器将 `async`/`await` 转换为生成器函数和 `Promise` 的组合，通过控制生成器的执行流程来实现异步操作。
