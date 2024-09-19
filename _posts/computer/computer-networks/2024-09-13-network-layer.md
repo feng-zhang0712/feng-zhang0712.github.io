@@ -5,4 +5,6 @@ categories: computer
 tags:
   - computer
   - networks
+  - network layer
+  - OSI
 ---
