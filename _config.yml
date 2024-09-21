@@ -227,7 +227,7 @@ exclude:
   - LICENSE
   - package.json
   - package-lock.json
-  - _pages/about_einstein.md
+  # - _pages/about_einstein.md
   - purgecss.config.js
   - README.md
   - readme_preview/
@@ -303,9 +303,9 @@ scholar:
   style: apa
   locale: en
 
-  source: /_bibliography/
-  bibliography: papers.bib
-  bibliography_template: bib
+  # source: /_bibliography/
+  # bibliography: papers.bib
+  # bibliography_template: bib
   # Note: if you have latex math in your bibtex, the latex filter
   # preprocessing may conflict with MathJAX if the latter is enabled.
   # See https://github.com/alshedivat/al-folio/issues/357.
