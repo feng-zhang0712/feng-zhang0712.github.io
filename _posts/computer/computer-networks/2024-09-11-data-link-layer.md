@@ -1,8 +1,8 @@
 ---
-layout： post
-title： 计算机网络 - 数据链路层
-categories： computer
-tags：
+layout: post
+title: 计算机网络 - 数据链路层
+categories: computer
+tags:
   - computer
   - networks
   - data link layer
