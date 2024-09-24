@@ -25,7 +25,7 @@ tags:
 如图 2-1 所示，一个数据通信系统可划分为三大部分，即源系统（或发送端、发送
 方）、传输系统（或传输网络）和目的系统（或接收端、接收方）。
 
-![数据通信系统的模型]({{ site.baseurl }}/assets/images/computer-networks/the-model-of-data-communication-system.png)
+![数据通信系统的模型]({{ site.baseurl }}/assets/images/computer-network/the-model-of-data-communication-system.png)
 *图 2-1 数据通信系统的模型*
 
 源系统一般包括以下两个部分：
@@ -62,7 +62,7 @@ tags:
 
 #### （1）常用编码方式
 
-![数字信号常用的编码方式]({{ site.baseurl }}/assets/images/computer-networks/a-common-encoding-method-for-digital-signals.png)
+![数字信号常用的编码方式]({{ site.baseurl }}/assets/images/computer-network/a-common-encoding-method-for-digital-signals.png)
 *图 2-2 数字信号常用的编码方式*
 
 - **不归零制**：正电平代表 1，负电平代表 0。
@@ -74,7 +74,7 @@ tags:
 
 #### （2）基本的带通调制方法
 
-![最基本的三种调制方法]({{ site.baseurl }}/assets/images/computer-networks/the-three-most-basic-modulation-methods.png)
+![最基本的三种调制方法]({{ site.baseurl }}/assets/images/computer-network/the-three-most-basic-modulation-methods.png)
 *图 2-3 最基本的三种调制方法*
 
 - **调幅**（AM）：即载波的振幅随基带数字信号而变化。例如，0 或 1 分别对应于无载波或有载波输出。
@@ -87,7 +87,7 @@ tags:
 
 数字通信的优点就是：虽然信号在信道上传输时会不可避免地产生失真，但在接收端只要我们从失真的波形中能够识别出原来的信号，那么这种失真对通信质量就没有影响。例如，图 2-4（a）表示信号通过实际的信道传输后虽然有失真，但在接收端还可识别并恢复出原来的码元。但图 2-4（b）就不同了，这时信号的失真已很严重，在接收端无法识别码元是 1 还是 0。码元传输的速率越高，或信号传输的距离越远，或噪声干扰越大，或传输媒体质量越差，在接收端的波形的失真就越严重。
 
-![数字信号通过实际的信道]({{ site.baseurl }}/assets/images/computer-networks/the-digital-signal-passes-through-the-actual-channel.png)
+![数字信号通过实际的信道]({{ site.baseurl }}/assets/images/computer-network/the-digital-signal-passes-through-the-actual-channel.png)
 *图 2-4 数字信号通过实际的信道*
 
 从概念上讲，限制码元在信道上的传输速率的因素有以下两个。
@@ -136,7 +136,7 @@ $$101011000110111010... = \varphi_5 \varphi_3 \varphi_0 \varphi_6 \varphi_7 \var
 
 **传输媒体**也称为传输介质或传输媒介，它就是数据传输系统中在发送器和接收器之间的物理通路。传输媒体可分为两大类，即**导引型传输媒体**和**非导引型传输媒体**。在导引型传输媒体中，电磁波被导引沿着固体媒体（铜线或光纤）传播，而非导引型传输媒体就是指自由空间，在非导引型传输媒体中电磁波的传输常称为无线传输。图 2-5 是电信领域使用的电磁波的频谱。
 
-![电信领域使用的电磁波的频谱](/assets/images/computer-networks/spectrum-of-electromagnetic-waves-used-in-telecommunications.png)
+![电信领域使用的电磁波的频谱](/assets/images/computer-network/spectrum-of-electromagnetic-waves-used-in-telecommunications.png)
 *图 2-5 电信领域使用的电磁波的频谱*
 
 ### 3.1 导引型传输媒体
@@ -149,7 +149,7 @@ $$101011000110111010... = \varphi_5 \varphi_3 \varphi_0 \varphi_6 \varphi_7 \var
 
 为了提高双绞线抗电磁干扰的能力，可以在双绞线的外面再加上一层用金属丝编织成的屏蔽层。这就是**屏蔽双绞线**，简称为 **STP**（Shielded Twisted Pair）。它的价格当然比无屏蔽双绞线 **UTP**（Unshielded Twisted Pair）要贵一些。
 
-![双绞线的示意图](/assets/images/computer-networks/diagram-of-twisted-pair.png)
+![双绞线的示意图](/assets/images/computer-network/diagram-of-twisted-pair.png)
 *图 2-6 双绞线的示意图*
 
 相关标准规定了 5 个种类的 UTP 标准（从 1 类线到 5 类线）。对传送数据来说，现在最常用的 UTP 是 5 类线（Category 5 或 CAT5）。5 类线与 3 类线的最主要的区别就是大大增加了每单位长度的绞合次数。3 类线的绞合长度是 7.5 至 10 cm，而 5 类线的绞合长度是 0.6 至 0.85 cm。图2-6（c）表示5类线具有比 3 类线更高的绞合度。此外，5 类线在线对间的绞合度和线对内两根导线的绞合度都经过了更精心的设计，并在生产中加以严格的控制，使干扰在一定程度上得以抵消，从而提高了线路的传输速率。
@@ -171,7 +171,7 @@ $$101011000110111010... = \varphi_5 \varphi_3 \varphi_0 \varphi_6 \varphi_7 \var
 
 同轴电缆由内导体铜质芯线（单股实心线或多股绞合线）、绝缘层、网状编织的外导体屏蔽层（也可以是单股的）以及保护塑料外层所组成（图2-7）。由于外导体屏蔽层的作用，同轴电缆具有很好的抗干扰特性，被广泛用于传输较高速率的数据。
 
-![同轴电缆的结构](/assets/images/computer-networks/structure-of-coaxial-cable.png)
+![同轴电缆的结构](/assets/images/computer-network/structure-of-coaxial-cable.png)
 *图 2-7 同轴电缆的结构*
 
 #### （3）光缆
@@ -182,20 +182,20 @@ $$101011000110111010... = \varphi_5 \varphi_3 \varphi_0 \varphi_6 \varphi_7 \var
 
 光纤通常由非常透明的石英玻璃拉成细丝，主要由纤芯和包层构成双层通信圆柱体。纤芯很细，其直径只有 8~100 $\mu m$（1 $\mu m$ = $10^{-6}$ m）。光波正是通过纤芯进行传导的。包层较纤芯有较低的折射率。当光线从高折射率的媒体射向低折射率的媒体时，其折射角将大于入射角（图 2-8）。因此，如果入射角足够大，就会出现全反射，即光线碰到包层时就会折射回纤芯。这个过程不断重复，光也就沿着光纤传输下去。
 
-![光线在光纤中的折射](/assets/images/computer-networks/refraction-of-light-in-an-optical-fiber.png)
+![光线在光纤中的折射](/assets/images/computer-network/refraction-of-light-in-an-optical-fiber.png)
 *图 2-8 光线在光纤中的折射*
 
-![光波在纤芯中的传播](/assets/images/computer-networks/propagation-of-light-waves-in-a-fiber-core.png)
+![光波在纤芯中的传播](/assets/images/computer-network/propagation-of-light-waves-in-a-fiber-core.png)
 *图 2-9 光波在纤芯中的传播*
 
 图 2-9 中只画了一条光线。实际上，只要从纤芯中射到纤芯表面的光线的入射角大于某个临界角度，就可产生全反射。因此，可以存在多条不同角度入射的光线在一条光纤中传输。这种光纤就称为**多模光纤**（图 2-10（a））。光脉冲在多模光纤中传输时会逐渐展宽，造成失真。因此多模光纤只适合于近距离传输。若光纤的直径减小到只有一个光的波长，则光纤就像一根波导那样，它可使光线一直向前传播，而不会产生多次反射。这样的光纤称为**单模光纤**（图 2-10（b））。单模光纤的纤芯很细，其直径只有几个微米，制造起来成本较高。同时单模光纤的光源要使用昂贵的半导体激光器，而不能使用较便宜的发光二极管。但单模光纤的衰耗较小，在 100 Gbit/s 的高速率下可传输 100 公里而不必采用中继器。
 
-![多模光纤（a）和单模光纤（b）的比较](/assets/images/computer-networks/comparison-of-multimode-fiber-and-single-mode-fiber.png)
+![多模光纤（a）和单模光纤（b）的比较](/assets/images/computer-network/comparison-of-multimode-fiber-and-single-mode-fiber.png)
 *图 2-10 多模光纤（a）和单模光纤（b）的比较*
 
 由于光纤非常细，连包层一起的直径也不到 0.2 mm。因此必须将光纤做成很结实的光缆。一根光缆少则只有一根光纤，多则可包括数十至数百根光纤，再加上加强芯和填充物就可以大大提高其机械强度。必要时还可放入远供电源线。最后加上包带层和外护套，就可以使抗拉强度达到几公斤，完全可以满足工程施工的强度要求。图 2-11 为四芯光缆剖面的示意图。
 
-![四芯光缆剖面的示意图](/assets/images/computer-networks/diagram-of-four-fiber-cable-profile.png)
+![四芯光缆剖面的示意图](/assets/images/computer-network/diagram-of-four-fiber-cable-profile.png)
 *图 2-11 四芯光缆剖面的示意图*
 
 光纤不仅具有通信容量非常大的优点，而且还具有其他一些特点：
@@ -246,12 +246,12 @@ $$101011000110111010... = \varphi_5 \varphi_3 \varphi_0 \varphi_6 \varphi_7 \var
 
 图 2-13（a）表示 $A_1$，$B_1$ 和 $C_1$ 分别使用一个单独的信道和 $A_1$，$B_1$ 和 $C_1$ 进行通信，总共需要三个信道。但如果在发送端使用一个复用器，就可以让大家合起来使用一个共享信道进行通信。在接收端再使用分用器，把合起来传输的信息分别送到相应的终点。图 2-13（b）是复用的示意图。当然复用要付出一定代价（共享信道由于带宽较大因而费用也较高，再加上复用器和分用器）。但如果复用的信道数量较大，那么在经济上还是合算的。
 
-![复用的示意图](/assets/images/computer-networks/schematic-diagram-of-channel-reuse.png)
+![复用的示意图](/assets/images/computer-network/schematic-diagram-of-channel-reuse.png)
 *图 2-13 复用的示意图*
 
 最基本的复用就是**频分复用 FDM**（Frequency Division Multiplexing）和**时分复用 TDM**（Time Division Multiplexing）。频分复用最简单，其特点如图 2-14（a）所示。用户在分配到一定的频带后，在通信过程中自始至终都占用这个频带。可见**频分复用的所有用户在同样的时间占用不同的带宽资源**（注意，这里的“带宽”是频率带宽而不是数据的发送速率）。而时分复用则是将时间划分为一段段等长的时分复用帧（TDM 帧）。每个时分复用的用户在每个 TDM 帧中占用固定序号的时隙。为简单起见，在图 2-14（b）中只画出了 4 个用户 A，B，C 和 D。每个用户所占用的时隙周期性地出现（其周期就是 TDM 帧的长度）。因此 TDM 信号也称为**等时**（isochronous）信号。可以看出，**时分复用的所有用户是在不同的时间占用同样的频带宽度**。这两种复用方法的优点是技术比较成熟，但缺点是不够灵活。时分复用则更有利于数字信号的传输。
 
-![频分复用和时分复用](/assets/images/computer-networks/frequency-division-multiplexing-and-time-division-multiplexing.png)
+![频分复用和时分复用](/assets/images/computer-network/frequency-division-multiplexing-and-time-division-multiplexing.png)
 *图 2-14 频分复用（a）和时分复用（b）*
 
 在使用频分复用时，若每个用户占用的带宽不变，则当复用的用户数增加时，复用后的信道的总带宽就跟着变宽。例如，传统的电话通信每个标准话路的带宽是 4 kHz（即通信用的 3.1 kHz 加上两边的保护频带），那么若有 1000 个用户进行频分复用，则复用后的总带宽就是 4MHz。但在使用时分复用时，每个时分复用帧的长度是不变的，始终是 125 $\mu s$。若有 1000 个用户进行时分复用，则每个用户分配到的时隙宽度就是 125 $\mu s$ 的千分之一，即 0.125 $\mu s$，时隙宽度变得非常窄。我们应注意到，时隙宽度非常窄的脉冲信号所占的频谱范围也是非常宽的。
@@ -260,12 +260,12 @@ $$101011000110111010... = \varphi_5 \varphi_3 \varphi_0 \varphi_6 \varphi_7 \var
 
 当使用时分复用系统传送计算机数据时，由于计算机数据的突发性质，一个用户对已经分配到的子信道的利用率一般是不高的。当用户在某段时间暂时无数据传输时（例如用户正在键盘上输入数据或正在浏览屏幕上的信息），那就只能让已经分配到手的子信道空闲着，而其他用户也无法使用这个暂时空闲的线路资源。图 2-15 说明了这一概念。假定有 4 个用户 A，B，C 和 D 进行时分复用。复用器按 A → B → C → D 的顺序依次对用户的时隙进行扫描，然后构成一个个时分复用帧。图中共画出了 4 个时分复用帧，每个时分复用帧有 4 个时隙。注意，在时分复用帧中，每个用户所分配到的时隙长度缩短了，在本例中，只有原来的 1/4。可以看出，当某用户暂时无数据发送时，在时分复用帧中分配给该用户的时隙只能处于空闲状态，其他用戶即使一直有数据要发送，也不能使用这些空闲的时隙。这就导致复用后的信道利用率不高。
 
-![时分复用可能会造成线路资源的浪费](/assets/images/computer-networks/division-multiplexing-may-cause-the-waste-of-line-resources.png)
+![时分复用可能会造成线路资源的浪费](/assets/images/computer-network/division-multiplexing-may-cause-the-waste-of-line-resources.png)
 *图 2-15 时分复用可能会造成线路资源的浪费*
 
 统计时分复用 STDM （Statistic TDM）是一种改进的时分复用，它能明显地提高信道的利用率。集中器（concentrator）常使用这种统计时分复用。图 2-16 是统计时分复用的原理图。一个使用统计时分复用的集中器连接 4 个低速用户，然后将它们的数据集中起来通过高速线路发送到一个远地计算机。
 
-![统计时分复用的工作原理](/assets/images/computer-networks/statistics-on-the-working-principle-of-time-division-multiplexing.png)
+![统计时分复用的工作原理](/assets/images/computer-network/statistics-on-the-working-principle-of-time-division-multiplexing.png)
 *图 2-16 统计时分复用的工作原理*
 
 统计时分复用使用 STDM 帧来传送复用的数据。但每个 STDM 帧中的时隙数小于连接在集中器上的用户数。各用户有了数据就随时发往集中器的输入缓存，然后集中器按顺序依次扫描输入缓存，把缓存中的输入数据放入 STDM 帧中。对没有数据的缓存就跳过去。当一个帧的数据放满了，就发送出去。因此，STDM 帧不是固定分配时隙，而是按需动态地分配时隙。因此统计时分复用可以提高线路的利用率。我们还可看出，在输出线路上，某个用户所占用的时隙并不是周期性地出现。因此统计复用又称为异步时分复用，而普通的时分复用称为同步时分复用。这里应注意的是，虽然统计时分复用的输出线路上的数据率小于各输入线路数据率的总和，但从**平均的角度来看，这二者是平衡的**。假定所有的用户都不间断地向集中器发送数据，那么集中器肯定无法应付，它内部设置的缓存都将溢出。所以集中器能够正常工作的前提是假定各用户都是间歇地工作。
@@ -278,7 +278,7 @@ $$101011000110111010... = \varphi_5 \varphi_3 \varphi_0 \varphi_6 \varphi_7 \var
 
 **波分复用 WDM**（Wavelength Division Multiplexing）就是光的频分复用。光纤技术的应用使得数据的传输速率空前提高。现在人们借用传统的载波电话的频分复用的概念，就能做到使用一根光纤来同时传输多个频率很接近的光载波信号。这样就使光纤的传输能力可成倍地提高。由于光载波的频率很高，因此习惯上用波长而不用频率来表示所使用的载波。这样就得出了波分复用这一名词。最初，人们只能在一根光纤上复用两路光载波信号。这种复用方式称为波分复用 WDM。随着技术的发展，在一根光纤上复用的载波信号的路数越来越多。现在已能做到在一根光纤上复用几十路或更多路数的载波信号。于是就使用了**密集波分复用 DWDM**（Dense Wavelength Division Multiplexing）这一名词。例如，每一路的数据率是 40 Gbit/s，使用 DWDM 后，如果在一根光纤上复用 64 路，就能够获得 2.56 Tbit/s 的数据率。图 2-17 给出了波分复用的概念。
 
-![波分复用的概念](/assets/images/computer-networks/concept-of-wavelength-division-multiplexing.png)
+![波分复用的概念](/assets/images/computer-network/concept-of-wavelength-division-multiplexing.png)
 *图 2-17 波分复用的概念*
 
 图 2-17 表示 8 路传输速率均为 2.5 Gbit/s 的光载波（其波长均为1310 nm）。经光的调制后，分别将波长变换到 1550~1557 nm，每个光载波相隔 1 nm。（这里只是为了说明问题的方便。实际上，对于密集波分复用，光载波的间隔一般是 0.8 或 1.6 nm。）这 8 个波长很接近的光载波经过光复用器（波分复用的复用器又称为合波器）后，就在一根光纤中传输。因此，在一根光纤上数据传输的总速率就达到了 8 × 2.5 Gbit/s = 20 Gbit/s。但光信号传输了一段距离后就会衰减，因此对衰减了的光信号必须进行放大才能继续传输。现在已经有了很好的**掺铒光纤放大器 EDFA**（Erbium Doped Fiber Amplifier）。它是一种光放大器，不需要像以前那样复杂，先把光信号转换成电信号，经过电放大器放大后，再转换成为光信号。EDFA 不需要进行光电转换而直接对光信号进行放大，并且在 1550nm 波长附近有 35 nm（即 4.2 THz）频带范围提供较均匀的、最高可达 40~50 dB 的增益。两个光纤放大器之间的光缆线路长度可达 120 km，而光复用器和光分用器（波分复用的分用器又称为分波器）之间的无光电转换的距离可达 600 km（只需放入 4 个 EDFA 光纤放大器）。在地下铺设光缆是耗资很大的工程。因此人们总是在一根光缆中放入尽可能多的光纤（例如，放入 100 根以上的光纤），然后对每根光纤使用密集波分复用技术。因此，对于具有 100 根速率为 2.5 Gbit/s 光纤的光缆，采用 16 倍的密集波分复用，得到一根光缆的总数据率为 100 × 40 Gbit/s，或 4 Tbit/s。这里的 T 为 $10_12$，中文名词是“太”，即“兆兆”。
@@ -305,7 +305,7 @@ $$ S \bullet S = \frac{1}{m} \displaystyle\sum_{i=1}^{m} S_i S_i = \frac{1}{m} \
 
 图 2-18 是 CDMA 的工作原理。设 S 站要发送的数据是 110 三个码元。再设 CDMA 将每一个码元扩展为 8 个码片，而 S 站选择的码片序列为（-1 -1 -1 +1 +1 -1 +1 +1）。S 站发送的扩频信号为 $S_x$。我们应当注意到，S 站发送的扩频信号 $S_x$ 中，只包含互为反码的两种码片序列。T 站选择的码片序列为（-1 -1 +1 −1 +1 +1 +1 −1）， T 站也发送 110 三个码元，而 T 站的扩频信号为 Tx。因所有的站都使用相同的频率，因此每一个站都能够收到所有的站发送的扩频信号。对于我们的例子，所有的站收到的都是叠加的信号 $S_x$ + $T_x$。
 
-![CDMA 的工作原理](/assets/images/computer-networks/how-cdma-works.png)
+![CDMA 的工作原理](/assets/images/computer-network/how-cdma-works.png)
 *图 2-18 CDMA 的工作原理*
 
 当接收站打算收 S 站发送的信号时，就用 S 站的码片序列与收到的信号求规格化内积。这相当于分别计算 S $\bullet$ $S_x$ 和 S $\bullet$ $T_x$ 显然，S $\bullet$ $S_x$ 就是 S 站发送的数据比特，因为在计算规格化内积时，按（2-3）式相加的各项，或者都是 +1，或者都是 −1；而 S $\bullet$ $T_x$ 一定是零，因为相加的 8 项中的 +1 和 −1 各占一半，因此总和一定是零。
@@ -462,7 +462,7 @@ Unit）。由于 ADSL 调制解调器必须成对使用，因此把在电话端�
 ATU-C 要使用数字信号处理技术，因此 DSLAM 的价格较高。
 
 
-![基于ADSL 的接入网的组成](/assets/images/computer-networks/composition-of-access-network-based-on-ADSL.png)
+![基于ADSL 的接入网的组成](/assets/images/computer-network/composition-of-access-network-based-on-ADSL.png)
 *图 2-20 基于ADSL 的接入网的组成*
 
 
@@ -475,10 +475,10 @@ ADSL 最大的好处就是可以利用现有电话网中的用户线（铜线）
 分离器则更小巧（见图2-22），用户只需要用三个带有RJ-11 插头的连线就可以连接好，使
 用起来非常方便。
 
-![ADSL 调制解调器](/assets/images/computer-networks/adsl-modem.png)
+![ADSL 调制解调器](/assets/images/computer-network/adsl-modem.png)
 *图 2-21 ADSL 调制解调器（ADSL ATU-R）*
 
-![电话分离器](/assets/images/computer-networks/telephone-separator.png)
+![电话分离器](/assets/images/computer-network/telephone-separator.png)
 *图2 -22 电话分离器（有三个 RJ-11 插口）*
 
 最后我们要指出，ADSL 借助于在用户线两端安装的 ADSL 调制解调器（即 ATU-R 和
@@ -538,7 +538,7 @@ Duplex）和 OFDM 技术，有效地降低了辐射干扰和设备功耗，在 1
 
 目也就减少到仅4~5个。连接到一个光纤结点的典型用户数是500左右，但不超过2000。
 
-![HFC 网的结构图](/assets/images/computer-networks/structure-diagram-of-hfc-network.png)
+![HFC 网的结构图](/assets/images/computer-network/structure-diagram-of-hfc-network.png)
 *图 2-23 HFC 网的结构图*
 
 光纤结点与头端的典型距离为25km，而从光纤结点到其用户的距离则不超过2~3km。
@@ -594,7 +594,7 @@ The Home）应当是最好的选择，这也是广大网民最终所向往的。
 源”表明在光配线网中无须配备电源，因此基本上不用维护，其长期运营成本和管理成本都
 很低。无源的光配线网常称为无源光网络PON （Passive Optical Network）。
 
-![无源光配线网的组成](/assets/images/computer-networks/composition-of-passive-optical-distribution-network.png)
+![无源光配线网的组成](/assets/images/computer-network/composition-of-passive-optical-distribution-network.png)
 *图 2-25 无源光配线网的组成*
 
 在图 2-25 中，光线路终端 OLT （Optical Line Terminal）是连接到光纤干线的终端设备。

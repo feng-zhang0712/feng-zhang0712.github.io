@@ -24,7 +24,7 @@ tags:
 
 $H_1$ 的链路层 → $R_1$ 的链路层 → $R_2$ 的链路层 → $R_3$ 的链路层 → $H_2$ 的链路层
 
-![数据在数据链路层的流动]({{ site.baseurl }}/assets/images/computer-networks/data-flow-at-the-data-link-layer.png)
+![数据在数据链路层的流动]({{ site.baseurl }}/assets/images/computer-network/data-flow-at-the-data-link-layer.png)
 *图 3-2 只考虑数据在数据链路层的流动*
 
 图 3-2 指出，从数据链路层来看，$H_1$ 到 $H_2$ 的通信可以看成由四段不同的链路层通信组成，即：$H_1$ → $R_1$，$R_1$ → $R_2$，$R_2$ → $R_3$ 和 $R_3$ → $H_2$。这四段不同的链路层可能采用不同的数据链路层协议。
@@ -42,7 +42,7 @@ $H_1$ 的链路层 → $R_1$ 的链路层 → $R_2$ 的链路层 → $R_3$ 的�
 
 为了把主要精力放在点对点信道的数据链路层协议上，可以采用如图 3-3（a）所示的三层模型。在这种三层模型中，不管在哪段链路上的通信（主机和路由器之间或两个路由器之间），我们都看成是结点和结点的通信（如图中的结点 A 和 B），而每个结点只有下三层：网络层、数据链路层和物理层。
 
-![使用点对点信道的数据链路层]({{ site.baseurl }}/assets/images/computer-networks/data-link-layer-using-point-to-point-channel.png)
+![使用点对点信道的数据链路层]({{ site.baseurl }}/assets/images/computer-network/data-link-layer-using-point-to-point-channel.png)
 *图 3-3 使用点对点信道的数据链路层*
 
 点对点信道的数据链路层在进行通信时的主要步骤如下：
@@ -61,12 +61,12 @@ $H_1$ 的链路层 → $R_1$ 的链路层 → $R_2$ 的链路层 → $R_3$ 的�
 
 **封装成帧**（framing）就是在一段数据的前后分别添加首部和尾部，这样就构成了一个帧。接收端在收到物理层上交的比特流后，就能根据首部和尾部的标记，从收到的比特流中识别帧的开始和结束（图 3-4 表示用帧首部和帧尾部封装成帧的一般概念）。我们知道，分组交换的一个重要概念就是：所有在互联网上传送的数据都以分组（即 IP 数据报）为传送单位。网络层的 IP 数据报传送到数据链路层就成为帧的数据部分。在帧的数据部分的前面和后面分别添加上首部和尾部，构成了一个完整的帧。这样的帧就是数据链路层的数据传送单元。一个帧的帧长等于帧的数据部分长度加上帧首部和帧尾部的长度。首部和尾部的一个重要作用就是进行**帧定界**（即确定帧的界限）。此外，首部和尾部还包括许多必要的控制信息。在发送帧时，是从帧首部开始发送的。各种数据链路层协议都对帧首部和帧尾部的格式有明确的规定。显然，为了提高帧的传输效率，应当使帧的数据部分长度尽可能地大于首部和尾部的长度。但是，每种链路层协议都规定了所能传送的帧的**数据部分长度上限** —— **最大传送单元 MTU**（Maximum Transfer Unit）。图 3-4 给出了帧的首部和尾部的位置，以及帧的数据部分与 MTU 的关系。
 
-![用帧首部和尾部封装成帧]({{ site.baseurl }}/assets/images/computer-networks/encapsulate-frames-with-frame-headers-and-tails.png)
+![用帧首部和尾部封装成帧]({{ site.baseurl }}/assets/images/computer-network/encapsulate-frames-with-frame-headers-and-tails.png)
 *图 3-4 用帧首部和尾部封装成帧*
 
 当数据是由可打印的 ASCII 码组成的文本文件时，帧定界可以使用特殊的**帧定界符**。我们知道，ASCII 码是 7 位编码，一共可组合成 128 个不同的 ASCII 码，其中可打印的有 95 个，而不可打印的控制字符有 33 个。图 3-5 的例子可说明帧定界的概念。控制字符 SOH（Start Of Header）放在一帧的最前面，表示帧的首部开始。另一个控制字符 EOT （End Of Transmission）表示帧的结束。请注意，SOH 和 EOT 都是控制字符的名称。它们的十六进制编码分别是 01（二进制是 00000001）和 04（二进制是 00000100）。
 
-![用控制字符进行帧定界的方法举例]({{ site.baseurl }}/assets//images/computer-networks/method-of-delimiting-frames-with-control-characters.png)
+![用控制字符进行帧定界的方法举例]({{ site.baseurl }}/assets//images/computer-network/method-of-delimiting-frames-with-control-characters.png)
 *图 3-5 用控制字符进行帧定界的方法举例*
 
 当数据在传输中出现差错时，帧定界符的作用更加明显。假定发送端在尚未发送完一个帧时突然出故障，中断了发送。但随后很快又恢复正常，于是重新从头开始发送刚才未发送完的帧。由于使用了帧定界符，接收端就知道前面收到的数据是个不完整的帧（只有首部开始符 SOH 而没有传输结束符 EOT），必须丢弃。而后面收到的数据有明确的帧定界符（SOH 和 EOT），因此这是一个完整的帧，应当收下。
@@ -79,7 +79,7 @@ $H_1$ 的链路层 → $R_1$ 的链路层 → $R_2$ 的链路层 → $R_3$ 的�
 
 但当数据部分是非 ASCII 码的文本文件时（如二进制代码的计算机程序或图像等），情况就不同了。如果数据中的某个字节的二进制代码恰好和 SOH 或 EOT 这种控制字符一样（见图 3-6），数据链路层就会错误地“找到帧的边界”，把部分帧收下（误认为是个完整的帧），而把剩下的那部分数据丢弃（这部分找不到帧定界控制字符 SOH）。
 
-![数据部分恰好出现与 EOT 一样的代码]({{ site.baseurl }}/assets/images/computer-networks/the-data-section-happens-to-have-the-same-code-as-the-eot.png)
+![数据部分恰好出现与 EOT 一样的代码]({{ site.baseurl }}/assets/images/computer-network/the-data-section-happens-to-have-the-same-code-as-the-eot.png)
 *图 3-6 数据部分恰好出现与EOT 一样的代码*
 
 像图 3-6 所示的帧的传输显然就不是“透明传输”，因为当遇到数据中碰巧出现字符“EOT”时就传不过去了。数据中的“EOT”将被接收端错误地解释为“传输结束”的控制字符，而在其后面的数据因找不到“SOH”被接收端当作无效帧而丢弃。但实际上在数据中出现的字符“EOT”并非控制字符而仅仅是二进制数据 00000100。
@@ -88,7 +88,7 @@ $H_1$ 的链路层 → $R_1$ 的链路层 → $R_2$ 的链路层 → $R_3$ 的�
 
 为了解决透明传输问题，必须设法使数据中可能出现的控制字符“SOH”和“EOT”在接收端不被解释为控制字符。具体的方法是：发送端的数据链路层在数据中出现控制字符“SOH”或“EOT”的前面插入一个**转义字符**“ESC”（其十六进制编码是 1B，二进制是 00011011）。而在接收端的数据链路层在把数据送往网络层之前删除这个插入的转义字符。这种方法称为**字节填充**（byte stuffing）或**字符填充**（character stuffing）。如果转义字符也出现在数据当中，那么解决方法仍然是在转义字符的前面插入一个转义字符。因此，当接收端收到连续的两个转义字符时，就删除其中前面的一个。图 3-7 表示用字节填充法解决透明传输的问题。
 
-![用字节填充法解决透明传输的问题]({{ site.baseurl }}/assets/images/computer-networks/using-byte-filling-method-to-solve-the-problem-of-transparent-transmission.png)
+![用字节填充法解决透明传输的问题]({{ site.baseurl }}/assets/images/computer-network/using-byte-filling-method-to-solve-the-problem-of-transparent-transmission.png)
 *图 3-7 用字节填充法解决透明传输的问题*
 
 #### （4）差错检测
@@ -103,7 +103,7 @@ $H_1$ 的链路层 → $R_1$ 的链路层 → $R_2$ 的链路层 → $R_3$ 的�
 
 顺便说一下，循环冗余检验 CRC 和帧检验序列 FCS 并不是同一个概念。CRC 是一种检错方法，而 FCS 是添加在数据后面的冗余码，在检错方法上可以选用 CRC，但也可不选用 CRC。
 
-![说明循环冗余检验原理的例子]({{ site.baseurl }}/assets/images/computer-networks/examples-that-illustrate-the-principle-of-cyclic-redundancy-checking.png)
+![说明循环冗余检验原理的例子]({{ site.baseurl }}/assets/images/computer-network/examples-that-illustrate-the-principle-of-cyclic-redundancy-checking.png)
 *图 3-8 说明循环冗余检验原理的例子*
 
 在接收端把接收到的数据帧为单位进行 CRC 检验：把收到的每个帧都除以同样的除数 P（模 2 运算），然后检查得到的余数 R。
@@ -154,7 +154,7 @@ $$CRC-32 = X_{32} + X_{26} + X_{23} + X_{22} + X_{16} + X_{12} + X_{11} + X_{10}
 
 我们知道，互联网用户通常都要连接到某个 ISP 才能接入到互联网。PPP 协议就是用户计算机和 ISP 进行通信时所使用的数据链路层协议（图 3-9）。
 
-![用户到 ISP 的链路使用 PPP 协议](/assets/images/computer-networks/the-link-between-the-user-and-the-isp-uses-ppp.png)
+![用户到 ISP 的链路使用 PPP 协议](/assets/images/computer-network/the-link-between-the-user-and-the-isp-uses-ppp.png)
 *图 3-9 用户到 ISP 的链路使用 PPP 协议*
 
 PPP 协议是 IETF 在 1992 年制定的。经过 1993 年和 1994 年的修订，现在的 PPP 协议在 1994 年就已成为互联网的正式标准[RFC 1661]。
@@ -190,7 +190,7 @@ PPP 协议有三个组成部分：
 
 PPP 的帧格式如图 3-10 所示。PPP 帧的首部和尾部分别为四个字段和两个字段。首部的第一个字段和尾部的第二个字段都是标志字段 **F**（Flag），规定为 0x7E（符号“0x”表示它后面的字符是用十六进制表示的。十六进制的 7E 的二进制表示是 01111110）。标志字段表示一个帧的开始或结束。因此标志字段就是 PPP 帧的定界符。连续两帧之间只需要用一个标志字段。如果出现连续两个标志字段，就表示这是一个空帧，应当丢弃。
 
-![PPP 帧的格式](/assets/images/computer-networks/ppp-frame-format.png)
+![PPP 帧的格式](/assets/images/computer-network/ppp-frame-format.png)
 *图 3-10 PPP 帧的格式*
 
 - 首部中的地址字段 A 规定为 0xFF（即 11111111）。
@@ -218,7 +218,7 @@ PPP 协议用在使用同步传输（一连串的比特连续传送）而不是�
 
 零比特填充的具体做法是：在发送端，先扫描整个信息字段。只要发现有 5 个连续 1，则立即填入一个 0。因此经过这种零比特填充后的数据，就可以保证在信息字段中不会出现 6 个连续 1。接收端在收到一个帧时，先找到标志字段 F 以确定一个帧的边界，接着再用硬件对其中的比特流进行扫描。每当发现 5 个连续 1 时，就把这 5 个连续 1 后的一个 0 删除，以还原成原来的信息比特流（图 3-11）。这样就保证了透明传输：在所传送的数据比特流中可以传送任意组合的比特流，而不会引起对帧边界的错误判断。
 
-![零比特的填充与删除](/assets/images/computer-networks/fill-and-deletion-of-zero-bits.png)
+![零比特的填充与删除](/assets/images/computer-network/fill-and-deletion-of-zero-bits.png)
 *图 3-11 零比特的填充与删除*
 
 ### 2.3 PPP 协议的工作状态
@@ -237,7 +237,7 @@ PPP 链路的起始和终止状态永远是图 3-12 中的“**链路静止**”
 - 配置否认帧（Configure-Nak）：所有选项都理解但不能接受。
 - 配置拒绝帧（Configure-Reject）：选项有的无法识别或不能接受，需要协商。
 
-![PPP 协议的状态图](/assets/images/computer-networks/ppp-status-diagram.png)
+![PPP 协议的状态图](/assets/images/computer-network/ppp-status-diagram.png)
 *图 3-12 PPP 协议的状态图*
 
 LCP 配置选项包括链路上的最大帧长、所使用的鉴别协议（authentication protocol）的规约（如果有的话），以及不使用 PPP 帧中的地址和控制字段（因为这两个字段的值是固定的，没有任何信息量，可以在 PPP 帧的首部中省略这两个字节）。
@@ -268,7 +268,7 @@ LCP 配置选项包括链路上的最大帧长、所使用的鉴别协议（auth
 - **环形网**。
 - **总线网**：各站直接连在总线上。总线两端的匹配电阻吸收在总线上传播的电磁波信号的能量，避免在总线上产生有害的电磁波反射。总线网以传统以太网最为著名。
 
-![局域网的拓扑](/assets/images/computer-networks/lan-topology.png)
+![局域网的拓扑](/assets/images/computer-network/lan-topology.png)
 *图 3-13 局域网的拓扑*
 
 局域网工作的层次跨越了数据链路层和物理层。
@@ -289,7 +289,7 @@ LCP 配置选项包括链路上的最大帧长、所使用的鉴别协议（auth
 
 当适配器收到有差错的帧时，就把这个帧直接丢弃而不必通知计算机。当适配器收到正确的帧时，它就使用中断来通知该计算机，并交付协议栈中的网络层。当计算机要发送 IP 数据报时，就由协议栈把 IP 数据报向下交给适配器，组装成帧后发送到局域网。图 3-15 表示适配器的作用。注意，计算机的硬件地址就在适配器的 ROM 中，而计算机的软件地址 —— IP 地址，则在计算机的存储器中。
 
-![计算机通过适配器和局域网进行通信](/assets/images/computer-networks/computers-communicate-with-local-area-networks-through-adapters.png)
+![计算机通过适配器和局域网进行通信](/assets/images/computer-network/computers-communicate-with-local-area-networks-through-adapters.png)
 *图 3-15 计算机通过适配器和局域网进行通信*
 
 ### 3.2 CSMA/CD 协议
@@ -305,7 +305,7 @@ LCP 配置选项包括链路上的最大帧长、所使用的鉴别协议（auth
 
 第二，以太网发送的数据都使用**曼彻斯特编码**的信号。我们知道，二进制基带数字信号通常就是高、低电压交替出现的信号。使用这种信号的最大问题就是当出现一长串的连 1 或 0 时，接收端就无法从收到的比特流中提取位同步（即比特同步）信号。如图 3-16 所示，曼彻斯特编码的编码方法是把每个码元再分成两个相等的间隔。码元 1 是前一个间隔为低电压而后一个间隔为高电压。码 0 则正好相反，从高电压变到低电压（也可采用相反的约定，即 1 是“前高后低”而 0 是“前低后高”）。这样就保证了在每个码元的正中间出现一次电压的转换，而接收端就利用这种电压的转换很方便地把位同步信号提取出来。但是从曼彻斯特编码的波形图也不难看出其缺点，这就是它所占的频带宽度比原始的基带信号增加了一倍（因为每秒传送的码数加倍了）。
 
-![曼彻斯特编码](/assets/images/computer-networks/manchester-encoding.png)
+![曼彻斯特编码](/assets/images/computer-network/manchester-encoding.png)
 *图 3-16 曼彻斯特编码*
 
 下面介绍 CSMA/CD 协议的要点。
@@ -316,7 +316,7 @@ LCP 配置选项包括链路上的最大帧长、所使用的鉴别协议（auth
 
 既然每个站在发送数据前已经监听到信道为“空闲”，那么为什么还会出现数据在总线上的碰撞呢？这是因为电磁波在总线上总是以有限的速率传播。这和我们开讨论会时相似。一听见会场安静，我们就立即发言，但偶尔也会发生几个人同时抢着发言而产生冲突的情况。图 3-17 所示的例子可以说明这种情况。设图中的局域网两端的站 A 和 B 相距 1km，用同轴电缆相连。**电磁波在 1km 电缆的传播时延约为 $5\mu s$**（这个数字应当记住）。因此，A 向 B 发出的数据，在约 $5\mu s$ 后才能传送到 B。换言之，B 若在 A 发送的数据到达 B 之前发送自己的帧（因为这时 B 的载波监听检测不到 A 所发送的信息），则必然要在某个时间和 A 发送的帧发生碰撞。碰撞的结果是两个帧都变得无用。在局域网的分析中，常把总线上的**单程端到端传播时延**记为 $\tau$ 。发送数据的站希望尽早知道是否发生了碰撞。那么，A 发送数据后，最迟要经过**两倍的总线端到端的传播时延**（$2\tau$）(或总线的端到端往返传播时延)才能知道自己发送的数据和其他站发送的数据有没有发生碰撞。由于局域网上任意两个站之间的传播时延有长有短，因此局域网必须按最坏情况设计，即取总线两端的两个站之间的传播时延（这两个站之间的距离最大）为端到端传播时延。
 
-![传播时延对载波监听的影响](/assets/images/computer-networks/influence-of-propagation-delay-on-carrier-monitoring.png)
+![传播时延对载波监听的影响](/assets/images/computer-network/influence-of-propagation-delay-on-carrier-monitoring.png)
 *图 3-17 传播时延对载波监听的影响*
 
 显然，在使用 CSMA/CD 协议时，一个站**不可能同时进行发送和接收**（**但必须边发送边监听信道**）。因此使用 CSMA/CD 协议的以太网不可能进行全双工通信而只能进行**双向交替通信**（**半双工通信**）。
@@ -363,7 +363,7 @@ $$k = Min[重传次数，10]$$
 
 **强化碰撞**指当发送数据的站一旦发现发生了碰撞时，除了立即停止发送数据外，还要再继续发送 32 比特或 48 比特的人为干扰信号（jamming signal），以便让所有用户都知道现在已经发生了碰撞（图 3-18）。对于 10 Mbit/s 以太网，发送 32（或 48） 比特只需要 3.2（或 4.8）$\mu s$。
 
-![人为干扰信号的加入](/assets/images/computer-networks/the-addition-of-artificial-interference-signals.png)
+![人为干扰信号的加入](/assets/images/computer-network/the-addition-of-artificial-interference-signals.png)
 *图 3-18 人为干扰信号的加入*
 
 从图 3-18 可以看出，A 站从发送数据开始到发现碰撞并停止发送的时间间隔是 $T_B$。A 站得知碰撞已经发生时所发送的强化碰撞的干扰信号的持续时间是 $T_J$。图中的 B 站在得知发生碰撞后，也要发送人为干扰信号，但为简单起见，图 3-18 没有画出 B 站所发送的人为干扰信号。发生碰撞使 A 浪费时间 $T_B + T_J$。可是整个信道被占用的时间还要增加一个单程端到端的传播时延 $\tau$。因此总线被占用的时间是 $T_B + T_J + \tau$。
@@ -385,7 +385,7 @@ $$k = Min[重传次数，10]$$
 
 传统以太网使用更便宜和更灵活的双绞线。这种以太网采用星形拓扑，在星形的中心则增加了一种可靠性非常高的设备，叫做**集线器**（hub），如图 3-19 所示。双绞线以太网总是和集线器配合使用。每个站需要用两对无屏蔽双绞线（放在一根电缆内），分别用于发送和接收。双绞线的两端使用 RJ-45 插头。由于集线器使用了大规模集成电路芯片，因此集线器的可靠性就大大提高了。1990 年 IEEE 制定出星形以太网 10BASE-T 的标准 802.3i。“10”代表 10 Mbit/s 的数据率，BASE 表示连接线上的信号是基带信号，T 代表双绞线。
 
-![使用集线器的双绞线以太网](/assets/images/computer-networks/twisted-pair-ethernet-using-a-hub.png)
+![使用集线器的双绞线以太网](/assets/images/computer-network/twisted-pair-ethernet-using-a-hub.png)
 *图 3-19 使用集线器的双绞线以太网*
 
 但 10BASE-T 以太网的通信距离稍短，每个站到集线器的距离不超过 100m。这种性价比很高的 10BASE-T 双绞线以太网的出现，是局域网发展史上的一个非常重要的里程碑，从此以太网的拓扑就从总线型变为更加方便的星形网络，而以太网也就在局域网中占据了统治地位。
@@ -397,7 +397,7 @@ $$k = Min[重传次数，10]$$
 - **集线器工作在物理层**，它的每个接口仅仅**简单地转发比特** —- 收到 1 就转发 1，收到 0 就转发 0，不进行碰撞检测。若两个接口同时有信号输入（即发生碰撞），那么所有的接口都将收不到正确的帧。图 3-20 是具有三个接口的集线器的示意图。
 - 集线器采用了专门的芯片，进行自适应串音回波抵消。这样就可使接口转发出去的较强信号不致对该接口接收到的较弱信号产生干扰（这种干扰即近端串音）。每个比特在转发之前还要进行再生整形并重新定时。
 
-![具有三个接口的集线器](/assets/images/computer-networks/a-hub-with-three-interfaces.png)
+![具有三个接口的集线器](/assets/images/computer-network/a-hub-with-three-interfaces.png)
 *图 3-20 具有三个接口的集线器*
 
 ### 3.4 以太网的信道利用率
@@ -406,7 +406,7 @@ $$k = Min[重传次数，10]$$
 
 图 3-21 的例子是以太网的信道被占用的情况。一个站在发送帧时出现了碰撞。经过一个争用期 $2\tau$ 后（$\tau$ 是以太网单程端到端传播时延），可能又出现了碰撞。这样经过若干个争用期后，一个站发送成功了。假定发送帧需要的时间是 $T_0$。它等于帧长（bit）除以发送速率（10 Mbit/s）。
 
-![以太网的信道被占用的情况](/assets/images/computer-networks/the-ethernet-channel-is-occupied.png)
+![以太网的信道被占用的情况](/assets/images/computer-network/the-ethernet-channel-is-occupied.png)
 *图 3-21 以太网的信道被占用的情况*
 
 我们应当注意到，成功发送一个帧需要占用信道的时间是 $T_0 + \tau$，比这个帧的发送时间要多一个单程端到端时延。这是因为当一个站发送完最后一个比特时，这个比特还要在以太网上传播。在最极端的情况下，发送站在传输媒体的一端，而比特在媒体上传输到另一端所需的时间是 $\tau$。因此，必须在经过时间 $T_o + \tau$ 后以太网的媒体才完全进入空闲状态，才能允许其他站发送数据。
@@ -462,7 +462,7 @@ IEEE 还考虑到可能有人并不愿意向 IEEE 的 RA 购买 OUI。为此，I
 
 常用的以太网 MAC 帧格式有两种标准，一种是 DIX Ethernet V2 标准（即以太网 V2 标准），另一种是 IEEE 的 802.3 标准。这里只介绍使用得最多的以太网 V2 的 MAC 帧格式（图 3-22）。图中假定网络层使用的是 IP 协议。实际上使用其他的协议也是可以的。
 
-![以太网 V2 的 MAC 帧格式](/assets/images/computer-networks/mac-frame-format-of-ethernet-v2.png)
+![以太网 V2 的 MAC 帧格式](/assets/images/computer-network/mac-frame-format-of-ethernet-v2.png)
 *图 3-22 以太网 V2 的 MAC 帧格式*
 
 以太网 V2 的 MAC 帧较为简单，由五个字段组成。

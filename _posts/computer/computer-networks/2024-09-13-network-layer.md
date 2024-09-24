@@ -28,7 +28,7 @@ tags:
 
 图 4-1（b）给出了网络提供数据报服务的示意图。主机 $H_1$ 向 $H_2$ 发送的分组各自独立地选择路由，并且在传送的过程中还可能丢失。
 
-![网络层提供的两种服务](/assets/images/computer-networks/two-types-of-services-provided-by-the-network-layer.png)
+![网络层提供的两种服务](/assets/images/computer-network/two-types-of-services-provided-by-the-network-layer.png)
 *图 4-1 网络层提供的两种服务*
 
 | 对比的方面 | 虚电路服务 | 数据报服务 |
@@ -54,7 +54,7 @@ tags:
 
 图 4-2 画出了这三个协议和网际协议 IP 的关系。在这一层中，ARP 画在最下面，因为 IP 经常要使用这个协议。ICMP 和 IGMP 画在这一层的上部，因为它们要使用 IP 协议。由于网际协议 IP 是用来使互连起来的许多计算机网络能够进行通信的，因此 TCP/IP 体系中的网络层常常被称为**网际层**（internet layer），或 **IP 层**。
 
-![网际协议 IP 及其配套协议](/assets/images/computer-networks/internet-protocol-ip-and-its-supporting-protocols.png)
+![网际协议 IP 及其配套协议](/assets/images/computer-network/internet-protocol-ip-and-its-supporting-protocols.png)
 *图 4-2 网际协议 IP及其配套协议*
 
 ### 2.1 虚拟互连网络
@@ -70,7 +70,7 @@ tags:
 
 图 4-3（a）表示有许多计算机网络通过一些路由器进行互连。由于参加互连的计算机网络都使用相同的**网际协议 IP**（Internet Protocol），因此可以把互连以后的计算机网络看成如图 4-3（b）所示的一个**虚拟互连网络**（internet）。所谓虚拟互连网络也就是逻辑互连网络，它的意思就是互连起来的各种物理网络的异构性本来是客观存在的，但是我们利用 IP 协议就可以使这些性能各异的网络**在网络层上看起来好像是一个统一的网络**。这种使用 IP协 议的虚拟互连网络可简称为 IP 网。使用 IP 网的好处是：当 IP 网上的主机进行通信时，就好像在一个单个网络上通信一样，它们看不见互连的各网络的具体异构细节（如具体的编址方案、路由选择协议，等等）。如果在这种覆盖全球的 IP 网的上层使用 TCP 协议，那么就是现在的互联网（Internet）。
 
-![IP 网的概念](/assets/images/computer-networks/the-concept-of-ip-network.png)
+![IP 网的概念](/assets/images/computer-network/the-concept-of-ip-network.png)
 *图 4-3 IP 网的概念*
 
 在图 4-4 所示的互联网中的源主机 $H_1$ 要把一个 IP 数据报发送给目的主机 $H_2$。根据之前讲过的分组交换的存储转发概念，主机 $H_1$ 先要查找自己的路由表，看目的主机是否就在本网络上。如是，则不需要经过任何路由器而是**直接交付**，任务就完成了。如不是，则必须把 IP 数据报发送给某个路由器（图中的 $R_1$）。$R_1$ 在查找了自己的路由表后，知道应当把数据报转发给 $R_2$ 进行**间接交付**。这样一直转发下去，最后由路由器 $R_5$ 知道自己是和 $H_2$ 连接在同一个网络上，不需要再使用别的路由器转发了，于是就把数据报直接交付目的主机 $H_2$。图中画出了源主机、目的主机以及各路由器的协议栈。我们注意到，主机的协议栈共有五层，但路由器的协议栈只有下三层。图中还画出了数据在各协议栈中流动的方向（用黑色粗线表示）。我们还可注意到，在 $R_4$ 和 $R_5$ 之间使用了卫星链路，而 $R_5$ 所连接的是个无线局域网。在 $R_1$ 到 $R_4$ 之间的三个网络则可以是任意类型的网络。总之，这里强调的是：**互联网可以由多种异构网络互连组成**。
@@ -79,7 +79,7 @@ tags:
 
 $$H_1 → R_1 → R_2 → R_3 → R_4 → R_5 → H_2$$
 
-![分组在互联网中的传送](/assets/images/computer-networks/transmission-of-packets-over-the-internet.png)
+![分组在互联网中的传送](/assets/images/computer-network/transmission-of-packets-over-the-internet.png)
 *图 4-4 分组在互联网中的传送*
 
 ### 2.2 分类的 IP 地址
@@ -107,7 +107,7 @@ $$IP 地址 ::= {<网络号>, <主机号>}$$
 
 上式中的符号“::=”表示“**定义为**”。图 4-5 给出了各种 IP 地址的网络号字段和主机号字段，这里 A 类、B 类和 C 类地址都是单播地址（一对一通信），是最常用的。
 
-![IP 地址中的网络号字段和主机号字段](/assets/images/computer-networks/the-network-number-field-and-host-number-field-in-the-ip-address.png)
+![IP 地址中的网络号字段和主机号字段](/assets/images/computer-network/the-network-number-field-and-host-number-field-in-the-ip-address.png)
 *图 4-5 IP 地址中的网络号字段和主机号字段*
 
 从图 4-5 可以看出：
@@ -125,7 +125,7 @@ $$IP 地址 ::= {<网络号>, <主机号>}$$
 
 对主机或路由器来说，IP 地址都是 32 位的二进制代码。为了提高可读性，我们常把 32 位的 IP 地址中的每 8 位插入一个空格（但在机器中并没有这样的空格）。为了便于书写，可用其等效的十进制数字表示，并且在这些数字之间加上一个点。这就叫做**点分十进制记法**（dotted decimal notation）。图 4-6 是一个 B 类 IP 地址的表示方法。显然，128.11.3.31 比 10000000 00001011 00000011 00011111 书写起来要方便得多。
 
-![采用点分十进制记法能够提高可读性](/assets/images/computer-networks/the-use-of-dotted-decimal-notation-improves-readability.png)
+![采用点分十进制记法能够提高可读性](/assets/images/computer-network/the-use-of-dotted-decimal-notation-improves-readability.png)
 *图 4-6 采用点分十进制记法能够提高可读性*
 
 #### （2）常用的三种类别的 IP 地址
@@ -176,14 +176,14 @@ IP 地址具有以下一些重要特点。
 - 路由器总是具有两个或两个以上的 IP 地址。即路由器的每个接口都有一个不同网络号的 IP 地址。
 - 当两个路由器直接相连时（例如通过一条租用线路），在连线两端的接口处，可以分配也可以不分配 IP 地址。如分配了 IP 地址，则这段连线就构成了一种只包含一段线路的特殊“网络”（如图中的 $N_1$，$N_2$ 和 $N_3$）。之所以叫做“网络”是因为它有 IP 地址。但为了节省 IP 地址资源，对于这种仅由一段连线构成的特殊“网络”，现在也常常不分配 IP 地址。通常把这样的特殊网络叫做**无编号网络**（unnumbered network）或**无名网络**（anonymous network）[COME06]。
 
-![互联网中的 IP 地址](/assets/images/computer-networks/an-ip-address-on-the-internet.png)
+![互联网中的 IP 地址](/assets/images/computer-network/an-ip-address-on-the-internet.png)
 *图 4-7 互联网中的 IP 地址*
 
 ### 2.3 IP 地址与硬件地址
 
 图 4-8 说明了 IP 地址与硬件地址的区别。从层次的角度看，**物理地址是数据链路层和物理层使用的地址**，而 **IP 地址是网络层和以上各层使用的地址，是一种逻辑地址**。
 
-![IP 地址与硬件地址的区别](/assets/images/computer-networks/differences-between-ip-addresses-and-hardware-addresses.png)
+![IP 地址与硬件地址的区别](/assets/images/computer-network/differences-between-ip-addresses-and-hardware-addresses.png)
 *图 4-8 IP 地址与硬件地址的区别*
 
 在发送数据时，数据从高层下到低层，然后才到通信链路上传输。使用 IP 地址的 IP 数据报一旦交给了数据链路层，就被封装成 MAC 帧了。MAC 帧在传送时使用的源地址和目的地址都是硬件地址，这两个硬件地址都写在MAC 帧的首部中。
@@ -194,12 +194,12 @@ IP 地址具有以下一些重要特点。
 
 图 4-9（a）画的是三个局域网用两个路由器 $R_1$ 和 $R_2$ 互连起来。现在主机 $H_1$ 要和主机 $H_2$ 通信。这两台主机的 IP 地址分别是 $IP_1$ 和 $IP_2$，而它们的硬件地址分别为 $HA_1$ 和 $HA2_1$（HA 表示 Hardware Address）。通信的路径是：$H_1$ → 经过 $R_1$ 转发 → 再经过 $R_2$ 转发 → $H_2$。路由器 $R_1$ 因同时连接到两个局域网上，因此它有两个硬件地址，即 $HA_3$ 和 $HA_4$。同理，路由器 $R_2$ 也有两个硬件地址 $HA_5$ 和 $HA_6$。
 
-![从不同层次上看 IP 地址和硬件地址](/assets/images/computer-networks/ip-addresses-and-hardware-addresses-at-different-levels.png)
+![从不同层次上看 IP 地址和硬件地址](/assets/images/computer-network/ip-addresses-and-hardware-addresses-at-different-levels.png)
 *图 4-9 从不同层次上看 IP 地址和硬件地址*
 
 图4-9（b）特别强调了 IP 地址与硬件地址的区别。表 4-4 归纳了这种区别。
 
-![图 4-9（b）中不同层次、不同区间的源地址和目的地址](/assets/images/computer-networks/source-and-destination-addresses-of-different-levels-and-ranges.png)
+![图 4-9（b）中不同层次、不同区间的源地址和目的地址](/assets/images/computer-network/source-and-destination-addresses-of-different-levels-and-ranges.png)
 *表 4-4 图 4-9（b）中不同层次、不同区间的源地址和目的地址*
 
 这里要强调指出以下几点：
@@ -220,7 +220,7 @@ IP 地址具有以下一些重要特点。
 
 在实际应用中，我们经常会遇到这样的问题：已经知道了一个机器（主机或路由器）的 IP 地址，需要找出其相应的硬件地址。地址解析协议 ARP 就是用来解决这样的问题的。图 4-10 说明了 ARP 协议的作用。
 
-![ARP 协议的作用](/assets/images/computer-networks/function-of-arp-protocol.png)
+![ARP 协议的作用](/assets/images/computer-network/function-of-arp-protocol.png)
 *图 4-10 ARP 协议的作用*
 
 由于是 IP 协议使用了 ARP 协议，因此通常就把 ARP 协议划归网络层。ARP 协议的用途是为了从网络层使用的 IP 地址，解析出在数据链路层使用的硬件地址。注意，还有一个旧的协议叫做逆地址解析协议 RARP，它的作用是使只知道自己硬件地址的主机能够通过 RARP 协议找出其 IP 地址。现在的 DHCP 协议已经包含了 RARP 协议的功能。因此本书不再介绍 RARP 协议。
@@ -236,7 +236,7 @@ IP 地址具有以下一些重要特点。
 3. 主机 B 的 IP 地址与 ARP 请求分组中要查询的 IP 地址一致，就收下这个 ARP 请求分组，并向主机 A 发送 ARP 响应分组（其格式见[COME06]），同时在这个 ARP 响应分组中写入自己的硬件地址。由于其余的所有主机的 IP 地址都与 ARP 请求分组中要查询的 IP 地址不一致，因此都不理睬这个 ARP 请求分组，见图 4-11（b）。ARP 响应分组的主要内容是：“我的 IP 地址是 209.0.0.6，我的硬件地址是 08-00-2B-00-EE-0A。”请注意：虽然 ARP 请求分组是广播发送的，但 ARP 响应分组是普通的单播，即从一个源地址发送到一个目的地址。
 4. 主机 A 收到主机 B 的 ARP 响应分组后，就在其 ARP 高速缓存中写入主机 B 的IP 地址到硬件地址的映射。
 
-![地址解析协议 ARP 的工作原理](/assets/images/computer-networks/the-working-principle-of-the-address-resolution-protocol.png)
+![地址解析协议 ARP 的工作原理](/assets/images/computer-network/the-working-principle-of-the-address-resolution-protocol.png)
 *图 4-11 地址解析协议 ARP 的工作原理*
 
 在上述第（3）步中，当主机 B 收到 A 的 ARP 请求分组时，同时会把主机 A 的地址映射写入主机 B 自己的 ARP 高速缓存中。以后主机 B 向 A 发送数据报时就很方便了。
@@ -251,7 +251,7 @@ ARP 对保存在高速缓存中的每个映射地址项目都设置生存时间�
 
 下面我们归纳出使用ARP的四种典型情况（图4-12）。
 
-![使用 ARP 的四种典型情况](/assets/images/computer-networks/four-typical-scenarios-for-using-arp.png)
+![使用 ARP 的四种典型情况](/assets/images/computer-network/four-typical-scenarios-for-using-arp.png)
 *图4 -12 使用 ARP 的四种典型情况*
 
 1. 发送方是主机（如 $H_1$），要把 IP 数据报发送到同一个网络上的另一台主机（如 $H_2$）。这时 $H_1$ 发送 ARP 请求分组（在网上广播），找到目的主机 $H_2$ 的硬件地址。
@@ -267,7 +267,7 @@ ARP 对保存在高速缓存中的每个映射地址项目都设置生存时间�
 
 IP 数据报的格式能够说明 IP 协议都具有什么功能。在 TCP/IP 的标准中，各种数据格式常常以 32 位（即 4 字节）为单位来描述。图 4-13 是 IP 数据报的完整格式。
 
-![IP 数据报的格式](/assets/images/computer-networks/format-of-the-ip-datagram.png)
+![IP 数据报的格式](/assets/images/computer-network/format-of-the-ip-datagram.png)
 *图 4-13 IP 数据报的格式*
 
 从图 4-13 可看出，一个 IP 数据报由首部和数据两部分组成。首部的前一部分是固定长度，共 20 字节，是所有 IP 数据报必须具有的。在首部的固定部分的后面是一些可选字段，其长度是可变的。
@@ -293,7 +293,7 @@ IP 数据报的格式能够说明 IP 协议都具有什么功能。在 TCP/IP �
 - **片偏移**：占 13 位。片偏移指出：较长的分组在分片后，某片在原分组中的相对位置。也就是说，相对于用户数据字段的起点，该片从何处开始。片偏移以 8 个字节为偏移单位。这就是说，每个分片的长度一定是 8 字节（64 位）的整数倍。下面举一个例子。
   【例 4-1】 一数据报的总长度为 3820 字节，其数据部分为 3800 字节长（使用固定首部），需要分片为长度不超过 1420 字节的数据报片。因固定首部长度为 20 字节，因此每个数据报片的数据部分长度不能超过 1400 字节。于是分为 3 个数据报片，其数据部分的长度分别为 1400，1400 和 1000 字节。原始数据报首部被复制为各数据报片的首部，但必须修改有关字段的值。图 4-14 给出分片后得出的结果（注意片偏移的数值）。
 
-  ![数据报的分片举例](/assets/images/computer-networks/example-for-fragment-datagram.png)
+  ![数据报的分片举例](/assets/images/computer-network/example-for-fragment-datagram.png)
   *图 4-14 数据报的分片举例*
 
   表 4-5 是本例中数据报首部与分片有关的字段中的数值，其中标识字段的值是任意给定的（12345）。具有相同标识的数据报片在目的站就可无误地重装成原来的数据报。
@@ -320,7 +320,7 @@ IP 数据报的格式能够说明 IP 协议都具有什么功能。在 TCP/IP �
 
 - **首部检验和**：占 16 位。这个字段**只检验数据报的首部**，不包括数据部分。这是因为数据报每经过一个路由器，路由器都要重新计算一下首部检验和（一些字段，如生存时间、标志、片偏移等都可能发生变化）。不检验数据部分可减少计算的工作量。为了进一步减小计算检验和的工作量，IP 首部的检验和不采用复杂的 CRC 检验码而采用下面的简单计算方法：在发送方，先把 IP 数据报首部划分为许多 16 位字的序列，并把检验和字段置零。用反码算术运算把所有 16 位字相加后，将得到的和的反码写入检验和字段。接收方收到数据报后，将首部的所有 16 位字再使用反码算术运算相加一次。将得到的和取反码，即得出接收方检验和的计算结果。若首部未发生任何变化，则此结果必为 0，于是就保留这个数据报。否则即认为出差错，并将此数据报丢弃。图 4-15 说明了 IP 数据报首部检验和的计算过程。
 
-  ![IP 数据报首部检验和的计算过程](/assets/images/computer-networks/the-calculation-process-of-ip-datagram-header-check-sum.png)
+  ![IP 数据报首部检验和的计算过程](/assets/images/computer-network/the-calculation-process-of-ip-datagram-header-check-sum.png)
   *图 4-15 IP 数据报首部检验和的计算过程*
 
 - **源地址**：占 32 位。
@@ -342,7 +342,7 @@ IP 数据报首部的可变部分就是一个选项字段。选项字段用来�
 
 $$（目的网络地址，下一跳地址）$$
 
-![路由表举例](/assets/images/computer-networks/an-example-of-routing-table.png)
+![路由表举例](/assets/images/computer-network/an-example-of-routing-table.png)
 *图 4-16 路由表举例*
 
 于是，我们就根据目的网络地址来确定下一跳路由器，这样做可得出以下的结果。
@@ -354,7 +354,7 @@ $$（目的网络地址，下一跳地址）$$
 
 路由器还可采用**默认路由**（default route）以减小路由表所占用的空间和搜索路由表所用的时间。这种转发方式在一个网络只有很少的对外连接时是很有用的。实际上，默认路由在主机发送 IP 数据报时往往更能显示出它的好处。我们之前讲过，主机在发送每个 IP 数据报时都要查找自己的路由表。如果一台主机连接在一个小网络上，而这个网络只用一个路由器和互联网连接，那么在这种情况下使用默认路由是非常合适的。例如，在图 4-17 的互联网中，连接在网络上的任何一台主机中的路由表只需要三个项目即可。第一个项目就是到本网络主机的路由，其目的网络就是本网络 $N_1$，因而不需要路由器转发，而是直接交付。第二个项目是到网络 $N_2$ 的路由，对应的下一跳路由器是 $R_2$。第三个项目就是**默认路由**。只要目的网络是其他网络（不是 $N_1$ 或 $N_2$），就一律选择默认路由，把数据报先间接交付路由器 $R_1$，让再 $R_1$ 转发给互联网中的下一个路由器，一直转发到目的网络上的路由器，最后进行直接交付。在实际上的路由器中，像图 4-17 路由表中所示的“直接”和“其他”的几个字符并没有出现在路由表中，而是被记为 0.0.0.0。
 
-![路由器 $R_1$ 充当网络 $N_1$ 的默认路由器](/assets/images/computer-networks/router-r1-acts-as-the-default-router-for-network-n1.png)
+![路由器 $R_1$ 充当网络 $N_1$ 的默认路由器](/assets/images/computer-network/router-r1-acts-as-the-default-router-for-network-n1.png)
 *图 4-17 路由器 $R_1$ 充当网络 $N_1$ 的默认路由器*
 
 这里我们应当强调指出，在 IP 数据报的首部中没有地方可以用来指明“下一跳路由器的 IP 地址”。在 IP 数据报的首部写上的 IP 地址是源 IP 地址和目的 IP 地址，而没有中间经过的路由器的 IP 地址。既然 IP 数据报中没有下一跳路由器的 IP 地址，那么待转发的数据报又怎样能够找到下一跳路由器呢？
@@ -398,12 +398,12 @@ $$（目的网络地址，下一跳地址）$$
 
 下面用例子说明划分子网的概念。图 4-18 表示某单位拥有一个 B 类 IP 地址，网络地址是 145.13.0.0（网络号是 145.13）。凡目的地址为 145.13.x.x 的数据报都被送到这个网络上的路由器 $R_1$。
 
-![一个 B 类网络 145.13.0.0](/assets/images/computer-networks/a-b-network.png)
+![一个 B 类网络 145.13.0.0](/assets/images/computer-network/a-b-network.png)
 *图 4-18 一个 B 类网络 145.13.0.0*
 
 现把图 4-18 的网络划分为三个子网（图 4-19）。这里假定子网号占用 8 位，因此在增加了子网号后，主机号就只有 8 位。所划分的三个子网分别是：145.13.3.0，145.13.7.0 和 145.13.21.0 。在划分子网后，整个网络对外部仍表现为一个网络，其网络地址仍为 145.13.0.0。但网络 145.13.0.0 上的路由器 $R_1$ 在收到外来的数据报后，再根据数据报的目的地址把它转发到相应的子网。
 
-![把图 4-18 的网络 145.13.0.0 划分为三个子网，但对外仍是一个网络](/assets/images/computer-networks/a-subnet-of-b-network.png)
+![把图 4-18 的网络 145.13.0.0 划分为三个子网，但对外仍是一个网络](/assets/images/computer-network/a-subnet-of-b-network.png)
 *图 4-19 把图 4-18 的网络 145.13.0.0 划分为三个子网，但对外仍是一个网络*
 
 总之，当没有划分子网时，IP 地址是两级结构。划分子网后 IP 地址变成了三级结构。划分子网只是把 IP 地址的主机号这部分进行再划分，而不改变 IP 地址原来的网络号。
@@ -414,7 +414,7 @@ $$（目的网络地址，下一跳地址）$$
 
 我们知道，从 IP 数据报的首部无法看出源主机或目的主机所连接的网络是否进行了子网的划分。这是因为 32 位的 IP 地址本身以及数据报的首部都没有包含任何有关子网划分的信息。因此必须另外想办法，这就是使用**子网掩码**（subnet mask）（见图4-20）。
 
-![IP 地址的各字段和子网掩码](/assets/images/computer-networks/each-field-and-subnet-mask-of-the-ip-address.png)
+![IP 地址的各字段和子网掩码](/assets/images/computer-network/each-field-and-subnet-mask-of-the-ip-address.png)
 *图 4-20 IP 地址的各字段和子网掩码（以 145.13.3.30 为例）*
 
 - 图 4-20（a）是 IP 地址为 145.13.3.10 的主机本来的两级 IP 地址结构。
@@ -435,7 +435,7 @@ $$（目的网络地址，下一跳地址）$$
 
 图 4-21 是这三类 IP 地址的网络地址和相应的默认子网掩码。
 
-![A 类、B 类和 C 类 IP 地址的默认子网掩码](/assets/images/computer-networks/default-subnet-mask-of-class-a-b-and-c-ip-addresses.png)
+![A 类、B 类和 C 类 IP 地址的默认子网掩码](/assets/images/computer-network/default-subnet-mask-of-class-a-b-and-c-ip-addresses.png)
 *图 4-21 A 类、B 类和 C 类 IP 地址的默认子网掩码*
 
 **子网掩码是一个网络或一个子网的重要属性**。在 RFC 950 成为互联网的正式标准后，路由器在和相邻路由器交换路由信息时，必须把自己所在网络（或子网）的子网掩码告诉相邻路由器。在路由器的路由表中的每一个项目，除了要给出目的网络地址外，还必须同时给出该网络的子网掩码。若一个路由器连接在两个子网上就拥有两个网络地址和两个子网掩码。我们以一个 B 类地址为例，说明可以有多少种子网划分的方法。在采用固定长度子网时，所划分的所有子网的子网掩码都是相同的（见表 4-6）。
@@ -471,7 +471,7 @@ $$（目的网络地址，下一跳地址）$$
 
 【解】子网掩码是 11111111 11111111 11000000 00000000。请注意，掩码的前两个字节都是全 1，因此网络地址的前两个字节可写为 141.14。子网掩码的第四字节是全 0，因此网络地址的第四字节是 0。可见本题仅需对地址中的第三字节进行计算。我们只要把 IP 地址和子网掩码的第三字节用二进制表示，就可以很容易地得出网络地址（图 4-22）。
 
-![网络地址的计算](/assets/images/computer-networks/network-address-calculation.png)
+![网络地址的计算](/assets/images/computer-network/network-address-calculation.png)
 *图 4-22 网络地址的计算*
 
 注意，在一个 IP 地址中不允许把十进制和二进制混合使用。图 4-22 中（b）和（d）的写法，仅仅为了说明解题的步骤，而并非表示平时可以这样书写 IP 地址。
@@ -480,7 +480,7 @@ $$（目的网络地址，下一跳地址）$$
 
 【解】 用同样方法可得出网络地址是 141.14.64.0，和上例的结果相同（图 4-23）。
 
-![不同的子网掩码得出相同的网络地址](/assets/images/computer-networks/different-subnet-masks-give-the-same-network-address.png)
+![不同的子网掩码得出相同的网络地址](/assets/images/computer-network/different-subnet-masks-give-the-same-network-address.png)
 *图 4-23 不同的子网掩码得出相同的网络地址*
 
 这个例子说明，同样的 IP 地址和不同的子网掩码可以得出相同的网络地址。但是，不同的掩码的效果是不同的。在例 4-2 中，子网号是 2 位，主机号是 14 位。在例 4-3 中，子网号是 3 位，主机号是 13 位。因此这两个例子中可划分的子网数和每个子网中的最大主机数都是不一样的。
@@ -498,7 +498,7 @@ $$（目的网络地址，下一跳地址）$$
 
 【例 4-4】图 4-24 有三个子网，两个路由器，以及路由器 $R_1$ 中的部分路由表。现在源主机 $H_1$ 向目的主机 $H_2$ 发送分组。试讨论 $R_1$ 收到 $H_1$ 向 $H_2$ 发送的分组后查找路由表的过程。
 
-![主机 $H_1$ 向 $H_2$ 发送分组](/assets/images/computer-networks/host-h1-sends-packets-to-h2.png)
+![主机 $H_1$ 向 $H_2$ 发送分组](/assets/images/computer-network/host-h1-sends-packets-to-h2.png)
 *图 4-24 主机 $H_1$ 向 $H_2$ 发送分组*
 
 【解】源主机 $H_1$ 向目的主机 $H_2$ 发送的分组的目的地址是 $H_2$ 的 IP 地址 128.30.33.138。源主机 $H_1$ 首先要进行的操作是要判断：发送的这个分组，是在本子网上进行直接交付还是要通过本子网上的路由器进行间接交付？
@@ -589,7 +589,7 @@ $$00001010 00*$$
 
 图 4-25 给出的是 CIDR 地址块分配的例子。假定某 ISP 已拥有地址块 206.0.64.0/18（相当于有 64 个 C 类网络）。现在某大学需要 800 个 IP 地址。ISP 可以给该大学分配一个地址块 206.0.68.0/22，它包括 1024（即 $2^{10}$） 个 IP 地址，相当于 4 个连续的 C 类 `/24` 地址块，占该 ISP 拥有的地址空间的 1/16。这个大学然后可自由地对本校的各系分配地址块，而各系还可再划分本系的地址块。CIDR 的地址块分配有时不易看清，这是因为网络前缀和主机号的界限不是恰好出现在整数字节处。只要写出地址的二进制表示（从图中的地址块的二进制表示中可看出，实际上只需要将其中的一个关键字节转换为二进制的表示即可），弄清网络前缀的位数，就不会把地址块的范围弄错。
 
-![CIDR 地址块划分举例](/assets/images/computer-networks/example-for-dividing-cidr-address-blocks.png)
+![CIDR 地址块划分举例](/assets/images/computer-network/example-for-dividing-cidr-address-blocks.png)
 *图 4-25 CIDR 地址块划分举例*
 
 从图 4-25 可以清楚地看出**地址聚合**的概念。这个 ISP 共拥有 64 个 C 类网络。如果不采用 CIDR 技术，则在与该 ISP 的路由器交换路由信息的每个路由器的路由表中，就需要有 64 个项目。但采用地址聚合后，就只需用路由聚合后的一个项目 206.0.64.0/18 就能找到该 ISP。同理，这个大学共有 4 个系。在 ISP 内的路由器的路由表中，也需使用 206.0.68.0/22 这个项目。这个项目好比是大学的收发室。凡寄给这个大学任何一个系的邮件，邮递员都不考虑大学各个系的地址，而是把这些邮件集中投递到大学的收发室，然后由大学的收发室再进行下一步的投递。这样就减轻了邮递员的工作量（相当于简化了路由表的查找）。
@@ -697,7 +697,7 @@ IP数据报（不管它是地址块198/7中的哪一个地址）都先送交位�
 
 为了更有效地转发 IP 数据报和提高交付成功的机会，在网际层使用了**网际控制报文协议 ICMP**（Internet Control Message Protocol）[RFC 792]。ICMP 允许主机或路由器报告差错情况和提供有关异常情况的报告。ICMP 是互联网的标准协议。但ICMP 不是高层协议（看起来好像是高层协议，因为 ICMP 报文是装在 IP 数据报中，作为其中的数据部分），而是 IP 层的协议。ICMP 报文作为 IP 数据报的数据，加上数据报的首部，组成 IP 数据报发送出去。ICMP 报文格式如图 4-27 所示。
 
-![ICMP 报文的格式](/assets/images/computer-networks/icmp-packet-format.png)
+![ICMP 报文的格式](/assets/images/computer-network/icmp-packet-format.png)
 *图 4-27 ICMP 报文的格式*
 
 ### 4.1 ICMP 报文的种类
@@ -729,7 +729,7 @@ ICMP 报文的代码字段是为了进一步区分某种类型中的几种不同
 
 所有的 ICMP 差错报告报文中的数据字段都具有同样的格式（图 4-28）。把收到的需要进行差错报告的 IP 数据报的首部和数据字段的前 8 个字节提取出来，作为 ICMP 报文的数据字段。再加上相应的 ICMP 差错报告报文的前 8 个字节，就构成了 ICMP 差错报告报文。提取收到的数据报的数据字段前 8 个字节是为了得到运输层的端口号（对于 TCP 和 UDP）以及运输层报文的发送序号（对于 TCP）。这些信息对源点通知高层协议是有用的。整个 ICMP 报文作为 IP 数据报的数据字段发送给源点。
 
-![ICMP 差错报告报文的数据字段的内容](/assets/images/computer-networks/the-content-of-the-data-field-of-an-icmp-error-report-packet.png)
+![ICMP 差错报告报文的数据字段的内容](/assets/images/computer-network/the-content-of-the-data-field-of-an-icmp-error-report-packet.png)
 *图 4-28 ICMP 差错报告报文的数据字段的内容*
 
 下面是不应发送 ICMP 差错报告报文的几种情况。
@@ -861,7 +861,7 @@ Trace conplete。
 
 图 4-31 是两个自治系统互连在一起的示意图。每个自治系统自己决定在本自治系统内部运行哪个内部路由选择协议（例如，可以是 RIP，也可以是 OSPF）。但每个自治系统都有一个或多个路由器（图中的路由器 $R_1$ 和 $R_2$）除运行本系统的内部路由选择协议外，还要运行自治系统间的路由选择协议（BGP-4）。
 
-![自治系统和内部网关协议、外部网关协议](/assets/images/computer-networks/autonomous-system-and-interior-gateway-protocol-and-external-gateway-protocol.png)
+![自治系统和内部网关协议、外部网关协议](/assets/images/computer-network/autonomous-system-and-interior-gateway-protocol-and-external-gateway-protocol.png)
 *图 4-31 自治系统和内部网关协议、外部网关协议*
 
 <!-- 这里我们要指出两点：

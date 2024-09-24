@@ -19,7 +19,7 @@ tags:
 - **地区 ISP**：是一些较小的 ISP。这些地区 ISP 通过一个或多个主干 ISP 连接起来。它们位于等级中的第二层，数据率也低一些。
 - **本地 ISP**：给用户提供直接的服务（这些用户有时也称为端用户，强调是末端的用户）。本地 ISP 可以连接到地区 ISP，也可直接连接到主干 ISP。绝大多数的用户都是连接到本地 ISP 的。本地 ISP 可以是一个仅仅提供互联网服务的公司，也可以是一个拥有网络并向自己的雇员提供服务的企业，或者是一个运行自己的网络的非营利机构（如学院或大学）。本地 ISP 可以与地区 ISP 或主干 ISP 连接。
 
-![基于 ISP 的多层结构的互联网的概念示意图]({{ site.baseurl }}/assets/images/computer-networks/isp-based-multi-level-internet.png)
+![基于 ISP 的多层结构的互联网的概念示意图]({{ site.baseurl }}/assets/images/computer-network/isp-based-multi-level-internet.png)
 *基于 ISP 的多层结构的互联网的概念示意图*
 
 从原理上讲，只要每个本地 ISP 都安装了路由器连接到某个地区 ISP，而每个地区 ISP 也有路由器连接到主干 ISP，那么在这些相互连接的 ISP 的共同合作下，就可以完成互联网中的所有的分组转发任务。随着互联网上数据流量的急剧增长，人们开始研究如何更快地转发分组，以及如何更加有效地利用网络资源。于是，**互联网交换点 IXP**（Internet Exchange Point）应运而生。
@@ -33,7 +33,7 @@ tags:
 - **边缘部分**：由所有连接在互联网上的主机组成。这部分是用户直接使用的，用来进行通信和资源共享。
 - **核心部分**：由大量网络和连接这些网络的路由器组成。这部分是为边缘部分提供服务的（提供连通性和交换）。
 
-![互联网的边缘部分与核心部分]({{ site.baseurl }}/assets/images/computer-networks/edge-and-core-of-the-internet.png)
+![互联网的边缘部分与核心部分]({{ site.baseurl }}/assets/images/computer-network/edge-and-core-of-the-internet.png)
 *互联网的边缘部分与核心部分*
 
 ### 2.1 互联网的边缘部分
@@ -75,14 +75,14 @@ tags:
 
 在电话问世后不久，人们就发现，要让所有的电话机都两两相连接是不现实的。下图（a）表示两部电话只需要用一对电线就能够互相连接起来。但若有 5 部电话要两两相连，则需要 10 对电线，如下图（b）所示。显然，若 `N` 部电话要两两相连，就需要 `N(N-1)/2` 对电线。当电话机的数量很大时，这种连接方法需要的电线数量就太大了。要使得每部电话能够很方便地和另一部电话进行通信，应当使用电话交换机将这些电话连接起来，如下图（c）所示。每部电话都连接到交换机上，而交换机使用交换的方法，让电话用户彼此之间可以很方便地通信。电话发明后的一百多年来，电话交换机虽然经过多次更新换代，但交换的方式一直都是**电路交换**（circuit switching）。
 
-![电话机的不同连接方法]({{ site.baseurl }}/assets/images/computer-networks/phone-connection-methods.png)
+![电话机的不同连接方法]({{ site.baseurl }}/assets/images/computer-network/phone-connection-methods.png)
 *电话机的不同连接方法*
 
 从通信资源的分配角度来看，**交换**（switching）就是按照某种方式动态地分配传输线路的资源。在使用电路交换通话时，从主叫端到被叫端就建立了一条连接，也就是一条专用的物理通路。这条连接保证了双方通话时所需的通信资源，而这些资源在双方通信时不会被其他用户占用。此后主叫和被叫双方就能互相通电话。通话完毕挂机后，交换机释放刚才使用的这条专用的物理通路。这种必须经过**建立连接**（占用通信资源）$\to$ **通话**（一直占用通信资源）$\to$ **释放连接**（归还通信资源）三个步骤的交换方式称为**电路交换**。
 
 下图为电路交换的示意图。电路交换的一个重要特点就是**在通话的全部时间内，通话的两个用户始终占用端到端的通信资源**。
 
-![电路交换的用户始终占用端到端的通信资源]({{ site.baseurl }}/assets/images/computer-networks/circuit-switching-example.png)
+![电路交换的用户始终占用端到端的通信资源]({{ site.baseurl }}/assets/images/computer-network/circuit-switching-example.png)
 *电路交换的用户始终占用端到端的通信资源*
 
 使用电路交换传送计算机数据时，其线路的传输效率往往很低。这是因为计算机数据是突发式地出现在传输线路上的，因此线路上真正用来传送数据的时间往往不到 10% 甚至 1%。已被用户占用的通信线路资源在绝大部分时间里都是空闲的。
@@ -91,14 +91,14 @@ tags:
 
 分组交换则采用**存储转发**技术。下图表示把一个报文划分为几个分组后再进行传送。通常我们把要发送的整块数据称为一个**报文**（message）。在发送报文之前，先把较长的报文划分为一个个更小的等长数据段。例如，每个数据段为 1024 bit。在每个数据段前面，加上一些由必要的控制信息组成的**首部**（header）后，就构成了一个**分组**（packet）。分组又称为“**包**”，而分组的首部也可称为“**包头**”。分组是在互联网中传送的数据单元。分组的首部包含了诸如目的地址和源地址等重要控制信息，使得分组能在互联网中独立地选择传输路径，并被正确地交付到分组传输的终点。
 
-![以分组为基本单位在网络中传送]({{ site.baseurl }}/assets/images/computer-networks/packet-based-transition.png)
+![以分组为基本单位在网络中传送]({{ site.baseurl }}/assets/images/computer-network/packet-based-transition.png)
 *以分组为基本单位在网络中传送*
 
 下图中的（a）强调互联网的核心部分由许多网络和把它们互连起来的路由器组成的，而主机处在互联网的边缘部分。在互联网核心部分的路由器之间一般都用高速链路相连接，而在网络边缘的主机接入到核心部分则通常以相对较低速率的链路相连接。
 
 **位于网络核心部分的路由器用来转发分组，即进行分组交换**。路由器收到一个分组，先暂时存储，检查其首部，查找转发表，按照首部中的目的地址，找到合适的接口转发出去，把分组交给下一个路由器。这样一步步地以存储转发的方式，把分组交付到最终的目的主机。各路由器之间必须经常交换彼此掌握的路由信息，以便创建和动态维护路由器中的转发表，使得转发表能够在整个网络拓扑发生变化时及时更新。
 
-![分组交换的示意图]({{ site.baseurl }}/assets/images/computer-networks/packet-switching-diagram.png)
+![分组交换的示意图]({{ site.baseurl }}/assets/images/computer-network/packet-switching-diagram.png)
 *分组交换的示意图*
 
 现在假定上图（b）中的主机 $H_1$ 向主机 $H_5$ 发送数据。主机 $H_1$ 先将分组逐个发往与它直接相连的路由器 `A`。此时，除链路 $H_1$-A 外，其他通信链路并不被目前通信的双方所占用。需要注意的是，即使是链路 $H_1$-A，也只是当分组正在此链路上传送时才被占用。在各分组传送之间的空闲时间，链路 $H_1$-A 仍可为其他主机发送的分组使用。
@@ -133,7 +133,7 @@ tags:
 - **报文交换**：整个报文先传送到相邻结点，全部存储下来后查找转发表，转发到下个结点。
 - **分组交换**：单个分组（这只是整个报文的一部分）传送到相邻结点，存储下来后查找转发表，转发到下个结点。
 
-![三种交换的比较]({{ site.baseurl }}/assets/images/computer-networks/difference-of-switching.png)
+![三种交换的比较]({{ site.baseurl }}/assets/images/computer-network/difference-of-switching.png)
 *三种交换的比较。电路交换、报文交换、分组交换，$P_1$~$P_4$ 表示 4 个分组*
 
 从上图可看出，若要连续传送大量的数据，且其传送时间远大于连接建立时间，则电路交换的传输速率较快。报文交换和分组交换不需要预先分配传输带宽，在传送突发数据时可提高整个网络的信道利用率。由于一个分组的长度往往远小于整个报文的长度，因此分组交换比报文交换的时延小，同时也具有更好的灵活性。
@@ -197,7 +197,7 @@ $$总时延 = 发送时延 + 传播时延 + 处理时延 + 排队时延$$
 
 一般说来，小时延的网络要优于大时延的网络。在某些情况下，一个低速率、小时延的网络很可能要优于一个高速率但大时延的网络。
 
-![几种时延产生的地方不一样]({{ site.baseurl }}/assets/images/computer-networks/delay-diagram.png)
+![几种时延产生的地方不一样]({{ site.baseurl }}/assets/images/computer-network/delay-diagram.png)
 *几种时延产生的地方不一样*
 
 必须指出，在总时延中，究竟哪种时延占主导地位，必须具体分析。我们知道，汽车在路面质量很好的高速公路上可明显地提高行驶速率。然而对于高速网络链路，我们提高的仅仅是**数据的发送速率而不是比特在链路上的传播速率**。荷载信息的电磁波在通信线路上的传播速率（这是光速的数量级）取决于通信线路的介质材料，而与数据的发送速率并无关系。**提高数据的发送速率只是减小了数据的发送时延**。此外，数据的发送速率的单位是每秒发送多少个比特，这是指在**某个点**或**某个接口**上的发送速率。而传播速率的单位是每秒传播多少公里，是指在某一段传输线路上比特的传播速率。因此，通常所说的“光纤信道的传输速率高”是指可以用很高的速率向光纤信道发送数据，而光纤信道的传播速率实际上还要比铜线的传播速率略低一点，光在光纤中的传播速率约为每秒 20.5 万公里，它比电磁波在铜线中的传播速率（每秒 23.1 万公里）略低一些。
@@ -214,7 +214,7 @@ $$时延带宽积 = 20×10^{-3} × 10 × 10^6 = 2 × 10^5 bit$$
 
 这就表明，若发送端连续发送数据，则在发送的第一个比特即将达到终点时，发送端就已经发送了 20 万个比特，而这 20 万个比特都正在链路上向前移动。因此，链路的时延带宽积又称为**以比特为单位的链路长度**。
 
-![链路像一条空心管道]({{ site.baseurl }}/assets/images/computer-networks/delay-bandwidth.png)
+![链路像一条空心管道]({{ site.baseurl }}/assets/images/computer-network/delay-bandwidth.png)
 *链路像一条空心管道*
 
 不难看出，管道中的比特数表示从发送端发出的但尚未到达接收端的比特。对于一条正在传送数据的链路，只有在代表链路的管道都充满比特时，链路才得到充分的利用。
@@ -246,7 +246,7 @@ $$D = \frac{D_0}{1-U}$$
 
 这里 U 是网络的利用率，数值在 0 到 1 之间。当网络的利用率达到其容量的 1/2 时，时延就要加倍。值得注意的是：当网络的利用率接近最大值 1 时，网络的时延就趋于无穷大。因此我们必须有这样的概念：信道或网络的利用率过高会产生非常大的时延。如下图所示。因此一些拥有较大主干网的 ISP 通常控制信道利用率不超过 50%。如果超过了就要准备扩容，增大线路的带宽。
 
-![时延与利用率的关系]({{ site.baseurl }}/assets/images/computer-networks/relationship-between-delay-and-usage-rate.png)
+![时延与利用率的关系]({{ site.baseurl }}/assets/images/computer-network/relationship-between-delay-and-usage-rate.png)
 *时延与利用率的关系*
 
 ### 3.2 计算机网络的非性能特征
@@ -289,7 +289,7 @@ $$D = \frac{D_0}{1-U}$$
 
 OSI 的七层协议体系结构（如下图（a））的概念清楚，理论也较完整，但它既复杂又不实用。TCP/IP 体系结构则不同，但它现在却得到了非常广泛的应用。TCP/IP 是一个四层的体系结构（如下图（b）），它包含应用层、运输层、网际层和网络接口层。不过从实质上讲，TCP/IP 只有最上面的三层，因为最下面的网络接口层并没有什么具体内容。因此在学习计算机网络的原理时往往采取折中的办法，即综合 OSI 和 TCP/IP 的优点，采用一种只有五层协议的体系结构（如下图（c）），这样既简洁又能将概念阐述清楚。有时为了方便，也可把最底下两层称为网络接口层。
 
-![计算机网络体系结构]({{ site.baseurl }}/assets/images/computer-networks/computer-network-architecture.png)
+![计算机网络体系结构]({{ site.baseurl }}/assets/images/computer-network/computer-network-architecture.png)
 *计算机网络体系结构*
 
 #### （1）应用层（application layer）
@@ -327,7 +327,7 @@ OSI 的七层协议体系结构（如下图（a））的概念清楚，理论也
 
 在互联网所使用的各种协议中，最重要和最著名的就是 TCP 和 IP 两个协议。现在人们经常提到的 TCP/IP 并不一定是单指 TCP 和 IP 这两个具体的协议，而往往是表示互联网所使用的整个 **TCP/IP 协议族**（protocol suite）。
 
-![数据在各层之间的传递过程]({{ site.baseurl }}/assets/images/computer-networks/data-transition-between-layers.png)
+![数据在各层之间的传递过程]({{ site.baseurl }}/assets/images/computer-network/data-transition-between-layers.png)
 *数据在各层之间的传递过程*
 
 上图说明的是应用进程的数据在各层之间的传递过程中所经历的变化。这里为简单起见，假定两台主机通过一台路由器连接起来。
@@ -356,7 +356,7 @@ OSI 参考模型把对等层次之间传送的数据单位称为该层的**协�
 
 这样，在任何相邻两层之间的关系可概括为下图所示的那样。这里要注意的是，第 n 层的两个“实体（n）”之间通过“协议（n）”进行通信，而第 n+1 层的两个“实体（n + 1）”之间则通过另外的“协议（n+1）”进行通信（每一层都使用不同的协议）。第 n 层向上面的第 n+1 层所提供的服务实际上已包括了在它以下各层所提供的服务。第 n 层的实体对第 n+1 层的实体就相当于一个服务提供者。在服务提供者的上一层的实体又称为“服务用户”，因为它使用下层服务提供者所提供的服务。
 
-![相邻两层之间的关系]({{ site.baseurl }}/assets/images/computer-networks/relationship-between-2-layers.png)
+![相邻两层之间的关系]({{ site.baseurl }}/assets/images/computer-network/relationship-between-2-layers.png)
 *相邻两层之间的关系*
 
 计算机网络的协议还有一个很重要的特点，就是协议必须把**所有**不利的条件事先都估计到，而**不能假定一切都是正常的和非常理想的**。例如，两个朋友在电话中约好，下午 3 时在某公园门口碰头，并且约定“不见不散”。这就是一个很不科学的协议，因为任何一方临时有急事来不了而又无法通知对方时（如对方的电话或手机都无法接通），则另一方按照协议就必须永远等待下去。因此，看一台计算机网络协议是否正确，不能只看在正常情况下是否正确，而且还必须非常仔细地检查这个协议能否应付各种异常情况。下面是一个有关网络协议的非常著名的例子。
@@ -367,7 +367,7 @@ OSI 参考模型把对等层次之间传送的数据单位称为该层的**协�
 
 这样无限循环下去，蓝军 1 和蓝军 2 都始终无法确定自己最后发出的电文对方是否已经收到（如下图所示）。因此，在本例题给出的条件下，没有一种协议可以使蓝军 1 和蓝军 2 能够 100% 地确保胜利。
 
-![无限循环的协议]({{ site.baseurl }}/assets/images/computer-networks/recycle-protocol.png)
+![无限循环的协议]({{ site.baseurl }}/assets/images/computer-network/recycle-protocol.png)
 *无限循环的协议*
 
 这个例子告诉我们，看似非常简单的协议，设计起来要考虑很多问题。
@@ -376,29 +376,29 @@ OSI 参考模型把对等层次之间传送的数据单位称为该层的**协�
 
 前面已经说过，TCP/IP 的体系结构比较简单，它只有四层。下图给出了用这种四层协议表示方法的例子。注意，图中的路由器在转发分组时最高只用到网络层而没有使用运输层和应用层。
 
-![TCP/IP四层协议的表示方法举例]({{ site.baseurl }}/assets/images/computer-networks/tcp-ip-protocol-example.png)
+![TCP/IP四层协议的表示方法举例]({{ site.baseurl }}/assets/images/computer-network/tcp-ip-protocol-example.png)
 *TCP/IP四层协议的表示方法举例*
 
 应当指出，技术的发展并不是遵循严格的 OSI 分层概念。实际上现在的互联网使用的 TCP/IP 体系结构有时已经演变成为下图所示的那样，即某些应用程序可以直接使用 IP 层，或甚至直接使用最下面的网络接口层，下图是这种表示方法。在图中，网络接口层有时也称为子网层。但本书不采用“子网层”这种容易弄混淆的表示方法，因为这里的“子网”是指一些局域网和某些广域网（如ATM 网），但从IP层来看，这些网络属于数据链路层，也就是属于网络接口层。此外，子网划分中的“子网”和下图中“子网层”中的“子网”是完全不同的概念。
 
-![TCP/IP体系结构的另一种表示方法]({{ site.baseurl }}/assets/images/computer-networks/another-tcp-ip-protocol-example.png)
+![TCP/IP体系结构的另一种表示方法]({{ site.baseurl }}/assets/images/computer-network/another-tcp-ip-protocol-example.png)
 *TCP/IP体系结构的另一种表示方法*
 
 还有一种方法，就是分层次画出具体的协议来表示 TCP/IP 协议族（下图），它的特点是上下两头大而中间小：应用层和网络接口层都有多种协议，而中间的 IP 层很小，上层的各种协议都向下汇聚到一个 IP 协议中。这种很像沙漏计时器形状的 TCP/IP 协议族表明：**TCP/IP 协议可以为各式各样的应用提供服务**（所谓的 everything over IP），同时 TCP/IP 协议也**允许 IP 协议在各式各样的网络构成的互联网上运行**（所谓的 IP over everything）。正因为如此，互联网才会发展到今天的这种全球规模。从图中不难看出IP协议在互联网中的核心作用。
 
-![沙漏计时器形状的 TCP/IP 协议族示意]({{ site.baseurl }}/assets/images/computer-networks/tcp-ip-hourglass-timer-protocol.png)
+![沙漏计时器形状的 TCP/IP 协议族示意]({{ site.baseurl }}/assets/images/computer-network/tcp-ip-hourglass-timer-protocol.png)
 *沙漏计时器形状的TCP/IP 协议族示意*
 
 【例 1-2】利用协议栈的概念，说明在互联网中常用的客户-服务器工作方式。
 
 【解】图 1-25 中的主机 `A` 和主机 `B` 都各有自己的协议栈。主机 `A` 中的应用进程（即客户进程）的位置在最高的应用层。这个客户进程向主机 `B` 应用层的服务器进程发出请求，请求建立连接（图中的 1）。然后，主机 `B` 中的服务器进程接受 `A` 的客户进程发来的请求（图中的 2）。所有这些通信，实际上都需要使用下面各层所提供的服务。但若仅仅考虑客户进程和服务器进程的交互，则可把它们之间的交互看成是如图中的水平虚线所示的那样。
 
-![在应用层的客户进程和服务器进程的交互]({{ site.baseurl }}/assets/images/computer-networks/communication-between-client-and-server-in-application-layer.png)
+![在应用层的客户进程和服务器进程的交互]({{ site.baseurl }}/assets/images/computer-network/communication-between-client-and-server-in-application-layer.png)
 *图 1-25 在应用层的客户进程和服务器进程的交互*
 
 图 1-26 画出了三台主机的协议栈。主机 `C` 的应用层中同时有两个服务器进程在通信。服务器 1 在和主机 `A` 中的客户通信，而服务器 2 在和主机 `B` 中的客户 2 通信。有的服务器进程可以同时向几百个或更多的客户进程提供服务。
 
-![主机C的两个服务器进程分别向A和B的客户进程提供服务]({{ site.baseurl }}/assets/images/computer-networks/server-side-communication-between-client-and-server-in-application-layer.png)
+![主机C的两个服务器进程分别向A和B的客户进程提供服务]({{ site.baseurl }}/assets/images/computer-network/server-side-communication-between-client-and-server-in-application-layer.png)
 *图 1-26 主机 C 的两个服务器进程分别向A和B的客户进程提供服务*
 
 ## 五、参考
