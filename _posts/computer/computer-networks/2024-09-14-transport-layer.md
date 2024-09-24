@@ -6,10 +6,10 @@ tags:
   - computer
   - networks
   - transport layer
-  - OSI
+  - OS
 ---
 
-本章先概括介绍运输层协议的特点、进程之间的通信和端口等重要概念，然后讲述比较简单的 UDP 协议。其余的篇幅都是讨论较为复杂但非常重要的 TCP 协议和可靠传输的工作原理，包括停止等待协议和ARQ 协议。在详细讲述 TCP 报文段的首部格式之后，讨论TCP 的三个重要问题：滑动窗口、流量控制和拥塞控制机制。最后，介绍 TCP 的连接管理。
+本章先概括介绍运输层协议的特点、进程之间的通信和端口等重要概念，然后讲述比较简单的 UDP 协议。其余的篇幅都是讨论较为复杂但非常重要的 TCP 协议和可靠传输的工作原理，包括停止等待协议和 ARQ 协议。在详细讲述 TCP 报文段的首部格式之后，讨论 TCP 的三个重要问题：滑动窗口、流量控制和拥塞控制机制。最后，介绍 TCP 的连接管理。
 
 **运输层**是整个网络体系结构中的关键层次之一。一定要弄清以下一些重要概念：
 
@@ -30,8 +30,19 @@ tags:
 
 从 IP 层来说，通信的两端是两台主机。IP 数据报的首部明确地标志了这两台主机的 IP 地址。但“两台主机之间的通信”这种说法还不够清楚。这是因为，真正进行通信的实体是在主机中的进程，是这台主机中的一个**进程**和另一台主机中的一个**进程**在交换数据（即通信）。因此严格地讲，两台主机进行通信就是两台主机中的**应用进程互相通信**。IP 协议虽然能把分组送到目的主机，但是这个分组还停留在主机的网络层而没有交付主机中的应用进程。从运输层的角度看，**通信的真正端点并不是主机而是主机中的进程**。也就是说，**端到端的通信**是应用进程之间的通信。在一台主机中经常有多个应用进程同时分别和另一台主机中的多个应用进程通信。例如，某用户在使用浏览器查找某网站的信息时，其主机的应用层运行浏览器客户进程。如果在浏览网页的同时，还要用电子邮件给网站发送反馈意见，那么主机的应用层就还要运行电子邮件的客户进程。在图 5-1 中，主机 A 的应用进程 $AP_1$ 和主机 B 的应用进程 $AP_3$ 通信，而与此同时，应用进程 $AP_2$ 也和对方的应用进程 $AP_4$ 通信。这表明运输层有一个很重要的功能——**复用**（multiplexing）和**分用**（demultiplexing）。这里的“复用”是指在发送方不同的应用进程都可以使用同一个运输层协议传送数据（当然需要加上适当的首部），而“分用”是指接收方的运输层在剥去报文的首部后能够把这些数据正确交付目的应用进程。图 5-1 中两个运输层之间有一个双向粗箭头，写明“**运输层提供应用进程间的逻辑通信**”。“逻辑通信”的意思是：从应用层来看，只要把应用层报文交给下面的运输层，运输层就可以把这报文传送到对方的运输层（哪怕双方相距很远，例如几千公里），**好像这种通信就是沿水平方向直接传送数据。但事实上这两个运输层之间并没有一条水平方向的物理连接。数据的传送是沿着图中的虚线方向（经过多个层次）传送的**。“逻辑通信”的意思是“好像是这样通信，但事实上并非真的这样通信”。
 
-![运输层为相互通信的应用进程提供了逻辑通信](/assets/images/computer-networks/the-transport-layer-provides-logical-communication-for-application-processes-that-communicate-with-each-other.png)
-*图 5-1 运输层为相互通信的应用进程提供了逻辑通信*
+<div class="row justify-content-center">
+  <div class="col-8">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/the-transport-layer-provides-logical-communication-for-application-processes-that-communicate-with-each-other.png"
+      title="运输层为相互通信的应用进程提供了逻辑通信"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-1 运输层为相互通信的应用进程提供了逻辑通信
+</div>
 
 从这里可以看出网络层和运输层有明显的区别。**网络层为主机之间提供逻辑通信，而运输层为应用进程之间提供端到端的逻辑通信**（见图 5-2）。
 
@@ -39,8 +50,19 @@ tags:
 
 **运输层向高层用户屏蔽了下面网络核心的细节**（如网络拓扑、所采用的路由选择协议等），**它使应用进程看见的就是好像在两个运输层实体之间有一条端到端的逻辑通信信道**，但这条逻辑通信信道上层的表现却因运输层使用的不同协议而有很大的差别。当运输层**采用面向连接的 TCP 协议时，尽管下面的网络是不可靠的**（只提供尽最大努力服务），但这种逻辑通信信道就相当于**一条全双工的可靠信道**。但当运输层**采用无连接的 UDP 协议**时，这种逻辑通信信道仍然是一条**不可靠信道**。
 
-![运输层协议和网络层协议的主要区别](/assets/images/computer-networks/major-differences-between-transport-layer-protocols-and-network-layer-protocols.png)
-*图 5-2 运输层协议和网络层协议的主要区别*
+<div class="row justify-content-center">
+  <div class="col-6">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/major-differences-between-transport-layer-protocols-and-network-layer-protocols.png"
+      title="运输层协议和网络层协议的主要区别"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-2 运输层协议和网络层协议的主要区别
+</div>
 
 ### 1.2 运输层的两个主要协议
 
@@ -51,8 +73,19 @@ TCP/IP 运输层的两个主要协议都是互联网的正式标准，即：
 
 图 5-3 给出了这两种协议在协议栈中的位置。
 
-![TCP/IP 体系中的运输层协议](/assets/images/computer-networks/transport-layer-protocol-in-tcp-ip-system.png)
-*图 5-3 TCP/IP 体系中的运输层协议*
+<div class="row justify-content-center">
+  <div class="col-3">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/transport-layer-protocol-in-tcp-ip-system.png"
+      title="TCP/IP 体系中的运输层协议"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-3 TCP/IP 体系中的运输层协议
+</div>
 
 按照 OSI 的术语，两个对等运输实体在通信时传送的数据单位叫做**运输协议数据单元** TPDU（Transport Protocol Data Unit）。但在 TCP/IP 体系中，则根据所使用的协议是 TCP 或 UDP，分别称之为 **TCP 报文段**（segment）或 **UDP 用户数据报**。
 
@@ -76,7 +109,9 @@ TCP 则**提供面向连接的服务**。在传送数据之前必须先建立连
 | 万维网 | HTTP（超文本传送协议） | TCP |
 | 文件传送 | FTP（文件传送协议） | TCP |
 
-*表 5-1 使用 UDP 和 TCP 协议的各种应用和应用层协议*
+<div class="caption">
+  表 5-1 使用 UDP 和 TCP 协议的各种应用和应用层协议
+</div>
 
 ### 1.3 运输层的端口
 
@@ -120,8 +155,19 @@ TCP/IP 的运输层用一个 16 位**端口号**来标志一个端口。但请�
 - UDP 使用**尽最大努力交付**，即不保证可靠交付，因此主机不需要维持复杂的连接状态表（这里面有许多参数）。
 - UDP 是**面向报文**的。发送方的UDP 对应用程序交下来的报文，在添加首部后就向下交付 IP 层。UDP 对应用层交下来的报文，既不合并，也不拆分，而是**保留这些报文的边界**。这就是说，应用层交给 UDP 多长的报文，UDP 就照样发送，即一次发送一个报文，如图 5-4 所示。在接收方的 UDP，对 IP 层交上来的UDP用户数据报，在去除首部后就原封不动地交付上层的应用进程。也就是说，UDP 一次交付一个完整的报文。因此，应用程序必须选择合适大小的报文。若报文太长，UDP 把它交给 IP 层后，IP层在传送时可能要进行分片，这会降低 IP 层的效率。反之，若报文太短，UDP 把它交给IP层后，会使 IP 数据报的首部的相对长度太大，这也降低了 IP 层的效率。
 
-    ![UDP 是面向报文的](/assets/images/computer-networks/udp-is-packet-oriented.png)
-    *图 5-4 UDP 是面向报文的*
+<div class="row justify-content-center">
+  <div class="col-6">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/udp-is-packet-oriented.png"
+      title="UDP 是面向报文的"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-4 UDP 是面向报文的
+</div>
 
 - UDP **没有拥塞控制**，因此网络出现的拥塞不会使源主机的发送速率降低。这对某些实时应用是很重要的。很多的实时应用（如 IP 电话、实时视频会议等）要求源主机以恒定的速率发送数据，并且允许在网络发生拥塞时丢失一些数据，但却不允许数据有太大的时延。UDP 正好适合这种要求。
 - UDP **支持一对一，一对多、多对一和多对多的交互通信**。
@@ -138,13 +184,35 @@ TCP/IP 的运输层用一个 16 位**端口号**来标志一个端口。但请�
 3. **长度**：UDP 用户数据报的长度，其最小值是 8（仅有首部）。
 4. **检验和**：检测 UDP 用户数据报在传输中是否有错。有错就丢弃。
 
-![UDP 用户数据报的首部和伪首部](/assets/images/computer-networks/header-and-pseudo-header-of-a-udp-user-datagram.png)
-*图 5-5 UDP 用户数据报的首部和伪首部*
+<div class="row justify-content-center">
+  <div class="col-7">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/header-and-pseudo-header-of-a-udp-user-datagram.png"
+      title="UDP 用户数据报的首部和伪首部"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-5 UDP 用户数据报的首部和伪首部
+</div>
 
 当运输层从 IP 层收到 UDP 数据报时，就根据首部中的目的端口，把 UDP 数据报通过相应的端口，上交最后的终点——应用进程。图 5-6 是 UDP 基于端口分用的示意图。
 
-![UDP 基于端口的分用](/assets/images/computer-networks/udp-is-port-based-splitting.png)
-*图 5-6 UDP 基于端口的分用*
+<div class="row justify-content-center">
+  <div class="col-4">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/udp-is-port-based-splitting.png"
+      title="UDP 基于端口的分用"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-6 UDP 基于端口的分用
+</div>
 
 如果接收方 UDP 发现收到的报文中的目的端口号不正确（即不存在对应于该端口号的应用进程），就丢弃该报文，并由网际控制报文协议 ICMP 发送“端口不可达”差错报文给发送方。
 
@@ -154,8 +222,19 @@ TCP/IP 的运输层用一个 16 位**端口号**来标志一个端口。但请�
 
 UDP 计算检验和的方法和计算 IP 数据报首部检验和的方法相似。但不同的是：IP 数据报的检验和只检验 IP 数据报的首部，但 UDP 的检验和是**把首部和数据部分一起都检验**。在发送方，首先是先把全零放入检验和字段。再把伪首部以及 UDP 用户数据报看成是由许多 16 位的字串接起来的。若 UDP 用户数据报的数据部分不是偶数个字节，则要填入一个全零字节（但此字节不发送）。然后按二进制反码计算出这些 16 位字的和。将此和的二进制反码写入检验和字段后，就发送这样的 UDP 用户数据报。在接收方，把收到的 UDP 用户数据报连同伪首部（以及可能的填充全零字节）一起，按二进制反码求这些 16 位字的和。当无差错时其结果应为全 1。否则就表明有差错出现，接收方就应丢弃这个 UDP 用户数据报（也可以上交给应用层，但附上出现了差错的警告）。图 5-7 给出了一个计算 UDP 检验和的例子。这里假定用户数据报的长度是 15 字节，因此要添加一个全 0 的字节。读者可以自己检验一下在接收端是怎样对检验和进行检验的。不难看出，这种简单的差错检验方法的检错能力并不强，但它的好处是简单，处理起来较快。
 
-![计算 UDP 检验和的例子](/assets/images/computer-networks/example-of-calculating-udp-checksum.png)
-*图 5-7 计算 UDP 检验和的例子*
+<div class="row justify-content-center">
+  <div class="col-9">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/example-of-calculating-udp-checksum.png"
+      title="计算 UDP 检验和的例子"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-7 计算 UDP 检验和的例子
+</div>
 
 如图 5-5 所示，伪首部的第 3 字段是全零；第 4 字段是 IP 首部中的协议字段的值。以前已讲过，对于 UDP，此协议字段值为 17；第 5 字段是 UDP 用户数据报的长度。因此，这样的检验和，既检查了 UDP 用户数据报的源端口号和目的端口号以及 UDP 用户数据报的数据部分，又检查了 IP 数据报的源 IP 地址和目的地址。
 
@@ -169,8 +248,19 @@ UDP 计算检验和的方法和计算 IP 数据报首部检验和的方法相似
 - TCP 提供**全双工通信**。TCP 允许通信双方的应用进程在任何时候都能发送数据。TCP 连接的两端都设有发送缓存和接收缓存，用来临时存放双向通信的数据。在发送时，应用程序在把数据传送给 TCP 的缓存后，就可以做自己的事，而 TCP 在合适的时候把数据发送出去。在接收时，TCP 把收到的数据放入缓存，上层的应用进程在合适的时候读取缓存中的数据。
 - **面向字节流**。TCP 中的“**流**”（stream）指的是**流入到进程或从进程流出的字节序列**。“面向字节流”的含义是：虽然应用程序和 TCP 的交互是一次一个数据块（大小不等），但 TCP 把应用程序下来的数据仅仅看成是一连串的**无结构的字节流**。TCP 并不知道所传送的字节流的含义。TCP 不保证接收方应用程序所收到的数据块和发送方应用程序所发出的数据块具有对应大小的关系（例如，发送方应用程序交给发送方的 TCP 共 10 个数据块，但接收方的 TCP 可能只用了 4 个数据块就把收到的字节流交付上层的应用程序）。但接收方应用程序收到的字节流必须和发送方应用程序发出的字节流完全一样。当然，接收方的应用程序必须有能力识别收到的字节流，把它还原成有意义的应用层数据。图 5-8 是上述概念的示意图。
 
-![TCP 面向字节流的概念](/assets/images/computer-networks/tcp-byte-stream-oriented-concept.png)
-*图 5-8 TCP 面向字节流的概念*
+<div class="row justify-content-center">
+  <div class="col-9">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/tcp-byte-stream-oriented-concept.png"
+      title="TCP 面向字节流的概念"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-8 TCP 面向字节流的概念
+</div>
 
 为了突出示意图的要点，我们只画出了一个方向的数据流。在实际的网络中，一个 TCP 报文段包含上千个字节是很常见的，而图中的各部分都只画出了几个字节，这仅仅是为了更方便地说明“面向字节流”的概念。另一点很重要的是：图 5-8 中的 TCP 连接是一条**虚连接**（也就是**逻辑连接**），而不是一条真正的物理连接。TCP 报文段先要传送到 IP 层，加上 IP 首部后，再传送到数据链路层。再加上数据链路层的首部和尾部后，才离开主机发送到物理链路。
 
@@ -212,8 +302,19 @@ $$TCP 连接 ::= \{socket_1，socket_2\} = \{（IP_1: prot_1），（IP_2: prot_
 
 图 5-9（a）是最简单的无差错情况。A 发送分组 $M_1$，发完就暂停发送，等待 B 的确认。B 收到了 $M_1$ 就向 A 发送确认。A 在收到了对 $M_1$ 的确认后，就再发送下一个分组 $M_2$。同样，在收到 B 对 $M_2$ 的确认后，再发送 $M_3$。
 
-![停止等待协议](/assets/images/computer-networks/stop-and-wait-protocol.png)
-*图 5-9 停止等待协议*
+<div class="row justify-content-center">
+  <div class="col-8">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/stop-and-wait-protocol.png"
+      title="停止等待协议"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-9 停止等待协议
+</div>
 
 #### （2）出现差错
 
@@ -232,8 +333,19 @@ $$TCP 连接 ::= \{socket_1，socket_2\} = \{（IP_1: prot_1），（IP_2: prot_
 1. 丢弃这个重复的分组 $M_1$，不向上层交付。
 2. 向 A 发送确认。不能认为已经发送过确认就不再发送，因为 A 之所以重传 $M_1$ 就表示 A 没有收到对 $M_1$ 的确认。
 
-![确认丢失和确认迟到](/assets/images/computer-networks/confirmation-missiong-and-confirmation-late.png)
-*图 5-10 确认丢失和确认迟到*
+<div class="row justify-content-center">
+  <div class="col-9">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/confirmation-missiong-and-confirmation-late.png"
+      title="确认丢失和确认迟到"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-10 确认丢失和确认迟到
+</div>
 
 图 5-10（b）也是一种可能出现的情况。传输过程中没有出现差错，但 B 对分组 $M_1$ 的确认迟到了。A 会收到重复的确认。对重复的确认的处理很简单：收下后就丢弃。B 仍然会收到重复的 $M_1$ 并且同样要丢弃重复的 $M_1$，并重传确认分组。
 
@@ -247,8 +359,19 @@ $$TCP 连接 ::= \{socket_1，socket_2\} = \{（IP_1: prot_1），（IP_2: prot_
 
 停止等待协议的优点是简单，但缺点是信道利用率太低。我们可以用图 5-11 来说明这个问题。为简单起见，假定在 A 和 B 之间有一条直通的信道来传送分组。
 
-![停止等待协议的信道利用率太低](/assets/images/computer-networks/the-channel-utilization-of-the-stop-wait-protocol-is-too-low.png)
-*图 5-11 停止等待协议的信道利用率太低*
+<div class="row justify-content-center">
+  <div class="col-8">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/the-channel-utilization-of-the-stop-wait-protocol-is-too-low.png"
+      title="停止等待协议的信道利用率太低"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-11 停止等待协议的信道利用率太低
+</div>
 
 假定 A 发送分组需要的时间是 $T_D$。显然，$T_D$ 等于分组长度除以数据率。再假定分组正确到达 B 后，B 处理分组的时间可以忽略不计，同时立即发回确认。假定 B 发送确认分组需要时间 $T_A$。如果 A 处理确认分组的时间也可以忽略不计，那么 A 在经过时间 $(T_D + RTT + T_A)$ 后就可以再发送下一个分组，这里的 RTT 是往返时间。因为仅仅是在时间 $T_D$ 内才用来传送有用的数据（包括分组的首部），因此信道的利用率 U 可用下式计算：
 
@@ -260,8 +383,19 @@ $$U = \frac{T_D}{T_D + RTT + T_A}$$
 
 为了提高传输效率，发送方可以不使用低效率的停止等待协议，而是采用**流水线传输**（如图 5-12 所示）。流水线传输就是发送方可连续发送多个分组，不必每发完一个分组就停顿下来等待对方的确认。这样可使信道上一直有数据不间断地在传送。显然，这种传输方式可以获得很高的信道利用率。
 
-![流水线传输可提高信道利用率](/assets/images/computer-networks/pipelined-transmission-can-improve-channel-utilization.png)
-*图 5-12 流水线传输可提高信道利用率*
+<div class="row justify-content-center">
+  <div class="col-8">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/pipelined-transmission-can-improve-channel-utilization.png"
+      title="流水线传输可提高信道利用率"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-12 流水线传输可提高信道利用率
+</div>
 
 当使用流水线传输时，就要使用下面介绍的**连续 ARQ 协议**和**滑动窗口协议**。
 
@@ -269,8 +403,19 @@ $$U = \frac{T_D}{T_D + RTT + T_A}$$
 
 图 5-13（a）表示发送方维持的**发送窗口**，它的意义是：位于发送窗口内的 5 个分组都可连续发送出去，而不需要等待对方的确认。这样，信道利用率就提高了。（图中还有一个时间坐标，但以后往往省略这样的时间坐标。按照习惯，“向前”是指“向着时间增大的方向”，而“向后”则是“向着时间减少的方向”。分组发送是按照分组序号从小到大发送的。）
 
-![连续 ARQ 协议的工作原理](/assets/images/computer-networks/how-the-continuous-arq-protocol-works.png)
-*图 5-13 连续 ARQ 协议的工作原理*
+<div class="row justify-content-center">
+  <div class="col-7">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/how-the-continuous-arq-protocol-works.png"
+      title="连续 ARQ 协议的工作原理"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-13 连续 ARQ 协议的工作原理
+</div>
 
 连续 ARQ 协议规定，发送方每收到一个确认，就把发送窗口向前滑动一个分组的位置。图 5-13（b）表示发送方收到了对第 1 个分组的确认，于是把发送窗口向前移动一个分组的位置。如果原来已经发送了前5个分组，那么现在就可以发送窗口内的第6个分组了。
 
@@ -282,8 +427,19 @@ $$U = \frac{T_D}{T_D + RTT + T_A}$$
 
 TCP 虽然是面向字节流的，但 TCP 传送的数据单元却是报文段。一个 TCP 报文段分为首部和数据两部分，而 TCP 的全部功能都体现在它首部中各字段的作用。因此，只有弄清 TCP 首部各字段的作用才能掌握 TCP 的工作原理。TCP 报文段首部的前 20 个字节是固定的（图 5-14），后面有 4n 字节是根据需要而增加的选项（n 是整数）。因此 TCP 首部的最小长度是 20 字节。
 
-![TCP 报文段的首部格式](/assets/images/computer-networks/the-header-format-of-a-TCP-packet-segment.png)
-*图 5-14 TCP 报文段的首部格式*
+<div class="row justify-content-center">
+  <div class="col-9">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/the-header-format-of-a-TCP-packet-segment.png"
+      title="TCP 报文段的首部格式"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-14 TCP 报文段的首部格式
+</div>
 
 首部固定部分各字段的意义如下：
 
@@ -339,8 +495,19 @@ TCP 虽然是面向字节流的，但 TCP 传送的数据单元却是报文段�
 
 现假定 A 收到了 B **发来**的确认报文段，其中窗口是 20 字节，而确认号是 31（这表明 B 期望收到的下一个序号是 31，而序号 30 为止的数据已经收到了）。根据这两个数据，A 就构造出自己的发送窗口，如图 5-15 所示。
 
-![根据 B 给出的窗口值，A 构造出自己的发送窗口](/assets/images/computer-networks/according-to-the-window-value-given-by-B-A-constructs-its-own-sending-window.png)
-*图 5-15 根据 B 给出的窗口值，A 构造出自己的发送窗口*
+<div class="row justify-content-center">
+  <div class="col-9">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/according-to-the-window-value-given-by-B-A-constructs-its-own-sending-window.png"
+      title="根据 B 给出的窗口值，A 构造出自己的发送窗口"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-15 根据 B 给出的窗口值，A 构造出自己的发送窗口
+</div>
 
 在没有收到 B 的确认的情况下，A 可以连续把窗口内的数据都发送出去。凡是已经发送过的数据，在未收到确认之前都必须暂时保留，以便在超时重传时使用。
 
@@ -360,8 +527,19 @@ TCP 虽然是面向字节流的，但 TCP 传送的数据单元却是报文段�
 
 现在假定 A 发送了序号为 31 ~ 41 的数据。这时，发送窗口位置并未改变（图 5-16），但发送窗口内靠后面有 11 个字节（灰色小方框表示）表示已发送但未收到确认。而发送窗口内靠前面的 9 个字节（42 ~ 50）是允许发送但尚未发送的。
 
-![A 发送了 11 个字节的数据](/assets/images/computer-networks/A-sent-11-bytes-of-data.png)
-*图 5-16 A 发送了 11 个字节的数据*
+<div class="row justify-content-center">
+  <div class="col-9">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/A-sent-11-bytes-of-data.png"
+      title="A 发送了 11 个字节的数据"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-16 A 发送了 11 个字节的数据*
+</div>
 
 从以上所述可以看出，要描述一个发送窗口的状态需要三个指针：$P_1$，$P_2$ 和 $P_3$（图 5-16）。指针都指向字节的序号。这三个指针指向的几个部分的意义如下：
 
@@ -374,18 +552,51 @@ TCP 虽然是面向字节流的，但 TCP 传送的数据单元却是报文段�
 
 现在假定 B 收到了序号为 31 的数据，并把序号为 31 ～ 33 的数据交付主机，然后 B 删除这些数据。接着把接收窗口向前移动 3 个序号（图 5-17），同时给 A 发送确认，其中窗口值仍为 20，但确认号是 34。这表明 B 已经收到了到序号 33 为止的数据。我们注意到，B 还收到了序号为 37，38 和 40 的数据，但这些都没有按序到达，只能先暂存在接收窗口中。A 收到 B 的确认后，就可以把发送窗口向前滑动 3 个序号，但指针 $P_2$ 不动。可以看出，现在 A 的可用窗口增大了，可发送的序号范围是 42 ~ 53。
 
-![A 收到新的确认号，发送窗口向前滑动](/assets/images/computer-networks/when-A-receives-the-new-confirmation-number-the-sending-window-slides-forward.png)
-*图 5-17 A 收到新的确认号，发送窗口向前滑动*
+<div class="row justify-content-center">
+  <div class="col-9">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/when-A-receives-the-new-confirmation-number-the-sending-window-slides-forward.png"
+      title="A 收到新的确认号，发送窗口向前滑动"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-17 A 收到新的确认号，发送窗口向前滑动
+</div>
 
 A 在继续发送完序号 42 ~ 53 的数据后，指针 $P_2$ 向前移动和 $P_3$ 重合。发送窗口内的序号都已用完，但还没有再收到确认（图 5-18）。由于 A 的发送窗口已满，可用窗口已减小到零，因此必须停止发送。请注意，存在下面这种可能性，就是发送窗口内所有的数据都已正确到达 B，B 也早已发出了确认。但不幸的是，所有这些确认都滞留在网络中。在没有收到 B 的确认时，A 不能猜测：“或许 B 收到了吧!”为了保证可靠传输，A 只能认为 B 还没有收到这些数据。于是，A 在经过一段时间后（由超时计时器控制）就重传这部分数据，重新设置超时计时器，直到收到 B 的确认为止。如果 A 收到确认号落在发送窗口内，那么 A 就可以使发送窗口继续向前滑动，并发送新的数据。
 
-![发送窗口内的序号都属于已发送但未被确认](/assets/images/computer-networks/the-serial-numbers-in-the-send-window-are-sent-but-not-confirmed.png)
-*图 5-18 发送窗口内的序号都属于已发送但未被确认*
+<div class="row justify-content-center">
+  <div class="col-9">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/the-serial-numbers-in-the-send-window-are-sent-but-not-confirmed.png"
+      title="发送窗口内的序号都属于已发送但未被确认"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-18 发送窗口内的序号都属于已发送但未被确认
+</div>
 
 我们在前面的图 5-8 中曾给出了这样的概念：发送方的应用进程把字节流写入 TCP 的发送缓存，接收方的应用进程从 TCP 的接收缓存中读取字节流。下面我们就进一步讨论前面讲的窗口和缓存的关系。图 5-19 画出了发送方维持的发送缓存和发送窗口，以及接收方维持的接收缓存和接收窗口。
 
-![TCP 的缓存和窗口的关系](/assets/images/computer-networks/relationship-between-TCP-cache-and-window.png)
-*图 5-19 TCP 的缓存和窗口的关系*
+<div class="row justify-content-center">
+  <div class="col-9">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/relationship-between-TCP-cache-and-window.png"
+      title="TCP 的缓存和窗口的关系"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-19 TCP 的缓存和窗口的关系
+</div>
 
 我们先看一下图 5-19（a）所示的发送方的情况。发送缓存用来暂时存放：
 
@@ -434,8 +645,19 @@ $$新的 RTT_D = （1 - \beta） ×（旧的 RTT_D）+ \beta x |RTT_S- 新的RTT
 
 若收到的确认是对重传报文段的确认，但却被源主机当成是对原来的报文段的确认，则这样计算出的 $RTT_S$ 和超时重传时间 RTO 就会偏大。若后面再发送的报文段又是经过重传后才收到确认报文段，则按此方法得出的超时重传时间 RTO 就越来越长。
 
-![收到的确认是对哪个报文段的确认？](/assets/images/computer-networks/to-which-packet-segment-is-the-received-acknowledgement.png)
-*图 5-20 收到的确认是对哪个报文段的确认？*
+<div class="row justify-content-center">
+  <div class="col-7">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/to-which-packet-segment-is-the-received-acknowledgement.png"
+      title="收到的确认是对哪个报文段的确认？"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-20 收到的确认是对哪个报文段的确认？
+</div>
 
 同样，若收到的确认是对原来的报文段的确认，但被当成是对重传报文段的确认，则由此计算出的 $RTT_S$ 和 RTO 都会偏小。这就必然导致报文段过多地重传。这样就有可能使 RTO 越来越短。
 
@@ -449,8 +671,19 @@ $$新的 RTT_D = （1 - \beta） ×（旧的 RTT_D）+ \beta x |RTT_S- 新的RTT
 
 我们用一个例子来说明**选择确认**（Selective ACK）的工作原理。TCP 的接收方在接收对方发送过来的数据字节流的序号不连续，结果就形成了一些不连续的字节块（如图 5-21 所示）。可以看出，序号 1 ~ 1000 收到了，但序号 1001 ~ 1500 没有收到。接下来的字节流又收到了，可是又缺少了 3001 ~ 3500。再后面从序号 4501 起又没有收到。也就是说，接收方收到了和前面的字节流不连续的两个字节块。如果这些字节的序号都在接收窗口之内，那么接收方就先收下这些数据，但要把这些信息准确地告诉发送方，使发送方不要再重复发送这些已收到的数据。
 
-![接收到的字节流序号不连续](/assets/images/computer-networks/the-received-byte-stream-sequence-number-is-inconsistent.png)
-*图 5-21 接收到的字节流序号不连续*
+<div class="row justify-content-center">
+  <div class="col-9">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/the-received-byte-stream-sequence-number-is-inconsistent.png"
+      title="接收到的字节流序号不连续"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-21 接收到的字节流序号不连续
+</div>
 
 从图 5-21 可看出，和前后字节不连续的每个字节块都有两个边界：左边界和右边界。因此在图中用四个指针标记这些边界。请注意，第一个字节块的左边界 $L_1$ = 1501，但右边界 $R_1$ = 3001 而不是 3000。这就是说，左边界指出字节块的第一个字节的序号，但右边界减 1 才是字节块中的最后一个序号。同理，第二个字节块的左边界 $L_2$ = 3501，而右边界 $R_2$ = 4501。
 
@@ -464,8 +697,19 @@ $$新的 RTT_D = （1 - \beta） ×（旧的 RTT_D）+ \beta x |RTT_S- 新的RTT
 
 一般说来，我们总是希望数据传输得更快一些。但如果发送方把数据发送得过快，接收方就可能来不及接收，这就会造成数据的丢失。所谓**流量控制**（flow control）就是**让发送方的发送速率不要太快，要让接收方来得及接收**。利用滑动窗口机制可以很方便地在 TCP 连接上实现对发送方的流量控制。
 
-![利用可变窗口进行流量控制举例](/assets/images/computer-networks/example-of-flow-control-using-variable-window.png)
-*图 5-22 利用可变窗口进行流量控制举例*
+<div class="row justify-content-center">
+  <div class="col-9">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/example-of-flow-control-using-variable-window.png"
+      title="利用可变窗口进行流量控制举例"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-22 利用可变窗口进行流量控制举例
+</div>
 
 设 `A` 向 `B` 发送数据。在连接建立时，`B` 告诉了 `A`：“我的接收窗口 rwnd = 400”（这里 rwnd 表示 receiver window）。因此，**发送方的发送窗口不能超过接收方给出的接收窗口的数值**。请注意，TCP 的**窗口单位是字节，不是报文段**。TCP 连接建立时的窗口协商过程在图中没有显示出来。再设每个报文段为 100 字节长，而数据报文段序号的初始值设为 1（见图中第一个箭头上面的序号 `seq = 1`）。请注意，图中箭头上面大写 ACK 表示首部中的确认 ACK，小写 ack 表示确认字段的值。
 
@@ -523,8 +767,19 @@ $$\sum 对资源的需求 > 可用资源$$
 
 在图 5-23 中的横坐标是**提供的负载**（offered load），代表单位时间内输入给网络的分组数目。因此提供的负载也称为**输入负载**或**网络负载**。纵坐标是**吞吐量**（throughput），代表单位时间内从网络输出的分组数目。具有理想拥塞控制的网络，在吞吐量饱和之前，网络吞吐量应等于提供的负载，故吞吐量曲线是 45° 的斜线。但当提供的负载超过某一限度时，由于网络资源受限，吞吐量不再增长而保持为水平线，即吞吐量达到饱和。这就表明提供的负载中有一部分损失掉了（例如，输入到网络的某些分组被某个结点丢弃了）。虽然如此，在这种理想的拥塞控制作用下，网络的吞吐量仍然维持在其所能达到的最大值。
 
-![拥塞控制所起的作用](/assets/images/computer-networks/the-role-of-congestion-control.png)
-*图 5-23 拥塞控制所起的作用*
+<div class="row justify-content-center">
+  <div class="col-6">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/the-role-of-congestion-control.png"
+      title="拥塞控制所起的作用"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-23 拥塞控制所起的作用
+</div>
 
 但是，实际网络的情况就很不相同了。从图 5-23 可看出，随着提供的负载的增大，网络吞吐量的增长速率逐渐减小。也就是说，在网络吞吐量还未达到饱和时，就已经有一部分的输入分组被丢弃了。当网络的吞吐量明显地小于理想的吞吐量时，网络就进入了**轻度拥塞**的状态。更值得注意的是，当提供的负载达到某一数值时，网络的吞吐量反而随提供的负载的增大而下降，这时**网络就进入了拥塞状态**。当提供的负载继续增大到某一数值时，网络的吞吐量就下降到零，网络已无法工作，这就是所谓的**死锁**（deadlock）。
 
@@ -579,8 +834,19 @@ $$拥塞窗口 cwnd 每次的增加量 = min(N, SMSS)$$
 
 在一开始发送方先设置 `cwnd = 1`，发送第一个报文段 $M_1$，接收方收到后确认 $M_1$。发送方收到对 $M_1$ 的确认后，把 cwnd 从 1 增大到 2，于是发送方接着发送 $M_2$ 和 $M_3$ 两个报文段。接收方收到后发回对 $M_2$ 和 $M_3$ 的确认。发送方每收到一个**对新报文段的确认**（重传的不算在內）就使发送方的拥塞窗口加 1，因此发送方在收到两个确认后，cwnd 就从 2 增大到 4，并可发送 $M_4$ ~ $M_7$，共 4 个报文段（见图 5-24）。因此使用慢开始算法后，**每经过一个传输轮次**（transmission round），**拥塞窗口 cwnd 就加倍**。
 
-![发送方每收到一个确认就把窗口 cwnd 加 1](/assets/images/computer-networks/each-time-the-sender-receives-an-acknowledgement-the-window-cwnd-is-increased-by-1.png)
-*图 5-24 发送方每收到一个确认就把窗口 cwnd 加 1*
+<div class="row justify-content-center">
+  <div class="col-7">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/each-time-the-sender-receives-an-acknowledgement-the-window-cwnd-is-increased-by-1.png"
+      title="发送方每收到一个确认就把窗口 cwnd 加 1"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-24 发送方每收到一个确认就把窗口 cwnd 加 1
+</div>
 
 这里我们使用了一个名词——传输**轮次**。从图 5-24 可以看出，一个传输轮次所经历的时间其实就是往返时间 RTT（请注意，RTT 并非是恒定的数值）。使用“传输轮次”是更加强调：把拥塞窗口 cwnd 所允许发送的报文段都连续发送出去，并收到了对已发送的最后一个字节的确认。例如，拥塞窗口 cwnd 的大小是 4 个报文段，那么这时的往返时间 RTT 就是发送方连续发送 4 个报文段，并收到这 4 个报文段的确认，总共经历的时间。
 
@@ -598,8 +864,19 @@ $$拥塞窗口 cwnd 每次的增加量 = min(N, SMSS)$$
 
 下面的示例中，假定 TCP 的发送窗口等于拥塞窗口。当 TCP 连接进行初始化时，把拥塞窗口 cwnd 置为 1。为了便于理解，图中的窗口单位不使用字节而使用报文段的个数。（注意，图 5-25 的横坐标是传输轮次，不是时间。）
 
-![TCP 拥塞窗口 cwnd 在拥塞控制时的变化情况](/assets/images/computer-networks/tcp-congestion-window-cwnd-changes-during-congestion-control.png)
-*图 5-25 TCP 拥塞窗口 cwnd 在拥塞控制时的变化情况*
+<div class="row justify-content-center">
+  <div class="col-8">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/tcp-congestion-window-cwnd-changes-during-congestion-control.png"
+      title="TCP 拥塞窗口 cwnd 在拥塞控制时的变化情况"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-25 TCP 拥塞窗口 cwnd 在拥塞控制时的变化情况
+</div>
 
 1. 慢开始门限的初始值设置为 16 个报文段，即 `ssthresh = 16`。在执行慢开始算法时，发送方每收到一个对新报文段的确认 ACK，就把拥塞窗口值加 1，然后开始下一轮的传输。因此拥塞窗口 cwnd 随着传输轮次按指数规律增长。当拥塞窗口 cwnd 增长到慢开始门限值 ssthresh 时（图中的点❶，此时拥塞窗口 `cwnd = 16`），就改为执行拥塞避免算法，拥塞窗口按线性规律增长。（注意，“拥塞避免”并非完全能够避免拥塞。“拥塞避免”是说把拥塞窗口控制为按线性规律增长，**使网络比较不容易出现拥塞**。）
 2. 当拥塞窗口 `cwnd = 24` 时，网络出现了超时（图中的点❷），发送方判断为网络拥塞。于是调整门限值 `ssthresh = cwnd / 2 = 12`，同时设置拥塞窗口 `cwnd = 1`，进入慢开始阶段。
@@ -610,8 +887,19 @@ $$拥塞窗口 cwnd 每次的增加量 = min(N, SMSS)$$
 
     采用快重传算法可以让发送方**尽早知道发生了个别报文段的丢失**。快重传算法首先要求接收方不要等待自己发送数据时才进行捎带确认，而是要**立即发送确认**，即使收到了**失序的报文段**也要立即发出对已收到的报文段的重复确认。如图 5-26 所示，接收方收到了 $M_1$ 和 $M_2$ 后都分别及时发出了确认。现假定接收方没有收到 $M_3$ 但却收到了 $M_4$。本来接收方可以什么都不做。但按照快重传算法，接收方**必须立即发送 $M_2$ 的重复确认**，以便让发送方及早知道接收方没有收到报文段 $M_3$。发送方接着发送 $M_5$ 和 $M_6$。接收方收到后也仍要再次分别发出对 $M_2$ 的重复确认。这样，发送方共收到了接收方的 4 个对 $M_2$ 的确认，其中后 3 个都是重复确认。快重传算法规定，发送方只要**一连收到 3 个重复确认**，就知道接收方确实没有收到报文段 $M_3$，因而应当**立即进行重传**（即“快重传”），这样就不会出现超时，发送方也不就会误认为出现了网络拥塞。使用快重传可以使整个网络的吞吐量提高约 20%。
 
-    ![快重传的示意图](/assets/images/computer-networks/fast-retransmission-diagram.png)
-    *图 5-26 快重传的示意图*
+<div class="row justify-content-center">
+  <div class="col-8">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/fast-retransmission-diagram.png"
+      title="快重传的示意图"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-26 快重传的示意图
+</div>
 
     因此，在图 5-25 中的点❹，发送方知道现在只是丢失了个别的报文段。于是不启动慢开始，而是执行快恢复算法。
 
@@ -621,8 +909,19 @@ $$拥塞窗口 cwnd 每次的增加量 = min(N, SMSS)$$
 
 从图 5-25 可以看出，在拥塞避免阶段，拥塞窗口是按照线性规律增大的，这常称为**加法增大** AI（Additive Increase）。而一旦出现超时或 3 个重复的确认，就要把门限值设置为当前拥塞窗口值的一半，并大大减小拥塞窗口的数值。这常称为“乘法减小”MD（Multiplicative Decrease）。二者合在一起就是所谓的 AIMD 算法。采用这样的拥塞控制方法使得 TCP 的性能有明显的改进[STEV94][RFC 5681]。根据以上所述，TCP 的拥塞控制可以归纳为图 5-27 的流程图。这个流程图就比图 5-25 所示的特例要更加全面些。例如，图 5-25 没有说明在慢开始阶段如果出现了超时（即出现了网络拥塞）或出现 3-ACK，发送方应采取什么措施。但从图 5-27 的流程图就可以很明确地知道发送方应采取的措施。
 
-![TCP 的拥塞控制的流程图](/assets/images/computer-networks/flow-diagram-of-tcp-congestion-control.png)
-*图 5-27 TCP 的拥塞控制的流程图*
+<div class="row justify-content-center">
+  <div class="col-8">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/flow-diagram-of-tcp-congestion-control.png"
+      title="TCP 的拥塞控制的流程图"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-27 TCP 的拥塞控制的流程图
+</div>
 
 在这一节的开始我们就假定了接收方总是有足够大的缓存空间，因而发送窗口的大小由网络的拥塞程度来决定。但实际上接收方的缓存空间总是有限的。接收方根据自己的接收能力设定了接收方窗口 rwnd，并把这个窗口值写入 TCP 首部中的窗口字段，传送给发送方。因此，**接收方窗口**又称为**通知窗口**（advertised window）。因此，从接收方对发送方的流量控制的角度考虑，**发送方的发送窗口一定不能超过对方给出的接收方窗口值 rwnd**。如果把本节所讨论的拥塞控制和接收方对发送方的流量控制一起考虑，那么很显然，发送方的窗口的上限值应当取为接收方窗口 rwnd 和拥塞窗口 cwnd 这两个变量中较小的一个，也就是说：
 
@@ -667,8 +966,19 @@ TCP 连接的建立采用客户服务器方式。主动发起连接建立的应�
 
 TCP 建立连接的过程叫做握手，握手需要在客户和服务器之间交换三个 TCP 报文段。
 
-![用三报文握手建立 TCP 连接](/assets/images/computer-networks/a-three-packet-handshake-is-used-to-establish-a-TCP-connection.png)
-*图 5-28 用三报文握手建立 TCP 连接*
+<div class="row justify-content-center">
+  <div class="col-8">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/a-three-packet-handshake-is-used-to-establish-a-TCP-connection.png"
+      title="用三报文握手建立 TCP 连接"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-28 用三报文握手建立 TCP 连接
+</div>
 
 假定主机 A 运行的是 TCP 客户程序，而 B 运行 TCP 服务器程序。最初两端的 TCP 进程都处于 CLOSED（关闭）状态。在本例中，A **主动打开连接**，而 B **被动打开连接**。
 
@@ -692,8 +1002,19 @@ TCP 建立连接的过程叫做握手，握手需要在客户和服务器之间�
 
 数据传输结束后，通信的双方都可释放连接。现在 A 和 B 都处于 ESTABLISHED 状态（图 5-29）。
 
-![TCP 连接释放的过程](/assets/images/computer-networks/the-process-of-releasing-the-TCP-connection.png)
-*图 5-29 TCP 连接释放的过程*
+<div class="row justify-content-center">
+  <div class="col-8">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/the-process-of-releasing-the-TCP-connection.png"
+      title="TCP 连接释放的过程"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-29 TCP 连接释放的过程
+</div>
 
 1. A 的应用进程先向其 TCP 发出连接释放报文段，并停止再发送数据，主动关闭TCP 连接。A 把连接释放报文段首部的终止控制位 `FIN = 1`，其序号 `seq = u`，它等于前面已传送过的数据的最后一个字节的序号加 1。这时 A 进入 FIN-WAIT-1（终止等待 1）状态，等待 B 的确认。注意，TCP 规定，FIN 报文段即使不携带数据，它也消耗掉一个序号。
 2. B 收到连接释放报文段后即发出确认，确认号是 `ack = u + 1`，而这个报文段自己的序号是 `v`，等于 B 前面已传送过的数据的最后一个字节的序号加 1。然后 B 就进入 CLOSE-WAIT（关闭等待）状态。TCP 服务器进程这时应通知高层应用进程，因而从 A 到 B 这个方向的连接就释放了，这时的 TCP 连接处于**半关闭**（half-close）状态，即 A 已经没有数据要发送了，但 B 若发送数据，A 仍要接收。也就是说，从 B 到 A 这个方向的连接并未关闭，这个状态可能会持续一段时间。
@@ -714,8 +1035,19 @@ TCP 建立连接的过程叫做握手，握手需要在客户和服务器之间�
 
 为了更清晰地看出 TCP 连接的各种状态之间的关系，图 5-30 给出了 TCP 的有限状态机。图中每个方框即 TCP 可能具有的状态。每个方框中的大写英文字符串是 TCP 标准所使用的 TCP 连接状态名。状态之间的箭头表示可能发生的状态变迁。箭头旁边的字，表明引起这种变迁的原因，或表明发生状态变迁后又出现什么动作。请注意图中有三种不同的箭头。粗实线箭头表示对客户进程的正常变迁。粗虚线箭头表示对服务器进程的正常变迁。另一种细线箭头表示异常变迁。
 
-![TCP 的有限状态机](/assets/images/computer-networks/the-finite-state-machine-of-TCP.png)
-*图 5-30 TCP 的有限状态机*
+<div class="row justify-content-center">
+  <div class="col-8">
+    {% include figure.liquid
+      class="img-fluid rounded z-depth-1"
+      path="/assets/images/computer-network/the-finite-state-machine-of-TCP.png"
+      title="TCP 的有限状态机"
+      loading="lazy"
+    %}
+  </div>
+</div>
+<div class="caption">
+  图 5-30 TCP 的有限状态机
+</div>
 
 我们可以把图 5-30 和前面的图 5-28、图 5-29 对照起来看。在图 5-28 和图 5-29 中左边客户进程从上到下的状态变迁，就是图 5-30 中粗实线箭头所指的状态变迁。而在图 5-28 和5 -29 右边服务器进程从上到下的状态变迁，就是图 5-30中粗虚线箭头所指的状态变迁。
 
