@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 计算机网络 - 数据链路层
-categories: computer
+categories: blog
 tags:
   - computer
   - networks

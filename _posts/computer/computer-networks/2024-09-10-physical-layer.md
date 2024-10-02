@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 计算机网络 - 物理层
-categories: computer
+categories: blog
 tags:
   - computer
   - networks
