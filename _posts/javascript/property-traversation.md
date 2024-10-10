@@ -55,7 +55,7 @@ entries.forEach(([key, value]) => {
 
 ## 五、`Object.getOwnPropertyNames()` 方法
 
-`Object.getOwnPropertyNames()` 方法返回一个数组，其包含给定对象中所有自身的属性（包括不可枚举属性，但不包括使用 symbol 值作为名称的属性）。
+`Object.getOwnPropertyNames()` 方法返回一个数组，其包含给定对象中所有自身的属性（包括不可枚举属性，但不包括使用 `symbol` 值作为名称的属性）。
 
 ```javascript
 const obj = { a: 1, b: 2, c: 3 };
