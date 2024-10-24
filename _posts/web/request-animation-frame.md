@@ -20,7 +20,7 @@
 
 ### 1.2 `requestAnimationFrame`
 
-`requestAnimationFrame` 是一个 Web API，用于在浏览器的下一次重绘之前执行一次回调函数。这使得开发者可以在动画帧之间进行高效的动画更新。通过利用浏览器的重绘时机，`requestAnimationFrame` 可以帮助创建流畅的动画，同时避免不必要的性能开销。
+`requestAnimationFrame` 是一个 Web API，用于在浏览器的**下一次重绘之前**执行一次回调函数。这使得开发者可以在动画帧之间进行高效的动画更新。通过利用浏览器的重绘时机，`requestAnimationFrame` 可以帮助创建流畅的动画，同时避免不必要的性能开销。
 
 ## 二、基本用法
 

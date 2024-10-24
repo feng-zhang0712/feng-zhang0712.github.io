@@ -5,19 +5,21 @@
 ## 一、闭包的原理
 
 ### 1.1 定义
+
 闭包是指一个函数可以记住并访问其词法作用域中的变量，即使该函数在其词法作用域之外执行。
 
 ### 1.2 原理
+
 当一个函数在其定义的词法作用域之外执行时，它仍然可以访问定义时的作用域中的变量。这是因为 JavaScript 引擎会将函数的词法作用域与函数本身一起打包（闭合），形成闭包。
 
 ```javascript
 function outer() {
-	let outerVar = 'I am outside!';
-	function inner() {
-		console.log(outerVar); // inner 函数可以访问 outerVar
-	}
+  let outerVar = 'I am outside!';
+  function inner() {
+    console.log(outerVar); // inner 函数可以访问 outerVar
+  }
 
-	return inner;
+  return inner;
 }
 
 const innerFunc = outer();
@@ -46,10 +48,11 @@ IIFE 创建了一个独立的作用域，用于封装变量，避免污染全局
 ### 2.2 防抖和节流
 
 #### 1. 防抖（Debounce）
+
 防抖函数在一定时间间隔内只执行一次，可以用于减少高频率事件（如窗口调整、输入框输入）的处理次数。
 
 ```javascript
-function debounce(func, delay) {
+function debounce(func, delay)  {
 	let timer;
 	return function(...args) {
 		const context = this;
@@ -68,6 +71,7 @@ window.addEventListener('resize', handleResize);
 ```
 
 #### 2. 节流（Throttle）
+
 节流函数在一定时间间隔内只执行一次，可以用于限制高频率事件的执行次数。
 
 ```javascript
@@ -354,12 +358,3 @@ function attachEventHandlers() {
 
 attachEventHandlers();
 ```
-
-### 总结
-
-- **闭包**：函数可以记住并访问其词法作用域中的变量，即使在其词法作用域之外执行。
-- **常见应用**：数据封装和隐藏、模拟块级作用域、回调函数和事件处理。
-- **问题**：内存泄漏和性能问题。
-- **解决方法**：手动解除引用、使用局部变量、避免不必要的闭包。
-
-闭包是 JavaScript 中一个重要的概念，理解闭包的原理及其应用场景，能够帮助你编写更高效和维护性强的代码，同时也需要注意其可能带来的问题，并采取适当的解决方法。
