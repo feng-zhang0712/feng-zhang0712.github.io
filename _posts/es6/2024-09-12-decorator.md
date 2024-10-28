@@ -326,7 +326,7 @@ C.prototype.m = logged(C.prototype.m, {
 
 ## 七、为什么装饰器不能用于函数？
 
-装饰器只能用于类和类的方法，**不能用于函数，因为存在函数提升**。因为类不会提升，所以就没有这方面的问题。
+**装饰器只能用于类和类的方法，不能用于函数，因为存在函数提升**。因为类不会提升，所以就没有这方面的问题。
 
 如果一定要装饰函数，可以采用高阶函数的形式直接执行。
 
@@ -612,12 +612,6 @@ getPerson() === person;
 // true
 ```
 
-```javascript
-```
-
-```javascript
-```
-
 ## 十三、使用装饰器实现自动发布事件
 
 我们可以使用装饰器，使得对象的方法被调用时，自动发出一个事件。
@@ -645,9 +639,7 @@ export default function publish(topic, channel) {
 }
 ```
 
-上面代码定义了一个名为 `publish` 的装饰器，它通过改写 `descriptor.value`，使得原方法被调用时，会自动发出一个事件。它使用的事件“发布/订阅”库是 `Postal.js`。
-
-它的用法如下。
+上面代码定义了一个名为 `publish` 的装饰器，它通过改写 `descriptor.value`，使得原方法被调用时，会自动发出一个事件。它使用的事件“发布/订阅”库是 `Postal.js`。它的用法如下。
 
 ```javascript
 // index.js
@@ -699,7 +691,7 @@ let obj = new MyClass();
 obj.foo() // 'foo'
 ```
 
-上面代码中，对象 `Foo` 有个 `foo` 方法，通过 `Object.assign` 方法，可以将 foo 方法“混入” `MyClass` 类，导致 `MyClass` 的实例 `obj` 对象都具有 `foo` 方法。这就是“混入”模式的一个简单实现。
+上面代码中，对象 `Foo` 有个 `foo` 方法，通过 `Object.assign` 方法，可以将 `foo` 方法“混入” `MyClass` 类，导致 `MyClass` 的实例 `obj` 对象都具有 `foo` 方法。这就是“混入”模式的一个简单实现。
 
 下面，我们部署一个通用脚本 `mixins.js`，将 `Mixin` 写成一个装饰器。
 
@@ -725,9 +717,7 @@ let obj = new MyClass();
 obj.foo() // "foo"
 ```
 
-通过 `mixins` 这个装饰器，实现了在 `MyClass` 类上面“混入” `Foo` 对象的 `foo` 方法。
-
-上面的方法会改写 `MyClass` 类的 `prototype` 对象，如果不喜欢这一点，也可以通过类的继承实现 `Mixin`。
+通过 `mixins` 这个装饰器，实现了在 `MyClass` 类上面“混入” `Foo` 对象的 `foo` 方法。上面的方法会改写 `MyClass` 类的 `prototype` 对象，如果不喜欢这一点，也可以通过类的继承实现 `Mixin`。
 
 ```javascript
 class MyClass extends MyBaseClass {
@@ -762,7 +752,7 @@ class MyClass extends Mixin1(Mixin2(MyBaseClass)) {
 }
 ```
 
-这种写法的一个好处，是可以调用 `super`，因此可以避免在“混入”过程中覆盖父类的同名方法。
+**这种写法的一个好处，是可以调用 `super`，因此可以避免在“混入”过程中覆盖父类的同名方法**。
 
 ```javascript
 let Mixin1 = (superclass) => class extends superclass {
