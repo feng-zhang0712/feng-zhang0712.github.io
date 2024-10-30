@@ -1,7 +1,7 @@
 ---
 layout: post
 title: CSS 预处理器
-categories: frontend
+categories: blog
 tags:
   - css
   - sass

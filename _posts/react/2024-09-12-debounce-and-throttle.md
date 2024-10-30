@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 防抖和节流
-categories: frontend
+categories: blog
 tags: React
 ---
 

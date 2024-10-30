@@ -2,7 +2,7 @@
 layout: post
 title: 响应式 Web 设计
 description: 
-categories: frontend
+categories: blog
 tags:
   - css
   - media queries

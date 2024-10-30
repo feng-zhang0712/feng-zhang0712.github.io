@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ES6 - Generator 函数
-categories: frontend
+categories: blog
 tags:
   - ES6
   - Generator

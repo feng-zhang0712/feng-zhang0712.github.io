@@ -1,7 +1,7 @@
 ---
 layout: post
 title: React 中的事件
-categories: frontend
+categories: blog
 tags:
   - react
   - events

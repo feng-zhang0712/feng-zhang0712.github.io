@@ -1,7 +1,7 @@
 ---
 layout: post
 title: CSS Modules 用法教程
-categories: frontend
+categories: blog
 tags:
   - css
   - css modules
