@@ -244,3 +244,5 @@ function MyComponent() {
   );
 }
 ```
+
+参考[react-lifecycle-methods-diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)。

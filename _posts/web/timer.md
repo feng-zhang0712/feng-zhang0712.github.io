@@ -441,3 +441,4 @@ animateElement(element);
 - [事件循环：微任务和宏任务](https://zh.javascript.info/event-loop)
 - [定时器](https://wangdoc.com/javascript/async/timer)
 - [js 基础之 setTimeout 与 setInterval 原理分析](https://developer.jdcloud.com/article/2616)
+- [Further Adventures of the Event Loop - Erin Zimmer - JSConf EU 2018](https://www.youtube.com/watch?v=u1kqx6AenYw&t=853s)
