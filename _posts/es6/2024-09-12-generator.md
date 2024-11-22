@@ -155,7 +155,7 @@ for (let [key, value] of obj) {
 
 ## 四、Generator.prototype.throw()
 
-- Generator 函数返回的遍历器对象有个 `throw` 方法，可以在函数体外抛出错误，然后在 Generator 函数体内捕获。`throw` 方法可以接受一个参数，该参数会被 `catch` 语句接收。（注意，遍历器对象的 `throw` 方法和全局的 `throw` 命令是两个不同的操作，两者并无关系。）
+- Generator 函数返回的遍历器对象的 `throw` 方法，可以在函数体外抛出错误，然后在 Generator 函数体内捕获。`throw` 方法可以接受一个参数，该参数会被 `catch` 语句接收。（注意，遍历器对象的 `throw` 方法和全局的 `throw` 命令是两个不同的操作，两者并无关系。）
 
   ```javascript
   var g = function* () {
@@ -172,7 +172,7 @@ for (let [key, value] of obj) {
   // Error: 出错了！(…)
   ```
 
-- 如果 Generator 函数内部没有部署 `try...catch` 代码块，那么 `throw` 方法抛出的错误，将被外部 `try...catch` 代码块捕获。如果 Generator 函数内部和外部，都没有部署 `try...catch` 代码块，那么程序将报错并中断执行。
+- 如果 Generator 函数内部没有部署 `try...catch`，那么 `throw` 方法抛出的错误，将被外部 `try...catch` 捕获。如果 Generator 函数内部和外部，都没有部署 `try...catch`，程序将报错并中断执行。
 
   ```javascript
   var g = function* () {
@@ -194,7 +194,7 @@ for (let [key, value] of obj) {
   // 外部捕获 a
   ```
 
-- `throw` 方法抛出的错误要被内部捕获，前提是必须至少执行过一次 `next` 方法。这种行为其实很好理解，因为第一次执行 `next` 方法，等同于启动执行 Generator 函数的内部代码，否则 Generator 函数还没有开始执行，这时 `throw` 方法抛错只可能抛出在函数外部。
+- `throw` 方法抛出的错误要被内部捕获，前提是必须至少执行过一次 `next` 方法。因为第一次执行 `next` 方法，等同于启动执行 Generator 函数的内部代码，否则 Generator 函数还没有开始执行，这时 `throw` 方法抛错只可能抛出在函数外部。
 - `throw` 方法被内部捕获以后，会附带执行到下一条 `yield` 表达式，这种情况下等同于执行一次 `next` 方法。
 
   ```javascript
@@ -220,7 +220,7 @@ for (let [key, value] of obj) {
 
 ## 五、Generator.prototype.return()
 
-- Generator 函数返回的遍历器对象有个 `return()` 方法，可以返回给定的值，并且终结遍历 Generator 函数。如果 `return()` 方法调用时，不提供参数，则返回值的 `value` 属性为 `undefined`。
+- Generator 函数返回的遍历器对象的 `return()`，可以返回给定的值，并且终结遍历 Generator 函数。如果 `return()` 调用时，不提供参数，则返回值的 `value` 属性为 `undefined`。
 
   ```javascript
   function* gen() {
@@ -235,7 +235,7 @@ for (let [key, value] of obj) {
   g.next()        // { value: undefined, done: true }
   ```
 
-- 如果 Generator 函数内部有 `try...finally` 代码块，且正在执行 `try` 代码块，那么 `return()` 方法会导致立刻进入 `finally` 代码块，执行完以后，整个函数才会结束。
+- 如果 Generator 函数内部有 `try...finally` 代码块，且正在执行 `try` 代码块，那么 `return()` 会导致立刻进入 `finally` 代码块，执行完以后，整个函数才会结束。
 
   ```javascript
   function* numbers () {
@@ -258,7 +258,7 @@ for (let [key, value] of obj) {
   g.next() // { value: 7, done: true }
   ```
 
-  上面代码中，调用 `return()` 方法后，就开始执行 `finally` 代码块，不执行 `try` 里面剩下的代码了，然后等到 `finally` 代码块执行完，再返回 `return()` 方法指定的返回值。
+  上面代码中，调用 `return()` 后，就开始执行 `finally` 代码块，不执行 `try` 里面剩下的代码了，然后等到 `finally` 代码块执行完，再返回 `return()` 指定的返回值。
 
 ## 六、next()、throw()、return() 的共同点
 
@@ -406,7 +406,7 @@ let obj = {
 
 ## 九、Generator 函数的 this
 
-Generator 函数不能用作构造函数，也不能跟 new 命令一起用。
+Generator 函数不能用作构造函数，也不能跟 `new` 命令一起用。
 
 ```javascript
 function* g() {
@@ -521,7 +521,7 @@ for (let [key, value] of iterEntries(myObj)) {
 
 ### 4. 作为数据结构
 
-**Generator 使得数据或者操作，具备了类似数组的接口**。Generator 可以看作是数据结构，更确切地说，可以看作是一个数组结构，因为 Generator 函数可以返回一系列的值，这意味着它可以对任意表达式，提供类似数组的接口。
+**Generator 使得数据或者操作，具备了类似数组的接口**。Generator 可以看作是一个数组结构，因为 Generator 函数可以返回一系列的值，这意味着它可以对任意表达式，提供类似数组的接口。
 
 ```javascript
 function* doStuff() {
