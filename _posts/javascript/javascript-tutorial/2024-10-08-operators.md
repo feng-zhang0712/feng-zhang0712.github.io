@@ -47,7 +47,7 @@ false + 'a' // "falsea"
 
 #### （2）对象的相加
 
-如果运算子是对象，必须先转成原始类型的值，然后再相加。规则是：首先自动调用对象的 `valueOf()`，如果此时返回的是原始类型的值，则进行相应的操作，如果 `valueOf()` 得到的是对象类型，再自动调用对象的 `toString()`，将对象转为字符串。
+如果运算子是对象，必须先转成原始类型的值，然后再相加。首先调用对象的 [`[Symbol.toPrimitive]()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures#%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2)，如果这个方法不存在，则首先自动调用对象的 `valueOf()`，如果此时返回的是原始类型的值，则进行相应的操作，如果 `valueOf()` 得到的是对象类型，再自动调用对象的 `toString()`，将对象转为字符串。
 
 ```javascript
 var obj = { p: 1 };

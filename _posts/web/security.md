@@ -87,7 +87,6 @@ Content-Security-Policy: default-src 'self'; report-uri /csp-violation-report-en
 
 ```http
 Content-Security-Policy: default-src 'self'; report-to csp-endpoint
-
 Report-To: {"group":"csp-endpoint","max_age":10886400,"endpoints":[{"url":"/csp-violation-report-endpoint/"}]}
 ```
 
@@ -320,7 +319,7 @@ XSS 主要分为三类：存储型、反射型和基于 DOM 的 XSS。
 
 假设一个搜索功能将用户输入的查询参数直接返回到页面而不进行过滤，攻击者可以构造一个恶意链接。
 
-```html
+```text
 http://example.com/search?q=<script>alert('XSS');</script>
 ```
 
@@ -338,7 +337,7 @@ document.write(location.search);
 
 攻击者可以构造一个恶意链接：
 
-```html
+```text
 http://example.com/?param=<script>alert('XSS');</script>
 ```
 
@@ -346,61 +345,48 @@ http://example.com/?param=<script>alert('XSS');</script>
 
 ### 2.2 前端开发中如何预防 XSS
 
-#### （1）输入验证和过滤
+- 输入验证和过滤：对所有用户输入的数据进行严格的验证和过滤，移除或转义可能包含恶意脚本的字符。
+- 输出编码：对用户输入的数据在输出到 HTML 页面时进行编码，防止恶意脚本被执行。可以使用 JavaScript 内置的函数进行编码，例如 `encodeURIComponent` 和 `encodeHTML`
 
-对所有用户输入的数据进行严格的验证和过滤，移除或转义可能包含恶意脚本的字符。
+  ```javascript
+  function encodeHTML(str) {
+    return str.replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+  ```
 
-#### （2）输出编码
+- 内容安全策略（CSP）：配置 Content Security Policy (CSP) 来限制加载的资源类型和来源，防止外部恶意脚本的注入和执行。
 
-对用户输入的数据在输出到 HTML 页面时进行编码，防止恶意脚本被执行。可以使用 JavaScript 内置的函数进行编码，例如 `encodeURIComponent` 和 `encodeHTML`
+  ```html
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://trusted.cdn.com;">
+  ```
 
-```javascript
-function encodeHTML(str) {
-  return str.replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-```
+- HttpOnly 和 Secure：对于敏感的 Cookie，设置 HttpOnly 和 Secure 标记，防止 JavaScript 访问和中间人攻击。
 
-#### （3）Content Security Policy (CSP)
+  ```http
+  Set-Cookie: session_id=your_session_id; HttpOnly; Secure
+  ```
 
-配置 Content Security Policy (CSP) 来限制加载的资源类型和来源，防止外部恶意脚本的注入和执行。
+- 避免直接操作 DOM：尽量避免使用 `document.write` 和 `innerHTML` 等直接操作 DOM 的方法，使用安全的 DOM 操作方法，如 `textContent` 和 `setAttribute`。
 
-```html
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://trusted.cdn.com;">
-```
+  ```javascript
+  // 不安全的方法
+  document.write('<div>' + userInput + '</div>');
 
-#### （4）HttpOnly 和 Secure 标记
-
-对于敏感的 Cookie，设置 HttpOnly 和 Secure 标记，防止 JavaScript 访问和中间人攻击。
-
-```http
-Set-Cookie: session_id=your_session_id; HttpOnly; Secure
-```
-
-#### （5）避免直接操作 DOM
-
-尽量避免使用 `document.write` 和 `innerHTML` 等直接操作 DOM 的方法，使用安全的 DOM 操作方法，如 `textContent` 和 `setAttribute`。
-
-```javascript
-// 不安全的方法
-document.write('<div>' + userInput + '</div>');
-
-// 安全的方法
-const div = document.createElement('div');
-div.textContent = userInput;
-document.body.appendChild(div);
-```
-
----------------------
+  // 安全的方法
+  const div = document.createElement('div');
+  div.textContent = userInput;
+  document.body.appendChild(div);
+  ```
 
 ## 三、跨站请求伪造（CSRF）
 
 跨站请求伪造（CSRF，Cross-Site Request Forgery）指攻击者冒充受信任的用户向网站发送未经授权的请求。CSRF 攻击通常利用已认证用户的身份，执行恶意操作如转账、修改账户设置、发送消息等。
 
-### 3.1 CSRF 攻击原理
+### 2.1 CSRF 攻击原理
 
 CSRF 攻击的基本原理是利用用户的身份认证状态（如 Cookie）来发送伪造的 HTTP 请求。具体步骤如下：
 
@@ -416,7 +402,6 @@ POST /transfer
 Host: bank.example.com
 Content-Type: application/x-www-form-urlencoded
 Cookie: session=abcd1234
-
 amount=1000&to_account=attacker_account
 ```
 
@@ -440,15 +425,15 @@ amount=1000&to_account=attacker_account
 
 当用户在已登录银行网站的情况下访问这个恶意网页时，表单会自动提交，导致银行网站执行伪造的转账请求。
 
-### 3.2 预防 CSRF 的措施
+### 2.2 预防 CSRF 的措施
 
 #### （1）使用 CSRF Token
 
 在表单请求中使用 CSRF Token，是防范 CSRF 攻击最有效的方法之一。CSRF Token 是一个唯一且不可预测的值，由服务器生成并嵌入到页面中，随后在请求中发送回服务器进行验证。实现步骤如下。
 
-- 服务器生成 Token：服务器生成一个唯一的 CSRF Token，将其嵌入到 HTML 表单和用户会话中。
-- 表单提交 Token：表单提交时，CSRF Token 作为隐藏字段或请求头一同提交。
-- 服务器验证 Token：服务器验证请求中的 CSRF Token 是否与会话中的 Token 匹配。
+- 服务器生成 Token：服务器生成一个唯一的 Token，将其嵌入到 HTML 表单和用户会话中。
+- 表单提交 Token：表单提交时，Token 作为隐藏字段或请求头一同提交。
+- 服务器验证 Token：服务器验证请求中的 Token 是否与会话中的 Token 匹配。
 
 #### （2）使用 SameSite Cookie 属性
 
@@ -458,15 +443,7 @@ SameSite Cookie 属性可以限制第三方网站发送请求时携带 Cookie。
 - Lax：允许部分第三方请求携带 Cookie（如 GET 请求）。
 - None：允许所有第三方请求携带 Cookie。
 
-#### （3）双重提交 Cookie
-
-在请求中同时提交 CSRF Token 和 Cookie，服务器对比这两个值是否匹配。实现步骤如下。
-
-- 服务器生成 Token：服务器生成 CSRF Token，并将其作为 Cookie 和隐藏字段或请求头一同发送给客户端。
-- 客户端提交 Token：客户端在请求中同时提交 CSRF Token 和 Cookie。
-- 服务器验证 Token：服务器对比请求中的 Token 和 Cookie 中的 Token 是否匹配。
-
-#### （4）验证 Referer 和 Origin 头
+#### （3）验证 Referer 和 Origin 头
 
 服务器端可以检查请求的 Referer 和 Origin 头，确保请求来自合法的来源。如果 Referer 或 Origin 头不匹配，可以拒绝请求。
 

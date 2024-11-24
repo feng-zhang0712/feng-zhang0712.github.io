@@ -3,13 +3,6 @@ layout: post
 title: 响应式 Web 设计
 description: 
 categories: blog
-tags:
-  - css
-  - media queries
-  - responsive web design
-  - responsive images
-  - flex box layout
-  - grid layout
 ---
 
 ## 一、简介
