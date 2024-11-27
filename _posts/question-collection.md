@@ -2,16 +2,16 @@
 
 ## HTML [74]
 
-- [x] [浏览器是怎么解析 HTML 文档的？](https://fe.ecool.fun/topic/869f1734-40bb-4954-8991-f3e5bac37808?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [怎么让页面上的某块区域全屏展示？](https://fe.ecool.fun/topic/5e6f561b-5c29-482e-b07b-f08a4aa11432?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [怎么在页面上获取用户的定位信息？](https://fe.ecool.fun/topic/0fad3c15-63fe-4358-a202-397c983cae6f?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [浏览器解析 HTML 的过程](https://fe.ecool.fun/topic/869f1734-40bb-4954-8991-f3e5bac37808?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [页面上的某块区域全屏展示](https://fe.ecool.fun/topic/5e6f561b-5c29-482e-b07b-f08a4aa11432?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [在页面上获取用户的定位信息](https://fe.ecool.fun/topic/0fad3c15-63fe-4358-a202-397c983cae6f?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [HTML 字符实体](https://fe.ecool.fun/topic/b45cda77-44a7-45aa-a563-eb46bc5fd1d6?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [如何使用 JavaScript 控制 \<audio\> 和 \<video\> 元素？](https://fe.ecool.fun/topic/dad962f6-05f7-4711-a201-fad9f6215196?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [使用 JavaScript 控制 \<audio\> 和 \<video\> 元素](https://fe.ecool.fun/topic/dad962f6-05f7-4711-a201-fad9f6215196?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [HTML 中视频添加字幕](https://fe.ecool.fun/topic/d2fa61c7-ccd8-47db-b26e-0647fafd87a5?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [如何避免重绘或者重排？](https://fe.ecool.fun/topic/c94ef007-aafe-4b9c-b96b-4f25c8120130?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [避免重绘或者重排](https://fe.ecool.fun/topic/c94ef007-aafe-4b9c-b96b-4f25c8120130?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [canvas 与 svg 在可视化领域优劣如何](https://fe.ecool.fun/topic/ca26a4cb-9880-4755-8ece-9c9a8f50f5b9?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [Web Components](https://fe.ecool.fun/topic/699d3c09-7c5e-433e-8ca6-e02d55abfec9?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [HTML 文档预解析](https://fe.ecool.fun/topic/8620e64e-4051-46a8-bef3-3b1031a29872?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [Web Component](https://fe.ecool.fun/topic/699d3c09-7c5e-433e-8ca6-e02d55abfec9?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [preload、prefetch](https://fe.ecool.fun/topic/8620e64e-4051-46a8-bef3-3b1031a29872?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [html 中前缀为 data- 开头的元素属性是什么？](https://fe.ecool.fun/topic/b90eb9af-fa06-4b4e-ba83-fbe34330cbf6?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [script 标签上有那些属性，作用分别是什么？](https://fe.ecool.fun/topic/87b1f0a2-a058-4f00-ae03-7d85bd19cbf5?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [link 标签有哪些属性，分别有什么作用？](https://fe.ecool.fun/topic/d4cff3fa-0488-47d6-a488-705ea93e174c?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
