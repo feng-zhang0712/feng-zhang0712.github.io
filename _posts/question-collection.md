@@ -301,7 +301,7 @@
 - [cookie 的有效时间设置为 0 会怎么样](https://fe.ecool.fun/topic/94393532-0d43-407f-8168-73bc6fd523a3?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [本地存储的方式有哪些，有什么区别，及有哪些应用场景？](https://fe.ecool.fun/topic/74cf701d-95e7-428a-a7c1-d746c6c0877c?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [举例说明你对尾递归的理解，以及有哪些应用场景](https://fe.ecool.fun/topic/564a3475-d774-4956-9ea6-024e0e05062d?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [说说你对 BOM 的理解，以及常见的 BOM 对象有哪些？](https://fe.ecool.fun/topic/483e37bb-b761-4231-82e8-4f6345a6df78?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [对 BOM 的理解及常见的 BOM 对象](https://fe.ecool.fun/topic/483e37bb-b761-4231-82e8-4f6345a6df78?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [谈谈你知道的DOM常见的操作](https://fe.ecool.fun/topic/138cc142-490a-4ca9-8221-5f13429c807f?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [正则表达式是什么，有哪些应用场景？](https://fe.ecool.fun/topic/e3f52a7b-4c54-4b00-bd6c-b63f2b60421c?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [说说 ajax 的原理，以及如何实现？](https://fe.ecool.fun/topic/bbcedbfa-a74f-411f-a309-01f7e590ee50?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
