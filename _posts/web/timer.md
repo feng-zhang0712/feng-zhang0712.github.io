@@ -152,7 +152,7 @@ clearTimeout(timerId);
 5. **任务队列（Task Queue）**：每次计时器到达指定的时间间隔，回调函数将被添加到任务队列中，等待事件循环的执行。
 6. **执行回调函数**：当事件循环处理到任务队列中的回调函数时，回调函数将被执行。
 
-从上面可以看出，`setInterval` 的执行机制，同 `setInterval` 类似，不同之处在于，`setInterval` 的回调函数，会被按固定时间间隔添加到任务队列中。回调函数具体的执行时机，也是一个不确定的状态。
+从上面可以看出，`setInterval` 的执行机制，同 `setTimeout` 类似，不同之处在于，`setInterval` 的回调函数，会被按固定时间间隔添加到任务队列中。回调函数具体的执行时机，也是一个不确定的状态。
 
 以下是一个，`setInterval` 与事件循环的例子。
 
@@ -434,7 +434,7 @@ animateElement(element);
 - 执行次数：`setTimeout` 只执行一次回调函数；`setInterval` 会按指定的时间间隔重复执行回调函数，直到被取消。
 - 内部机制：`setTimeout` 计时器到期后，将回调函数添加到任务队列中；`setInterval` 每次到达时间间隔后，都会将回调函数添加到任务队列中，因此如果回调函数执行时间较长，可能会导致回调函数的执行频率低于预期。（或者说，`setTimeout` 可以保证函数在指定的时间间隔内不会执行，而 `setInterval` 无法保证）
 
-参考
+## 七、参考
 
 - [setTimeout() 全局函数](https://developer.mozilla.org/zh-CN/docs/Web/API/setTimeout)
 - [调度：setTimeout 和 setInterval](https://zh.javascript.info/settimeout-setinterval)
