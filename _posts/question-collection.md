@@ -3,7 +3,7 @@
 ## HTML [74]
 
 - [x] [浏览器解析 HTML 的过程](https://fe.ecool.fun/topic/869f1734-40bb-4954-8991-f3e5bac37808?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [从输入网址到页面显示的过程](https://fe.ecool.fun/topic/5def10e9-7825-4bd4-a76e-6d7eb555a2ce?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [从输入网址到页面显示的过程](https://fe.ecool.fun/topic/5def10e9-7825-4bd4-a76e-6d7eb555a2ce?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [HTML 页面渲染过程](https://fe.ecool.fun/topic/61b47ff6-9c4d-4fa2-b126-dc5ffff3e7c6?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [页面上的某块区域全屏展示](https://fe.ecool.fun/topic/5e6f561b-5c29-482e-b07b-f08a4aa11432?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [在页面上获取用户的定位信息](https://fe.ecool.fun/topic/0fad3c15-63fe-4358-a202-397c983cae6f?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
@@ -33,7 +33,7 @@
 - [x] [浏览器乱码的原因及解决方式](https://fe.ecool.fun/topic/8e135d77-c081-4419-b0b3-2e43461d5b55?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [Canvas vs SVG](https://fe.ecool.fun/topic/c8a51567-945f-461d-b632-0209dd1917f5?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [title vs h1、b vs strong、i vs em](https://fe.ecool.fun/topic/ddcf6ea7-290c-4ab1-9b5c-d77f08c9771d?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [标签的 title 属性与 alt 属性的区别](https://fe.ecool.fun/topic/a82eaabe-70e6-47ed-b29d-d036e80e0815?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [标签的 title 属性与 alt 属性的区别](https://fe.ecool.fun/topic/a82eaabe-70e6-47ed-b29d-d036e80e0815?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [浏览器是如何对 HTML5 的离线储存资源进行管理和加载？](https://fe.ecool.fun/topic/93ffefee-3471-48a5-b60c-1b7adf8edf13?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [HTML5 的离线储存及其工作原理是](https://fe.ecool.fun/topic/d2d8725c-7941-4ba8-9b92-67a730fa1097?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [img 的 srcset 属性](https://fe.ecool.fun/topic/072b9f8d-7383-4823-9508-77e4e9d1744c?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
