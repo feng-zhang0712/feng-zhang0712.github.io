@@ -136,11 +136,11 @@
 - [css 中三栏布局的实现方案有哪些？](https://fe.ecool.fun/topic/e33db22c-e826-41f0-b5a9-33b9a03091bc?orderBy=default&order=desc&tagId=11&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [如何实现两栏布局，右侧自适应？三栏布局中间自适应呢？](https://fe.ecool.fun/topic/9cc69b35-a6f3-466a-8724-7b855b38a1a9?orderBy=default&order=desc&tagId=11&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [”flex: auto;“是什么意思](https://fe.ecool.fun/topic/27a34d44-74b5-4406-b6e6-61f4b1d203a1?orderBy=default&order=desc&tagId=11&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [flex:1;](https://fe.ecool.fun/topic/286f67d3-4e8d-48f5-962a-ed9cccc46335?orderBy=default&order=desc&tagId=11&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [flex 布局](https://fe.ecool.fun/topic/dd65350c-9907-4d3a-a01c-baeebb3e963d?orderBy=default&order=desc&tagId=11&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [flex:1;](https://fe.ecool.fun/topic/286f67d3-4e8d-48f5-962a-ed9cccc46335?orderBy=default&order=desc&tagId=11&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [flex 布局](https://fe.ecool.fun/topic/dd65350c-9907-4d3a-a01c-baeebb3e963d?orderBy=default&order=desc&tagId=11&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [grid 布局](https://fe.ecool.fun/topic/a1d425f5-4d07-4ffc-865b-23fec635032c?orderBy=default&order=desc&tagId=11&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [说说你对盒子模型的理解](https://fe.ecool.fun/topic/dc607f56-c467-4cc2-8a0a-c79d498bee49?orderBy=default&order=desc&tagId=11&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [从 html 元素继承 box-sizing](https://fe.ecool.fun/topic/6a8dda85-ad38-4eec-86b5-dad87ad3c929?orderBy=default&order=desc&tagId=11&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [从 html 元素继承 box-sizing](https://fe.ecool.fun/topic/6a8dda85-ad38-4eec-86b5-dad87ad3c929?orderBy=default&order=desc&tagId=11&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [box-sizing](https://fe.ecool.fun/topic/d26004b5-4091-4a30-b66f-7c6e78dd34c8?orderBy=default&order=desc&tagId=11&exerciseCate=0&ignoreMaster=1&difficulty=)
 
 ## JavaScript [380]
