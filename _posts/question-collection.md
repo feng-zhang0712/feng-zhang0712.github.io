@@ -386,17 +386,20 @@
 - [x] [下面函数组件的输出分别是什么](https://fe.ecool.fun/topic/207b117b-2e93-4760-91ed-8e618a85a50e?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [受控组件和非受控组件](https://fe.ecool.fun/topic/b7edb0a3-10d1-4857-907b-cc99acaf3516?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [React 中引入 CSS 的方式](https://fe.ecool.fun/topic/44c29904-83b1-4e51-905e-2bd3599f9e45?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [VM 一定会提高性能吗？](https://fe.ecool.fun/topic/99fc6f13-b239-4697-8b20-5fdb03702be6?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [VM 一定会提高性能吗](https://fe.ecool.fun/topic/99fc6f13-b239-4697-8b20-5fdb03702be6?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [为什么 VM 可以提高性能](https://fe.ecool.fun/topic/4e2b8fc1-1919-43f8-9cd4-9d3dacc8bb91?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [React 事件代理](https://fe.ecool.fun/topic/eaf64af1-8d01-495c-b9ca-c1d503e3ed8d?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [React 事件代理和原生事件绑定的区别](https://fe.ecool.fun/topic/116db48b-6ad5-40f1-9f60-c5a525673395?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [React 事件代理和原生事件绑定混用会有什么问题](https://fe.ecool.fun/topic/a9a357ca-9ee4-404d-a48a-49ba46f78166?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [React 事件和原生事件的执行顺序](https://fe.ecool.fun/topic/e8631603-4764-426e-b62b-ddd6dd663d4f?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
-
-
-- [为什么 VM 可以提高性能？](https://fe.ecool.fun/topic/4e2b8fc1-1919-43f8-9cd4-9d3dacc8bb91?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [VM 是怎么实现的？](https://fe.ecool.fun/topic/b19c5c77-658d-4004-a9c5-028fd81b3a9e?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [React 中为什么要给组件设置 key？](https://fe.ecool.fun/topic/1e01a341-f1c4-490b-966d-32433edd42bf?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [React 中，能否直接将 props 的值复制给 state](https://fe.ecool.fun/topic/eef587e7-d29b-4b32-b672-7f8fe2e84217?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [组件间通信](https://fe.ecool.fun/topic/08ec624c-9c3d-4f11-ba4f-09e0986c9838?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
+
+
+
+- [VM 是怎么实现的](https://fe.ecool.fun/topic/b19c5c77-658d-4004-a9c5-028fd81b3a9e?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [React 中为什么要给组件设置 key](https://fe.ecool.fun/topic/1e01a341-f1c4-490b-966d-32433edd42bf?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [diff 算法](https://fe.ecool.fun/topic/212673c7-7ea1-460a-b44f-2e3fe20f3397?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [说说你对 immutable 的理解？如何应用在react项目中？](https://fe.ecool.fun/topic/3804a9d9-03c0-4588-b696-1068d745c7b9?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [React JSX 转换成真实 DOM 过程](https://fe.ecool.fun/topic/6eec7f26-3bdc-4015-86fc-a75d495311a6?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [React 服务端渲染怎么做？原理是什么？](https://fe.ecool.fun/topic/190f1c7f-4fb5-4fb1-bb7c-f2cc977d50d8?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
@@ -418,10 +421,7 @@
 - [Hooks 和 memorizedState 是什么关系?](https://fe.ecool.fun/topic/467f7aeb-e452-421e-9404-da26f158adee?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [useState 原理](https://fe.ecool.fun/topic/b8dde1bf-f45f-4266-b6a2-6cbfabf6ec43?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [setState 之后发生了什么](https://fe.ecool.fun/topic/f31923c7-7157-408b-8e12-74ced305802e?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [React 的 diff 算法](https://fe.ecool.fun/topic/212673c7-7ea1-460a-b44f-2e3fe20f3397?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [高阶组件](https://fe.ecool.fun/topic/dcb3eab5-6a15-43e1-90bb-b6bb2a17697c?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [如何在 React 中应用样式？](https://fe.ecool.fun/topic/1892b9be-4b0d-4a4c-8522-182ed46e4df2?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [React 中，能否直接将 props 的值复制给 state？](https://fe.ecool.fun/topic/eef587e7-d29b-4b32-b672-7f8fe2e84217?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [实现 useTimeout Hook](https://fe.ecool.fun/topic/0295b261-f56a-41fd-847b-7f6947284279?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [实现 useUpdate 方法，调用时强制组件重新渲染](https://fe.ecool.fun/topic/bc3c6285-2523-4d07-94c4-9dc539b63ece?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [Fiber](https://fe.ecool.fun/topic/7830d575-2143-47c3-b938-2f9448a7465e?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
