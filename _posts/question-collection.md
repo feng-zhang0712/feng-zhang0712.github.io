@@ -144,7 +144,9 @@
 
 ## JavaScript [380]
 
-- [get 请求的参数是否能够使用数组](https://fe.ecool.fun/topic/b7e5c9a8-6756-4c79-9b75-a3cb680e12b4?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [get 请求的参数是否能够使用数组](https://fe.ecool.fun/topic/b7e5c9a8-6756-4c79-9b75-a3cb680e12b4?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+
+
 - [async/await 原理， 手写 async 函数](https://fe.ecool.fun/topic/29821d8e-dc41-4581-91fe-9fde7658a559?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [async/await 错误处理](https://fe.ecool.fun/topic/deb034d1-2a96-45b4-8576-132f2af9c797?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [错误类型](https://fe.ecool.fun/topic/fff79f62-47be-438a-83bf-6f81bcc0dfe9?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
@@ -397,8 +399,14 @@
 - [x] [React 中为什么要给组件设置 key](https://fe.ecool.fun/topic/1e01a341-f1c4-490b-966d-32433edd42bf?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [VM 是怎么实现的](https://fe.ecool.fun/topic/b19c5c77-658d-4004-a9c5-028fd81b3a9e?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [diff 算法](https://fe.ecool.fun/topic/212673c7-7ea1-460a-b44f-2e3fe20f3397?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [使用 Redux 的原则](https://fe.ecool.fun/topic/c00d61b8-2609-40b9-8deb-a4fdb686e7c7?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [Redux 中 connect 的作用](https://fe.ecool.fun/topic/2476ee50-e484-4416-88a7-4c506f84de9a?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [Redux 状态管理器和变量挂载到 window 中的区别](https://fe.ecool.fun/topic/10e0441f-d709-427d-975b-f0026556ae7e?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [说说你对 Redux 的理解？其工作原理？](https://fe.ecool.fun/topic/5438d05b-ec3b-42f6-8819-1f73213d654b?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [项目中是如何使用 Redux? 项目结构是如何划分的？](https://fe.ecool.fun/topic/89865bbd-72ac-4866-b4f6-a24f9c594d07?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 
 
+- [说说 React Render 方法的原理？在什么时候会被触发？](https://fe.ecool.fun/topic/300d6f04-63e9-4360-82fa-e4a505d618a1?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [React JSX 转换成真实 DOM 过程](https://fe.ecool.fun/topic/6eec7f26-3bdc-4015-86fc-a75d495311a6?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [说说你对 immutable 的理解？如何应用在react项目中](https://fe.ecool.fun/topic/3804a9d9-03c0-4588-b696-1068d745c7b9?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [React 服务端渲染怎么做？原理是什么？](https://fe.ecool.fun/topic/190f1c7f-4fb5-4fb1-bb7c-f2cc977d50d8?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
@@ -430,19 +438,13 @@
 - [Fiber 如何实现更新过程可控](https://fe.ecool.fun/topic/d6aa767b-f4e2-4200-ac29-22f5f1759021?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [Fiber 为什么是 React 性能的飞跃？](https://fe.ecool.fun/topic/f317438d-44bf-4476-8f9d-b1e51521fa20?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [render、commit 阶段的执行过程](https://fe.ecool.fun/topic/7969396f-fd4f-4d33-96af-c95c0840d201?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [redux-thunk 和 redux 是什么关系？](https://fe.ecool.fun/topic/5a06e08f-c274-45c4-af4e-4281e1faea86?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [使用 Redux 有哪些原则？](https://fe.ecool.fun/topic/c00d61b8-2609-40b9-8deb-a4fdb686e7c7?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [Redux 中的 connect 有什么作用？](https://fe.ecool.fun/topic/2476ee50-e484-4416-88a7-4c506f84de9a?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [Redux 状态管理器和变量挂载到 window 中有什么区别？](https://fe.ecool.fun/topic/10e0441f-d709-427d-975b-f0026556ae7e?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [Redux 中异步的请求的处理](https://fe.ecool.fun/topic/5c4ea1e0-f1e4-4710-a5dd-e51277c83d9c?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [项目中是如何使用 Redux? 项目结构是如何划分的？](https://fe.ecool.fun/topic/89865bbd-72ac-4866-b4f6-a24f9c594d07?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [redux-thunk 和 redux 的关系](https://fe.ecool.fun/topic/5a06e08f-c274-45c4-af4e-4281e1faea86?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [对 Redux 中间件的理解？常用的中间件有哪些？实现原理？](https://fe.ecool.fun/topic/025473a3-19c3-4398-94ab-c3d72002dcce?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [说说你对 Redux 的理解？其工作原理？](https://fe.ecool.fun/topic/5438d05b-ec3b-42f6-8819-1f73213d654b?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [Redux 中异步的请求的处理](https://fe.ecool.fun/topic/5c4ea1e0-f1e4-4710-a5dd-e51277c83d9c?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [react-router 里的 <Link> 标签和 <a> 标签有什么区别？](https://fe.ecool.fun/topic/eb1b05fa-d58b-4d72-bf81-3cd8bab13f55?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [React Router 中，HashRouter 和 BrowserRouter 的区别和原理？](https://fe.ecool.fun/topic/197d354c-bc4c-4715-bf47-7af0c347f997?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [使用 react-router 跳转时，如何将参数传递给下一个页面？](https://fe.ecool.fun/topic/514f2a2f-5707-4068-8b2d-baf16af8c489?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [React 中，如何实现类似于 Vue-router 提供的路由守卫？](https://fe.ecool.fun/topic/0227182d-cafd-426e-a6a7-3e71364c2755?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [说说 React Render 方法的原理？在什么时候会被触发？](https://fe.ecool.fun/topic/300d6f04-63e9-4360-82fa-e4a505d618a1?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [说说 React Router 有几种模式，以及实现原理？](https://fe.ecool.fun/topic/2b68a2b5-ab3a-4de4-af48-43ab5f7e99f8?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [说说你对 React Router 的理解？常用的 Router 组件有哪些？](https://fe.ecool.fun/topic/637b0af3-e1e1-42c0-9825-e34aa0a4e4a0?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [React 中的路由懒加载是什么？原理是什么？](https://fe.ecool.fun/topic/c8d54253-ca08-4d87-b64c-33dcdd369073?orderBy=default&order=desc&tagId=13&exerciseCate=0&ignoreMaster=1&difficulty=)
