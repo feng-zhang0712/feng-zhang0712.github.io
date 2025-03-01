@@ -148,11 +148,19 @@
 - [x] [async/await 错误处理](https://fe.ecool.fun/topic/deb034d1-2a96-45b4-8576-132f2af9c797?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [错误类型](https://fe.ecool.fun/topic/fff79f62-47be-438a-83bf-6f81bcc0dfe9?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [postMessage 如何解决跨域问题](https://fe.ecool.fun/topic/6843e240-9534-4371-8b64-ba76b4aa8ed4?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-
-
-
-
 - [x] [内存泄漏](https://fe.ecool.fun/topic/cecf2aa7-4281-4255-95c9-e8ae487760f1?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [typeof NaN](https://fe.ecool.fun/topic/0bd0c9bd-9e5f-47af-8a7d-3ba7aaa28dcd?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [typeof 与 instanceof](https://fe.ecool.fun/topic/4354687c-2600-4b62-98ec-2bef8df9a171?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [instanceof 能否判断基本数据类型](https://fe.ecool.fun/topic/1d87535d-c1c8-4c6e-b6f5-583c80193217?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] ['1'.toString() 为什么不会报错](https://fe.ecool.fun/topic/82a008f4-a9a4-4af6-aa6f-ec9d3b026487?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [123['toString'].length + 123 输出多少](https://fe.ecool.fun/topic/3dc3b575-dc56-47b6-87b3-e83315630812?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [== 和 ===](https://fe.ecool.fun/topic/ddec2e9f-993c-4298-8477-b7bc25db7713?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [[] == ![]结果是什么？](https://fe.ecool.fun/topic/8edaa033-4005-41cc-a255-f175f6c4eb6b?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+
+
+
+- [x] [0.1+0.2 为什么不等于0.3](https://fe.ecool.fun/topic/27491e6c-d92d-4d41-9bff-4781665945df?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [== 的机制](https://fe.ecool.fun/topic/be6f7f8b-d386-4f99-a0bc-f9b5a0512f99?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [ajax、axios、fetch](https://fe.ecool.fun/topic/eb100f99-89d5-4cdf-958f-d257aeb92614?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [为什么 for 循环的性能高于 forEach](https://fe.ecool.fun/topic/c7265055-7375-4e20-b425-14d97fc27f9c?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [forEach 中能否使用 await](https://fe.ecool.fun/topic/d1d9bc22-287a-4fb0-9860-51fb461006de?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
@@ -170,9 +178,6 @@
 - [x] [onpopstate 可以监听到 pushstate 的事件吗？](https://fe.ecool.fun/topic/b7510525-d358-4b38-a29d-430524dc2dca?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [requestIdleCallback](https://fe.ecool.fun/topic/fe737e1d-6ee1-4344-9ab7-7d3dafb749f6?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [requestAnimationFrame](https://fe.ecool.fun/topic/828350f9-b3d1-4593-8306-e5bc567b5c28?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-
-
-
 
 
 
@@ -228,15 +233,6 @@
 - [下面代码会输出什么？](https://fe.ecool.fun/topic/7625104a-b9e7-4cab-915a-d1cccfa31d5c?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [RESTful 接口规范](https://fe.ecool.fun/topic/485b5052-3119-4ced-9473-940489629f99?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [ES5 怎么实现继承](https://fe.ecool.fun/topic/9b19862a-b226-4a56-95d4-5ab4b05024bb?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [typeof NaN 的结果是什么？](https://fe.ecool.fun/topic/0bd0c9bd-9e5f-47af-8a7d-3ba7aaa28dcd?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [typeof 与 instanceof](https://fe.ecool.fun/topic/4354687c-2600-4b62-98ec-2bef8df9a171?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [instanceof 能否判断基本数据类型](https://fe.ecool.fun/topic/1d87535d-c1c8-4c6e-b6f5-583c80193217?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [0.1+0.2 为什么不等于0.3](https://fe.ecool.fun/topic/27491e6c-d92d-4d41-9bff-4781665945df?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] ['1'.toString() 为什么不会报错](https://fe.ecool.fun/topic/82a008f4-a9a4-4af6-aa6f-ec9d3b026487?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [123['toString'].length + 123 的输出值是多少？](https://fe.ecool.fun/topic/3dc3b575-dc56-47b6-87b3-e83315630812?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [== 的机制](https://fe.ecool.fun/topic/be6f7f8b-d386-4f99-a0bc-f9b5a0512f99?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [== 和 ===](https://fe.ecool.fun/topic/ddec2e9f-993c-4298-8477-b7bc25db7713?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [[] == ![]结果是什么？](https://fe.ecool.fun/topic/8edaa033-4005-41cc-a255-f175f6c4eb6b?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [sourcemap 原理](https://fe.ecool.fun/topic/2f8aa80e-e3b0-4d10-843d-83e947dda744?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [tree shaking 及其工作原理](https://fe.ecool.fun/topic/c00fbf63-deef-433c-aa48-a10812107b0e?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [AST](https://fe.ecool.fun/topic/4b1c17f5-a42b-4853-9ff5-792a23d45050?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
