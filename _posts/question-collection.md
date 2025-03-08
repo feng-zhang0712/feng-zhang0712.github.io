@@ -167,30 +167,12 @@
 - [x] [数组里面有 10 万个数据，取第一个元素和第 10 万个元素的时间相差多少？](https://fe.ecool.fun/topic/9ba9d7cb-840a-4910-8596-88c6349ead1e?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [创建对象的方式有哪些](https://fe.ecool.fun/topic/b4fc9495-91fc-4903-aab7-66a563637c1d?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [对象可枚举性（enumerable）](https://fe.ecool.fun/topic/83b73455-d22c-43ac-844d-d92c5ac6b662?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-
-
-
-
-
-
-
-
-
-
-
-- [x] [0.1+0.2 为什么不等于0.3](https://fe.ecool.fun/topic/27491e6c-d92d-4d41-9bff-4781665945df?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [ajax、axios、fetch](https://fe.ecool.fun/topic/eb100f99-89d5-4cdf-958f-d257aeb92614?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-
 - [x] [判断一个对象是不是空对象](https://fe.ecool.fun/topic/b343227e-136a-405a-8a9d-b6d92259fa38?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [对象取值中 a.b.c.d 和 a['b']['c']['d'] 有何区别？哪种方式性能好？](https://fe.ecool.fun/topic/ecfdaa1a-2747-4fc1-8b33-6bd338c84097?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [函数声明与函数表达式区别](https://fe.ecool.fun/topic/c830ad90-3291-4123-81db-223c81244f41?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [如何监听路由的变化](https://fe.ecool.fun/topic/93c12e43-114e-41b0-9515-5c13e5bf3e0b?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [onpopstate 可以监听到 pushstate 的事件吗？](https://fe.ecool.fun/topic/b7510525-d358-4b38-a29d-430524dc2dca?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [requestIdleCallback](https://fe.ecool.fun/topic/fe737e1d-6ee1-4344-9ab7-7d3dafb749f6?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [requestAnimationFrame](https://fe.ecool.fun/topic/828350f9-b3d1-4593-8306-e5bc567b5c28?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [判断某个字符串长度（要求支持表情）](https://fe.ecool.fun/topic/53de0582-783d-490b-b7ca-7a20e9d13cb8?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [使用 Math.random() 计算中奖概率有什么问题](https://fe.ecool.fun/topic/96c01fd6-3a42-497e-aca3-4232d08b8e6b?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [把十进制的 0.2 转换成二进制](https://fe.ecool.fun/topic/0ea76a47-8e0f-4d79-81a6-7ca371b1ea8c?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [如何监听路由的变化](https://fe.ecool.fun/topic/93c12e43-114e-41b0-9515-5c13e5bf3e0b?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [onpopstate 可以监听到 pushstate 的事件吗](https://fe.ecool.fun/topic/b7510525-d358-4b38-a29d-430524dc2dca?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [前端跨页面通信方法](https://fe.ecool.fun/topic/16cd86d3-cdc5-4c8c-946b-19f72408525f?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [浏览器内多个标签页之间的通信](https://fe.ecool.fun/topic/833fba72-1614-4502-adc3-1f5593ae6560?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [本地实现一个聊天室，多个 tab 页相互通信，不能用 websocket](https://fe.ecool.fun/topic/7053c84f-1316-43f2-a2ba-23fb00318220?orderBy=default&order=desc&tagId=10&exerciseCate=2&ignoreMaster=1&difficulty=)
@@ -198,19 +180,33 @@
 - [x] [new fn 与 new fn() 区别](https://fe.ecool.fun/topic/f2e93a54-e57f-4c52-bd8c-9b9474c437ac?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [new 原理及手写](https://fe.ecool.fun/topic/cbbef7f1-c87e-4c3c-9f0a-c8c2f0683075?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [如何确保构造函数只能被 new 调用，而不能被普通调用](https://fe.ecool.fun/topic/2572a1d9-4018-49c3-9934-1fe1be0889b2?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [toPrecision、toFixed、Math.round 区别](https://fe.ecool.fun/topic/dc584829-5c57-435d-9276-f971e479bd29?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [什么是 Polyfill](https://fe.ecool.fun/topic/a8cc1054-2087-4adb-992c-33b88a188ddf?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [检测浏览器版本](https://fe.ecool.fun/topic/7ff627a9-0948-4352-9b70-69aad59fe2ec?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [点击穿透及怎么解决](https://fe.ecool.fun/topic/eb451be3-dc88-481c-b8a8-da6c8d278e95?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [移动端的点击事件及怎么解决](https://fe.ecool.fun/topic/b43082e8-2312-4594-ac1c-4f0d2d5da81c?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [什么是 Polyfill](https://fe.ecool.fun/topic/a8cc1054-2087-4adb-992c-33b88a188ddf?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [toPrecision、toFixed、Math.round](https://fe.ecool.fun/topic/dc584829-5c57-435d-9276-f971e479bd29?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [判断页面是通过 PC 端还是移动端访问](https://fe.ecool.fun/topic/664e2875-26fa-45b0-89cd-9cb961ec8046?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [setTimeout 运行机制](https://fe.ecool.fun/topic/cdeec2cc-5772-4c63-b7f0-34f864ea886d?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [js 中倒计时实现纠正偏差](https://fe.ecool.fun/topic/7b48e19d-6596-4853-875f-067f9bb048a8?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [['10', '10', '10', '10', '10'].map(parseInt)](https://fe.ecool.fun/topic/01149afa-e389-4a9f-a534-204db829188b?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [document.write innerHTML](https://fe.ecool.fun/topic/1b0c8f90-9f1a-42bf-bd5a-d9efaf0d74eb?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [object.assign 和扩展运算法是深拷贝还是浅拷贝，两者区别](https://fe.ecool.fun/topic/8244fd41-2b94-4179-887f-177501ddf280?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [事件模型](https://fe.ecool.fun/topic/82a3da79-23fb-42be-8f4b-9d52fc595954?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [事件代理及其应用场景](https://fe.ecool.fun/topic/305a1520-b7df-4c05-a72b-a18c165250de?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [事件循环](https://fe.ecool.fun/topic/b1b488cb-0f79-4d12-bdab-4c070e0da072?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [bind 连续调用多次，this 的绑定值是什么](https://fe.ecool.fun/topic/e253151b-a880-448b-9cd1-d869971a63e4?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [cookie 的有效时间设置为 0 会怎么样](https://fe.ecool.fun/topic/94393532-0d43-407f-8168-73bc6fd523a3?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [对 this 对象的理解](https://fe.ecool.fun/topic/fe97f51f-1d7d-49b7-acd2-83f345014633?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [object.assign 和扩展运算法是深拷贝还是浅拷贝，两者区别](https://fe.ecool.fun/topic/8244fd41-2b94-4179-887f-177501ddf280?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [Object.defineProperty](https://fe.ecool.fun/topic/a493193e-48ff-4e9e-9e66-0bf55732db63?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [requestIdleCallback](https://fe.ecool.fun/topic/fe737e1d-6ee1-4344-9ab7-7d3dafb749f6?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [requestAnimationFrame](https://fe.ecool.fun/topic/828350f9-b3d1-4593-8306-e5bc567b5c28?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+
+
+
+- [x] [0.1+0.2 为什么不等于0.3](https://fe.ecool.fun/topic/27491e6c-d92d-4d41-9bff-4781665945df?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [ajax、axios、fetch](https://fe.ecool.fun/topic/eb100f99-89d5-4cdf-958f-d257aeb92614?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [使用 Math.random() 计算中奖概率有什么问题](https://fe.ecool.fun/topic/96c01fd6-3a42-497e-aca3-4232d08b8e6b?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [把十进制的 0.2 转换成二进制](https://fe.ecool.fun/topic/0ea76a47-8e0f-4d79-81a6-7ca371b1ea8c?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [点击穿透及怎么解决](https://fe.ecool.fun/topic/eb451be3-dc88-481c-b8a8-da6c8d278e95?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [移动端的点击事件及怎么解决](https://fe.ecool.fun/topic/b43082e8-2312-4594-ac1c-4f0d2d5da81c?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [js 中倒计时实现纠正偏差](https://fe.ecool.fun/topic/7b48e19d-6596-4853-875f-067f9bb048a8?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [document.write innerHTML innerText textContent](https://fe.ecool.fun/topic/1b0c8f90-9f1a-42bf-bd5a-d9efaf0d74eb?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [Proxy 监听基本数据类型](https://fe.ecool.fun/topic/6d66ddb0-f53a-4286-b5e1-bf7ca3bcd34e?orderBy=default&order=desc&tagId=10&exerciseCate=2&ignoreMaster=1&difficulty=)
 - [x] [为什么请求参数需要使用 encodeURIComponent 进行转码](https://fe.ecool.fun/topic/ea7dbe32-726d-4d21-a9bc-3df77e1ec853?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [WebSocket](https://fe.ecool.fun/topic/4449a399-c20d-49e7-aac6-05236ee28662?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
@@ -219,13 +215,8 @@
 - [x] [Web Worker](https://fe.ecool.fun/topic/9ae6ebb4-5aae-4a1b-b0e8-15e1b12bc178?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [WebWorker、SharedWorker 和 ServiceWorker 区别](https://fe.ecool.fun/topic/f18218c8-4c74-4631-b66d-e7ac65929f35?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [说说 Javascript 为什么会存在数字精度丢失的问题，如何解决](https://fe.ecool.fun/topic/c141b446-0f24-4580-8594-f61f23dc5979?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [cookie 的有效时间设置为 0 会怎么样](https://fe.ecool.fun/topic/94393532-0d43-407f-8168-73bc6fd523a3?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [本地存储的方式有哪些，有什么区别，及有哪些应用场景？](https://fe.ecool.fun/topic/74cf701d-95e7-428a-a7c1-d746c6c0877c?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [事件模型](https://fe.ecool.fun/topic/82a3da79-23fb-42be-8f4b-9d52fc595954?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [事件代理及其应用场景](https://fe.ecool.fun/topic/305a1520-b7df-4c05-a72b-a18c165250de?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [事件循环](https://fe.ecool.fun/topic/b1b488cb-0f79-4d12-bdab-4c070e0da072?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [执行上下文和执行栈](https://fe.ecool.fun/topic/c137050b-10f5-4a4f-9941-820ad7a9894d?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [x] [对 this 对象的理解](https://fe.ecool.fun/topic/fe97f51f-1d7d-49b7-acd2-83f345014633?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [闭包及使用场景](https://fe.ecool.fun/topic/e9bcc1f4-1b0a-4213-9d3a-8e64c97c7848?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [Promise 的 finally 实现](https://fe.ecool.fun/topic/7b82de7c-5c47-4e5a-9630-df2721d17edb?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [promise.catch 后面的 .then 还会执行吗](https://fe.ecool.fun/topic/3925cf74-ee93-49fd-8896-8bc7221f32a4?orderBy=default&order=desc&tagId=10&exerciseCate=0&ignoreMaster=1&difficulty=)
