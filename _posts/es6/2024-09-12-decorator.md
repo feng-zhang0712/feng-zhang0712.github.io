@@ -101,6 +101,30 @@ let obj = new MyTestableClass();
 obj.isTestable // true
 ```
 
+下面代码通过装饰器 `mixins`，把 `Foo` 对象的方法添加到了 `MyClass` 的实例上面。
+
+```javascript
+// mixins.js
+export function mixins(...list) {
+  return function (target) {
+    Object.assign(target.prototype, ...list)
+  }
+}
+
+// main.js
+import { mixins } from './mixins.js'
+
+const Foo = {
+  foo() { console.log('foo') }
+};
+
+@mixins(Foo)
+class MyClass {}
+
+let obj = new MyClass();
+obj.foo() // 'foo'
+```
+
 实际开发中，React 与 Redux 库结合使用时。可以使用装饰器对 `connect` 方法进行改造，改造后的写法看上去更容易理解。
 
 ```javascript
@@ -326,9 +350,7 @@ C.prototype.m = logged(C.prototype.m, {
 
 ## 七、为什么装饰器不能用于函数？
 
-**装饰器只能用于类和类的方法，不能用于函数，因为存在函数提升**。因为类不会提升，所以就没有这方面的问题。
-
-如果一定要装饰函数，可以采用高阶函数的形式直接执行。
+**装饰器只能用于类和类的方法，不能用于函数，因为存在函数提升**。类不会提升，所以就没有这方面的问题。如果一定要装饰函数，可以采用高阶函数的形式直接执行。
 
 ```javascript
 function doSomething(name) {
