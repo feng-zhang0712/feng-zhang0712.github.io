@@ -34,6 +34,25 @@
 
 <span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MyTestableClass</span><span class="p">();</span>
 <span class="nx">obj</span><span class="p">.</span><span class="nx">isTestable</span> <span class="c1">// true</span>
+</code></pre></div></div> <p>下面代码通过装饰器 <code class="language-plaintext highlighter-rouge">mixins</code>，把 <code class="language-plaintext highlighter-rouge">Foo</code> 对象的方法添加到了 <code class="language-plaintext highlighter-rouge">MyClass</code> 的实例上面。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// mixins.js</span>
+<span class="k">export</span> <span class="kd">function</span> <span class="nf">mixins</span><span class="p">(...</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nf">function </span><span class="p">(</span><span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">Object</span><span class="p">.</span><span class="nf">assign</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="p">...</span><span class="nx">list</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// main.js</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">mixins</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./mixins.js</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">Foo</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">foo</span><span class="dl">'</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="p">@</span><span class="nd">mixins</span><span class="p">(</span><span class="nx">Foo</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nc">MyClass</span> <span class="p">{}</span>
+
+<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MyClass</span><span class="p">();</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nf">foo</span><span class="p">()</span> <span class="c1">// 'foo'</span>
 </code></pre></div></div> <p>实际开发中，React 与 Redux 库结合使用时。可以使用装饰器对 <code class="language-plaintext highlighter-rouge">connect</code> 方法进行改造，改造后的写法看上去更容易理解。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">MyReactComponent</span> <span class="kd">extends</span> <span class="nc">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{}</span>
 <span class="k">export</span> <span class="k">default</span> <span class="nf">connect</span><span class="p">(</span><span class="nx">mapStateToProps</span><span class="p">,</span> <span class="nx">mapDispatchToProps</span><span class="p">)(</span><span class="nx">MyReactComponent</span><span class="p">);</span>
 
@@ -179,7 +198,7 @@
   <span class="na">static</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">private</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
 <span class="p">})</span> <span class="o">??</span> <span class="nx">C</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">m</span><span class="p">;</span>
-</code></pre></div></div> <h2 id="七为什么装饰器不能用于函数">七、为什么装饰器不能用于函数？</h2> <p><strong>装饰器只能用于类和类的方法，不能用于函数，因为存在函数提升</strong>。因为类不会提升，所以就没有这方面的问题。</p> <p>如果一定要装饰函数，可以采用高阶函数的形式直接执行。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">doSomething</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div></div> <h2 id="七为什么装饰器不能用于函数">七、为什么装饰器不能用于函数？</h2> <p><strong>装饰器只能用于类和类的方法，不能用于函数，因为存在函数提升</strong>。类不会提升，所以就没有这方面的问题。如果一定要装饰函数，可以采用高阶函数的形式直接执行。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">doSomething</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello, </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">name</span><span class="p">);</span>
 <span class="p">}</span>
 
