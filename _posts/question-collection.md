@@ -42,6 +42,10 @@
 - [x] [常用的 meta 元素](https://fe.ecool.fun/topic/c849aa25-0dae-49aa-8148-b1c410a7aa1e?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [meta 标签 viewport 作用](https://fe.ecool.fun/topic/394752d7-88aa-4512-bd7e-91711a3904b7?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [x] [drag 相关的 API](https://fe.ecool.fun/topic/969cddcd-b1ac-4285-86f6-ae0a8eaf828a?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [src vs href](https://fe.ecool.fun/topic/53060972-481f-4025-a055-aa278d737fc1?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [页面导入样式时，使用 link 和 @import 的区别](https://fe.ecool.fun/topic/d7e46f80-9878-4757-8535-ee962dca4ee6?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [使用 input 标签上传图片时，怎样触发默认拍照功能？](https://fe.ecool.fun/topic/a7e1aeb6-aaf9-43fe-92ac-fd574fb60a96?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [x] [设备的 dpr 是否可变](https://fe.ecool.fun/topic/8dad4e08-b8b7-4593-bb5e-8df4d4b14499?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 
 
 - [Web Component](https://fe.ecool.fun/topic/699d3c09-7c5e-433e-8ca6-e02d55abfec9?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
@@ -49,19 +53,15 @@
 - [导致页面加载白屏的原因及优化](https://fe.ecool.fun/topic/841bfe02-d07d-45db-9e65-b9c250595d80?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [SEO 的原理](https://fe.ecool.fun/topic/255b920d-ba6d-4e6a-85ac-58c78d2e0773?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [SPA 应用的 SEO](https://fe.ecool.fun/topic/c14803df-f552-4a23-b50d-fd8e3f77f17e?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [浏览器是如何对 HTML5 的离线储存资源进行管理和加载？](https://fe.ecool.fun/topic/93ffefee-3471-48a5-b60c-1b7adf8edf13?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [HTML5 的离线储存及其工作原理是](https://fe.ecool.fun/topic/d2d8725c-7941-4ba8-9b92-67a730fa1097?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [HTML5 离线储存及其工作原理](https://fe.ecool.fun/topic/d2d8725c-7941-4ba8-9b92-67a730fa1097?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [浏览器如何对 HTML5 的离线储存资源进行管理和加载](https://fe.ecool.fun/topic/93ffefee-3471-48a5-b60c-1b7adf8edf13?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [img 的 srcset 属性](https://fe.ecool.fun/topic/072b9f8d-7383-4823-9508-77e4e9d1744c?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [使用 input 标签上传图片时，怎样触发默认拍照功能？](https://fe.ecool.fun/topic/a7e1aeb6-aaf9-43fe-92ac-fd574fb60a96?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [页面统计数据中，常用的 PV、UV 指标](https://fe.ecool.fun/topic/f6e033d6-6e6e-4613-ad8d-a4340c3380a0?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [IconFont 是什么？有什么优缺点？](https://fe.ecool.fun/topic/ece0e4b9-112c-4d3c-934c-822e8807fe46?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [IconFont 的原理](https://fe.ecool.fun/topic/144bb888-936e-42c8-bdcb-445b5c4dc774?orderBy=default&order=desc&tagId=11&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [设备的 dpr 是否可变](https://fe.ecool.fun/topic/8dad4e08-b8b7-4593-bb5e-8df4d4b14499?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [IconFont 原理](https://fe.ecool.fun/topic/144bb888-936e-42c8-bdcb-445b5c4dc774?orderBy=default&order=desc&tagId=11&exerciseCate=0&ignoreMaster=1&difficulty=)
 - [html 和 css 中的图片加载与渲染规则是什么样的？](https://fe.ecool.fun/topic/5b612b6a-3828-4cd9-9de4-b05bb36a4e3d?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [前端该如何选择图片的格式？](https://fe.ecool.fun/topic/55ba9331-1165-4b0e-baba-dc9a6378a8fb?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [页面导入样式时，使用 link 和 @import 的区别](https://fe.ecool.fun/topic/d7e46f80-9878-4757-8535-ee962dca4ee6?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [src vs href](https://fe.ecool.fun/topic/53060972-481f-4025-a055-aa278d737fc1?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
-- [iframe 是什么？有哪些优缺点？](https://fe.ecool.fun/topic/06af30a2-e542-4cf0-9793-999267a4007d?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [前端如何选择图片的格式](https://fe.ecool.fun/topic/55ba9331-1165-4b0e-baba-dc9a6378a8fb?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
+- [iframe 优缺点](https://fe.ecool.fun/topic/06af30a2-e542-4cf0-9793-999267a4007d?orderBy=default&order=desc&tagId=12&exerciseCate=0&ignoreMaster=1&difficulty=)
 
 ## CSS [106]
 
