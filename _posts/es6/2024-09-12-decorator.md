@@ -170,7 +170,60 @@ new C(1);
 // constructing an instance of C with arguments 1
 ```
 
-## 五、方法的装饰
+## 五、属性装饰器（新语法）
+
+属性装饰器的类型描述如下。
+
+```javascript
+type ClassFieldDecorator = (value: undefined, context: {
+  kind: "field";
+  name: string | symbol;
+  access: { get(): unknown, set(value: unknown): void };
+  static: boolean;
+  private: boolean;
+}) => (initialValue: unknown) => unknown | void;
+```
+
+- 属性装饰器的第一个参数是 `undefined`，即不输入值。
+- 用户可以选择让装饰器返回一个初始化函数，当该属性被赋值时，这个初始化函数会自动运行，它会收到属性的初始值，然后返回一个新的初始值。属性装饰器也可以不返回任何值。除了这两种情况，返回其他类型的值都会报错。
+
+```javascript
+function logged(value, { kind, name }) {
+  if (kind === "field") {
+    return function (initialValue) {
+      console.log(`initializing ${name} with value ${initialValue}`);
+      return initialValue;
+    };
+  }
+
+  // ...
+}
+
+class C {
+  @logged x = 1;
+}
+
+new C();
+// initializing x with value 1
+```
+
+如果不使用装饰器语法，属性装饰器的实际作用如下。
+
+```javascript
+let initializeX = logged(undefined, {
+  kind: "field",
+  name: "x",
+  static: false,
+  private: false,
+}) ?? (initialValue) => initialValue;
+
+class C {
+  x = initializeX.call(this, 1);
+}
+
+```
+
+## 六、方法的装饰
 
 **装饰器可以装饰类的属性**。
 
@@ -278,7 +331,7 @@ class Example {
 
 除了注释，**装饰器还能用来类型检查**。所以，对于类来说，这项功能相当有用。从长期来看，它将是 JavaScript 代码静态分析的重要工具。
 
-## 六、方法装饰器（新语法）
+## 七、方法装饰器（新语法）
 
 **方法装饰器可以用来修改类的方法**。
 
@@ -348,7 +401,7 @@ C.prototype.m = logged(C.prototype.m, {
 }) ?? C.prototype.m;
 ```
 
-## 七、为什么装饰器不能用于函数？
+## 八、为什么装饰器不能用于函数？
 
 **装饰器只能用于类和类的方法，不能用于函数，因为存在函数提升**。类不会提升，所以就没有这方面的问题。如果一定要装饰函数，可以采用高阶函数的形式直接执行。
 
@@ -369,7 +422,7 @@ function loggingDecorator(wrapped) {
 const wrapped = loggingDecorator(doSomething);
 ```
 
-## 八、存取器装饰器（新语法）
+## 九、存取器装饰器（新语法）
 
 存取器装饰器使用 TypeScript 描述的类型如下。
 
@@ -436,59 +489,6 @@ set = logged(set, {
 }) ?? set;
 
 Object.defineProperty(C.prototype, "x", { set });
-```
-
-## 九、属性装饰器（新语法）
-
-属性装饰器的类型描述如下。
-
-```javascript
-type ClassFieldDecorator = (value: undefined, context: {
-  kind: "field";
-  name: string | symbol;
-  access: { get(): unknown, set(value: unknown): void };
-  static: boolean;
-  private: boolean;
-}) => (initialValue: unknown) => unknown | void;
-```
-
-- 属性装饰器的第一个参数是 `undefined`，即不输入值。
-- 用户可以选择让装饰器返回一个初始化函数，当该属性被赋值时，这个初始化函数会自动运行，它会收到属性的初始值，然后返回一个新的初始值。属性装饰器也可以不返回任何值。除了这两种情况，返回其他类型的值都会报错。
-
-```javascript
-function logged(value, { kind, name }) {
-  if (kind === "field") {
-    return function (initialValue) {
-      console.log(`initializing ${name} with value ${initialValue}`);
-      return initialValue;
-    };
-  }
-
-  // ...
-}
-
-class C {
-  @logged x = 1;
-}
-
-new C();
-// initializing x with value 1
-```
-
-如果不使用装饰器语法，属性装饰器的实际作用如下。
-
-```javascript
-let initializeX = logged(undefined, {
-  kind: "field",
-  name: "x",
-  static: false,
-  private: false,
-}) ?? (initialValue) => initialValue;
-
-class C {
-  x = initializeX.call(this, 1);
-}
-
 ```
 
 ## 十、accessor 命令（新语法）
