@@ -81,7 +81,42 @@
 
 <span class="k">new</span> <span class="nc">C</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="c1">// constructing an instance of C with arguments 1</span>
-</code></pre></div></div> <h2 id="五方法的装饰">五、方法的装饰</h2> <p><strong>装饰器可以装饰类的属性</strong>。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
+</code></pre></div></div> <h2 id="五属性装饰器新语法">五、属性装饰器（新语法）</h2> <p>属性装饰器的类型描述如下。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">ClassFieldDecorator</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value</span><span class="p">:</span> <span class="kc">undefined</span><span class="p">,</span> <span class="nx">context</span><span class="p">:</span> <span class="p">{</span>
+  <span class="nl">kind</span><span class="p">:</span> <span class="dl">"</span><span class="s2">field</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nl">name</span><span class="p">:</span> <span class="nx">string</span> <span class="o">|</span> <span class="nx">symbol</span><span class="p">;</span>
+  <span class="nl">access</span><span class="p">:</span> <span class="p">{</span> <span class="nf">get</span><span class="p">():</span> <span class="nx">unknown</span><span class="p">,</span> <span class="nf">set</span><span class="p">(</span><span class="na">value</span><span class="p">:</span> <span class="nx">unknown</span><span class="p">):</span> <span class="k">void</span> <span class="p">};</span>
+  <span class="nl">static</span><span class="p">:</span> <span class="nx">boolean</span><span class="p">;</span>
+  <span class="nl">private</span><span class="p">:</span> <span class="nx">boolean</span><span class="p">;</span>
+<span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">initialValue</span><span class="p">:</span> <span class="nx">unknown</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">unknown</span> <span class="o">|</span> <span class="k">void</span><span class="p">;</span>
+</code></pre></div></div> <ul> <li>属性装饰器的第一个参数是 <code class="language-plaintext highlighter-rouge">undefined</code>，即不输入值。</li> <li>用户可以选择让装饰器返回一个初始化函数，当该属性被赋值时，这个初始化函数会自动运行，它会收到属性的初始值，然后返回一个新的初始值。属性装饰器也可以不返回任何值。除了这两种情况，返回其他类型的值都会报错。</li> </ul> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">logged</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="p">{</span> <span class="nx">kind</span><span class="p">,</span> <span class="nx">name</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">field</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nf">function </span><span class="p">(</span><span class="nx">initialValue</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`initializing </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2"> with value </span><span class="p">${</span><span class="nx">initialValue</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+      <span class="k">return</span> <span class="nx">initialValue</span><span class="p">;</span>
+    <span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">C</span> <span class="p">{</span>
+  <span class="p">@</span><span class="nd">logged</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">new</span> <span class="nc">C</span><span class="p">();</span>
+<span class="c1">// initializing x with value 1</span>
+</code></pre></div></div> <p>如果不使用装饰器语法，属性装饰器的实际作用如下。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">initializeX</span> <span class="o">=</span> <span class="nf">logged</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">kind</span><span class="p">:</span> <span class="dl">"</span><span class="s2">field</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">x</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">static</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">private</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+<span class="p">})</span> <span class="o">??</span> <span class="p">(</span><span class="nx">initialValue</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">initialValue</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">C</span> <span class="p">{</span>
+  <span class="nx">x</span> <span class="o">=</span> <span class="nx">initializeX</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+</code></pre></div></div> <h2 id="六方法的装饰">六、方法的装饰</h2> <p><strong>装饰器可以装饰类的属性</strong>。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
   <span class="p">@</span><span class="nd">readonly</span>
   <span class="nf">name</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">first</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">last</span><span class="p">}</span><span class="s2">`</span> <span class="p">}</span>
 <span class="p">}</span>
@@ -152,7 +187,7 @@
 <span class="c1">// evaluated 2</span>
 <span class="c1">// executed 2</span>
 <span class="c1">// executed 1</span>
-</code></pre></div></div> <p>上面代码中，外层装饰器 <code class="language-plaintext highlighter-rouge">@dec(1)</code> 先进入，但是内层装饰器 <code class="language-plaintext highlighter-rouge">@dec(2)</code> 先执行。</p> <p>除了注释，<strong>装饰器还能用来类型检查</strong>。所以，对于类来说，这项功能相当有用。从长期来看，它将是 JavaScript 代码静态分析的重要工具。</p> <h2 id="六方法装饰器新语法">六、方法装饰器（新语法）</h2> <p><strong>方法装饰器可以用来修改类的方法</strong>。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">C</span> <span class="p">{</span>
+</code></pre></div></div> <p>上面代码中，外层装饰器 <code class="language-plaintext highlighter-rouge">@dec(1)</code> 先进入，但是内层装饰器 <code class="language-plaintext highlighter-rouge">@dec(2)</code> 先执行。</p> <p>除了注释，<strong>装饰器还能用来类型检查</strong>。所以，对于类来说，这项功能相当有用。从长期来看，它将是 JavaScript 代码静态分析的重要工具。</p> <h2 id="七方法装饰器新语法">七、方法装饰器（新语法）</h2> <p><strong>方法装饰器可以用来修改类的方法</strong>。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">C</span> <span class="p">{</span>
   <span class="p">@</span><span class="nd">trace</span>
   <span class="nf">toString</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="dl">'</span><span class="s1">C</span><span class="dl">'</span><span class="p">;</span>
@@ -198,7 +233,7 @@
   <span class="na">static</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">private</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
 <span class="p">})</span> <span class="o">??</span> <span class="nx">C</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">m</span><span class="p">;</span>
-</code></pre></div></div> <h2 id="七为什么装饰器不能用于函数">七、为什么装饰器不能用于函数？</h2> <p><strong>装饰器只能用于类和类的方法，不能用于函数，因为存在函数提升</strong>。类不会提升，所以就没有这方面的问题。如果一定要装饰函数，可以采用高阶函数的形式直接执行。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">doSomething</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div></div> <h2 id="八为什么装饰器不能用于函数">八、为什么装饰器不能用于函数？</h2> <p><strong>装饰器只能用于类和类的方法，不能用于函数，因为存在函数提升</strong>。类不会提升，所以就没有这方面的问题。如果一定要装饰函数，可以采用高阶函数的形式直接执行。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">doSomething</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello, </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">name</span><span class="p">);</span>
 <span class="p">}</span>
 
@@ -212,7 +247,7 @@
 <span class="p">}</span>
 
 <span class="kd">const</span> <span class="nx">wrapped</span> <span class="o">=</span> <span class="nf">loggingDecorator</span><span class="p">(</span><span class="nx">doSomething</span><span class="p">);</span>
-</code></pre></div></div> <h2 id="八存取器装饰器新语法">八、存取器装饰器（新语法）</h2> <p>存取器装饰器使用 TypeScript 描述的类型如下。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">ClassGetterDecorator</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value</span><span class="p">:</span> <span class="nb">Function</span><span class="p">,</span> <span class="nx">context</span><span class="p">:</span> <span class="p">{</span>
+</code></pre></div></div> <h2 id="九存取器装饰器新语法">九、存取器装饰器（新语法）</h2> <p>存取器装饰器使用 TypeScript 描述的类型如下。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">ClassGetterDecorator</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value</span><span class="p">:</span> <span class="nb">Function</span><span class="p">,</span> <span class="nx">context</span><span class="p">:</span> <span class="p">{</span>
   <span class="nl">kind</span><span class="p">:</span> <span class="dl">"</span><span class="s2">getter</span><span class="dl">"</span><span class="p">;</span>
   <span class="nl">name</span><span class="p">:</span> <span class="nx">string</span> <span class="o">|</span> <span class="nx">symbol</span><span class="p">;</span>
   <span class="nl">access</span><span class="p">:</span> <span class="p">{</span> <span class="nf">get</span><span class="p">():</span> <span class="nx">unknown</span> <span class="p">};</span>
@@ -261,41 +296,6 @@
 <span class="p">})</span> <span class="o">??</span> <span class="kd">set</span><span class="p">;</span>
 
 <span class="nb">Object</span><span class="p">.</span><span class="nf">defineProperty</span><span class="p">(</span><span class="nx">C</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="dl">"</span><span class="s2">x</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span> <span class="kd">set</span> <span class="p">});</span>
-</code></pre></div></div> <h2 id="九属性装饰器新语法">九、属性装饰器（新语法）</h2> <p>属性装饰器的类型描述如下。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">ClassFieldDecorator</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value</span><span class="p">:</span> <span class="kc">undefined</span><span class="p">,</span> <span class="nx">context</span><span class="p">:</span> <span class="p">{</span>
-  <span class="nl">kind</span><span class="p">:</span> <span class="dl">"</span><span class="s2">field</span><span class="dl">"</span><span class="p">;</span>
-  <span class="nl">name</span><span class="p">:</span> <span class="nx">string</span> <span class="o">|</span> <span class="nx">symbol</span><span class="p">;</span>
-  <span class="nl">access</span><span class="p">:</span> <span class="p">{</span> <span class="nf">get</span><span class="p">():</span> <span class="nx">unknown</span><span class="p">,</span> <span class="nf">set</span><span class="p">(</span><span class="na">value</span><span class="p">:</span> <span class="nx">unknown</span><span class="p">):</span> <span class="k">void</span> <span class="p">};</span>
-  <span class="nl">static</span><span class="p">:</span> <span class="nx">boolean</span><span class="p">;</span>
-  <span class="nl">private</span><span class="p">:</span> <span class="nx">boolean</span><span class="p">;</span>
-<span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">initialValue</span><span class="p">:</span> <span class="nx">unknown</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">unknown</span> <span class="o">|</span> <span class="k">void</span><span class="p">;</span>
-</code></pre></div></div> <ul> <li>属性装饰器的第一个参数是 <code class="language-plaintext highlighter-rouge">undefined</code>，即不输入值。</li> <li>用户可以选择让装饰器返回一个初始化函数，当该属性被赋值时，这个初始化函数会自动运行，它会收到属性的初始值，然后返回一个新的初始值。属性装饰器也可以不返回任何值。除了这两种情况，返回其他类型的值都会报错。</li> </ul> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">logged</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="p">{</span> <span class="nx">kind</span><span class="p">,</span> <span class="nx">name</span> <span class="p">})</span> <span class="p">{</span>
-  <span class="k">if </span><span class="p">(</span><span class="nx">kind</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">field</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nf">function </span><span class="p">(</span><span class="nx">initialValue</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`initializing </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2"> with value </span><span class="p">${</span><span class="nx">initialValue</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
-      <span class="k">return</span> <span class="nx">initialValue</span><span class="p">;</span>
-    <span class="p">};</span>
-  <span class="p">}</span>
-
-  <span class="c1">// ...</span>
-<span class="p">}</span>
-
-<span class="kd">class</span> <span class="nc">C</span> <span class="p">{</span>
-  <span class="p">@</span><span class="nd">logged</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">new</span> <span class="nc">C</span><span class="p">();</span>
-<span class="c1">// initializing x with value 1</span>
-</code></pre></div></div> <p>如果不使用装饰器语法，属性装饰器的实际作用如下。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">initializeX</span> <span class="o">=</span> <span class="nf">logged</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">kind</span><span class="p">:</span> <span class="dl">"</span><span class="s2">field</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">x</span><span class="dl">"</span><span class="p">,</span>
-  <span class="na">static</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="na">private</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-<span class="p">})</span> <span class="o">??</span> <span class="p">(</span><span class="nx">initialValue</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">initialValue</span><span class="p">;</span>
-
-<span class="kd">class</span> <span class="nc">C</span> <span class="p">{</span>
-  <span class="nx">x</span> <span class="o">=</span> <span class="nx">initializeX</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-
 </code></pre></div></div> <h2 id="十accessor-命令新语法">十、accessor 命令（新语法）</h2> <p><strong>类装饰器引入了一个新命令 <code class="language-plaintext highlighter-rouge">accessor</code>，用于属性的前缀。它是一种简写形式，相当于声明属性 <code class="language-plaintext highlighter-rouge">x</code> 是私有属性 <code class="language-plaintext highlighter-rouge">#x</code> 的存取接口</strong>。</p> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">C</span> <span class="p">{</span>
   <span class="nx">accessor</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
