@@ -249,7 +249,7 @@ x > '11' // false
   [2] == true // false
   ```
 
-- `undefined` 和 `null` 只有与自身比较，或者互相比较时，才会返回 `true`；与其他类型的值比较时，结果都为 `false`。
+- `undefined` 和 `null` 只有与自身比较，或者互相比较时，才会返回 `true`；**与其他类型的值比较时，结果都为 `false`**。
 
   ```javascript
   undefined == undefined // true
